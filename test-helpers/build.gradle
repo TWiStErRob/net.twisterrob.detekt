@@ -1,0 +1,13 @@
+plugins {
+	id("net.twisterrob.detekt.library")
+}
+
+dependencies {
+	api(libs.test.jupiter.api)
+	api(libs.test.jupiter.params)
+	runtimeOnly(libs.test.jupiter.engine)
+
+	api(libs.test.hamcrest)
+	api(libs.test.mockito)
+	api(libs.test.mockitoJupiter)
+}

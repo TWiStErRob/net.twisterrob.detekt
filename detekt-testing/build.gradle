@@ -1,0 +1,11 @@
+plugins {
+	id("net.twisterrob.detekt.library")
+}
+
+dependencies {
+	api(libs.detekt.test)
+	implementation(libs.kotlin.reflect)
+	implementation(libs.jsr305)
+
+	compileOnly(libs.test.jupiter.api)
+}

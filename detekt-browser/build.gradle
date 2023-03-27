@@ -1,0 +1,18 @@
+plugins {
+	id("org.gradle.java-library")
+}
+
+dependencies {
+	api(libs.detekt.core)
+	api(libs.detekt.cli)
+	api(libs.detekt.rules.asProvider())
+	api(libs.detekt.rules.complexity)
+	api(libs.detekt.rules.coroutines)
+	api(libs.detekt.rules.documentation)
+	api(libs.detekt.rules.empty)
+	api(libs.detekt.rules.errorprone)
+	api(libs.detekt.rules.exceptions)
+	api(libs.detekt.rules.naming)
+	api(libs.detekt.rules.performance)
+	api(libs.detekt.rules.style)
+}

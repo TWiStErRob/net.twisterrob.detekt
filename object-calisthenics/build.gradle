@@ -1,0 +1,7 @@
+plugins {
+	id("net.twisterrob.detekt.ruleset")
+}
+
+dependencies {
+	implementation(libs.jsr305)
+}

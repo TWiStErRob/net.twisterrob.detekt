@@ -1,0 +1,60 @@
+[versions]
+idea = "2022.1.2"
+intellij = "1.13.0"
+# This might seem old, but since this is a plugin to a Gradle Plugin,
+# it's customary to support whatever Java range Gradle supports:
+# https://docs.gradle.org/current/userguide/compatibility.html
+java-source = "1.8"
+java-target = "1.8"
+java-toolchain = "8"
+java-toolchainTest = "11"
+# Same applies as for Java version,
+# but in this case we can use the latest Kotlin Gradle Plugin to produce old-compatible bytecode.
+kotlin-build = "1.8.10"
+kotlin-target = "1.4.32"
+kotlin-language = "1.4"
+
+detekt = "1.22.0"
+
+junit-jupiter = "5.9.2"
+hamcrest = "1.3"
+mockito = "5.2.0"
+jsr305 = "3.0.2"
+
+[libraries]
+plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-build" }
+plugin-intellij = { module = "org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin", version.ref = "intellij" }
+plugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin-target" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin-target" }
+
+detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detekt" }
+detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref = "detekt" }
+detekt-core = { module = "io.gitlab.arturbosch.detekt:detekt-core", version.ref = "detekt" }
+detekt-cli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
+detekt-rules = { module = "io.gitlab.arturbosch.detekt:detekt-rules", version.ref = "detekt" }
+detekt-rules-complexity = { module = "io.gitlab.arturbosch.detekt:detekt-rules-complexity", version.ref = "detekt" }
+detekt-rules-coroutines = { module = "io.gitlab.arturbosch.detekt:detekt-rules-coroutines", version.ref = "detekt" }
+detekt-rules-documentation = { module = "io.gitlab.arturbosch.detekt:detekt-rules-documentation", version.ref = "detekt" }
+detekt-rules-empty = { module = "io.gitlab.arturbosch.detekt:detekt-rules-empty", version.ref = "detekt" }
+detekt-rules-errorprone = { module = "io.gitlab.arturbosch.detekt:detekt-rules-errorprone", version.ref = "detekt" }
+detekt-rules-exceptions = { module = "io.gitlab.arturbosch.detekt:detekt-rules-exceptions", version.ref = "detekt" }
+detekt-rules-naming = { module = "io.gitlab.arturbosch.detekt:detekt-rules-naming", version.ref = "detekt" }
+detekt-rules-performance = { module = "io.gitlab.arturbosch.detekt:detekt-rules-performance", version.ref = "detekt" }
+detekt-rules-style = { module = "io.gitlab.arturbosch.detekt:detekt-rules-style", version.ref = "detekt" }
+
+jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
+
+test-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter" }
+test-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter" }
+test-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" }
+
+test-hamcrest = { module = "org.hamcrest:hamcrest-all", version.ref = "hamcrest" }
+test-mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+test-mockitoJupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-build" }
+intellij = { id = "org.jetbrains.intellij", version.ref = "intellij" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

@@ -1,0 +1,14 @@
+# IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Gradle
+.gradle/
+/build/
+/*/build/
+/gradle/plugins/build/
+
+# Other
+/temp/
