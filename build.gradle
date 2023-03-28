@@ -1,0 +1,12 @@
+plugins {
+	id("org.gradle.idea")
+}
+
+idea {
+	module {
+		def excludes = [
+				"temp",
+		]
+		excludeDirs.addAll(excludes.collect { new File(rootDir, it) })
+	}
+}
