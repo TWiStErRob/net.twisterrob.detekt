@@ -51,12 +51,14 @@ class ObjectCalisthenicsRuleSetProviderTest {
 
 		assertAll(
 			ruleSet.rules.map { rule ->
-				{
-					assertThat(rule, instanceOf(Rule::class.java)); rule as Rule
-					assertThat(rule.ruleSetConfig, sameInstance(mockConfig))
-				}
+				lazyAssertRuleHasConfig(rule, mockConfig)
 			}
 		)
+	}
+
+	private fun lazyAssertRuleHasConfig(rule: BaseRule, mockConfig: Config): () -> Unit = {
+		assertThat(rule, instanceOf(Rule::class.java)); rule as Rule
+		assertThat(rule.ruleSetConfig, sameInstance(mockConfig))
 	}
 
 	@Test
