@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
 	implementation(libs.jsr305)
+	detektPlugins(project(":object-calisthenics"))
 }
