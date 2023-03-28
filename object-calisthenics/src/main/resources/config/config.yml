@@ -1,3 +1,41 @@
 object-calisthenics:
+
+  # Rule #1: One level of indentation per method.
+  CalisthenicsIndent:
+    active: true
+
+  # Rule #2: Don’t use the ELSE keyword.
   CalisthenicsNoElse:
+    active: true
+
+  # Rule #3: Wrap all primitives and Strings.
+  CalisthenicsWrapPrimitives:
+    active: true
+
+  # Rule #4: First class collections.
+  CalisthenicsWrapCollections:
+    active: true
+
+  # Rule #5: One dot per line.
+  CalisthenicsDots:
+    active: true
+    
+  # Rule #6: Don’t abbreviate.
+  CalisthenicsNoAbbreviations:
+    active: true
+
+  # Rule #7: Keep all entities small.
+  CalisthenicsSmall:
+    active: true
+
+  # Rule #8: No classes with more than two instance variables.
+  CalisthenicsInstanceVar:
+    active: true
+
+  # Rule #9: No getters/setters/properties.
+  CalisthenicsNoExpose:
+    active: true
+  
+  # Rule #10: All classes must have state.
+  CalisthenicsState:
     active: true
