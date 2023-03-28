@@ -63,13 +63,7 @@ class CalisthenicsNoElseRule(
 	override fun visitIfExpression(expression: KtIfExpression) {
 		super.visitIfExpression(expression)
 		if (expression.`else` != null) {
-			report(
-				CodeSmell(
-					issue,
-					Entity.from(expression.elseKeyword!!),
-					issue.description
-				)
-			)
+			report(CodeSmell(issue, Entity.from(expression.elseKeyword!!), issue.description))
 		}
 	}
 }
