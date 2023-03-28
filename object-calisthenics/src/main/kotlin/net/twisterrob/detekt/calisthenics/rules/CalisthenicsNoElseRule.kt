@@ -1,15 +1,18 @@
 package net.twisterrob.detekt.calisthenics.rules
 
+import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Debt
+import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
+import org.jetbrains.kotlin.psi.KtIfExpression
 
 /**
  * Object Calisthenics: Rule #2 - Don't use the ELSE keyword.
  *
- * TODO ...
+ * See [Object Calisthenics by Jeff Bay](https://www.cs.helsinki.fi/u/luontola/tdd-2009/ext/ObjectCalisthenics.pdf).
  *
  * <noncompliant>
  * fun f() {
@@ -56,4 +59,17 @@ class CalisthenicsNoElseRule(
 			description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
 			debt = Debt.FIVE_MINS
 		)
+
+	override fun visitIfExpression(expression: KtIfExpression) {
+		super.visitIfExpression(expression)
+		if (expression.`else` != null) {
+			report(
+				CodeSmell(
+					issue,
+					Entity.from(expression.elseKeyword!!),
+					issue.description
+				)
+			)
+		}
+	}
 }

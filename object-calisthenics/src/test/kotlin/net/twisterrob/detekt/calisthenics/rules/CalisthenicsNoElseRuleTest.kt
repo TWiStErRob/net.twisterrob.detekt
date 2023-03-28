@@ -4,6 +4,7 @@ import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Severity
 import net.twisterrob.detekt.testing.PsiTestingExtension
+import net.twisterrob.detekt.testing.verifySimpleFinding
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.sameInstance
@@ -48,6 +49,100 @@ class CalisthenicsNoElseRuleTest {
 			val issue = CalisthenicsNoElseRule(mockConfig)
 
 			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+		}
+	}
+
+	@Nested
+	inner class `Rule logic` {
+
+		@Test
+		fun `reports if-else statement`() {
+			verifySimpleFinding<CalisthenicsNoElseRule>(
+				originalCode = """
+					fun f(value: String) {
+						if (value.isEmpty()) {
+							something()
+						} else {
+							somethingElse()
+						}
+					}
+					fun something() { }
+					fun somethingElse() { }
+				""".trimIndent(),
+				message = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+				pointedCode = "else",
+			)
+		}
+
+		@Test
+		fun `reports if-else body`() {
+			verifySimpleFinding<CalisthenicsNoElseRule>(
+				originalCode = """
+					fun f(value: String): String =
+						if (value.isEmpty()) {
+							something()
+						} else {
+							somethingElse()
+						}
+					fun something(): String = "something"
+					fun somethingElse(): String = "somethingElse"
+				""".trimIndent(),
+				message = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+				pointedCode = "else",
+			)
+		}
+
+		@Test
+		fun `reports if-else expression`() {
+			verifySimpleFinding<CalisthenicsNoElseRule>(
+				originalCode = """
+					fun f(value: String): String {
+						val result = if (value.isEmpty()) {
+							something()
+						} else {
+							somethingElse()
+						}
+						return result
+					}
+					fun something(): String = "something"
+					fun somethingElse(): String = "somethingElse"
+				""".trimIndent(),
+				message = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+				pointedCode = "else",
+			)
+		}
+
+		@Test
+		fun `reports ternary expression`() {
+			verifySimpleFinding<CalisthenicsNoElseRule>(
+				originalCode = """
+					fun f(value: String): String? {
+						val result = if (value.isEmpty()) something() else somethingElse()
+						return result.takeIf { it.isNotEmpty() }
+					}
+					fun something(): String = "something"
+					fun somethingElse(): String = "somethingElse"
+				""".trimIndent(),
+				message = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+				pointedCode = "else",
+			)
+		}
+
+		@Test
+		fun `reports if-else-if statement`() {
+			verifySimpleFinding<CalisthenicsNoElseRule>(
+				originalCode = """
+					fun f(value: String) {
+						if (value.isEmpty()) {
+							something()
+						} else if (value.isNotEmpty()) {
+							somethingElse()
+						}
+					}
+				""".trimIndent(),
+				message = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+				pointedCode = "else",
+			)
 		}
 	}
 }
