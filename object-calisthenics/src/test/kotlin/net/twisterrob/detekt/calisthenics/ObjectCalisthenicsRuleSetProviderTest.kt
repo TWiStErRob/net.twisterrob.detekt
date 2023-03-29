@@ -48,12 +48,9 @@ class ObjectCalisthenicsRuleSetProviderTest {
 	@Test
 	fun `all rules get the ruleset config`(@Mock mockConfig: Config) {
 		val ruleSet = sut.instance(mockConfig)
+		val rules = ruleSet.rules
 
-		assertAll(
-			ruleSet.rules.map { rule ->
-				lazyAssertRuleHasConfig(rule, mockConfig)
-			}
-		)
+		assertAll(rules.map { rule -> lazyAssertRuleHasConfig(rule, mockConfig) })
 	}
 
 	private fun lazyAssertRuleHasConfig(rule: BaseRule, mockConfig: Config): () -> Unit = {

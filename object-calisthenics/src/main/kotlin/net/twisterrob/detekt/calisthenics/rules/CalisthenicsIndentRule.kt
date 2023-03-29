@@ -10,6 +10,7 @@ import io.gitlab.arturbosch.detekt.api.Severity
 import io.gitlab.arturbosch.detekt.rules.parentsOfTypeUntil
 import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtClassOrObject
+import org.jetbrains.kotlin.psi.KtElement
 
 /**
  * Object Calisthenics: Rule #1 - One level of indentation per method.
@@ -45,9 +46,12 @@ class CalisthenicsIndentRule(
 	override fun visitBlockExpression(expression: KtBlockExpression) {
 		super.visitBlockExpression(expression)
 
-		val parents = expression.parentsOfTypeUntil<KtBlockExpression, KtClassOrObject>().toList()
+		val parents = expression.blockParents()
 		if (parents.size > 1) {
 			report(CodeSmell(issue, Entity.from(expression), issue.description))
 		}
 	}
 }
+
+private fun KtElement.blockParents(): List<KtBlockExpression> =
+	this.parentsOfTypeUntil<KtBlockExpression, KtClassOrObject>().toList()
