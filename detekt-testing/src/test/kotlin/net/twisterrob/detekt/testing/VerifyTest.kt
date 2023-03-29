@@ -1,9 +1,10 @@
 package net.twisterrob.detekt.testing
 
+import io.gitlab.arturbosch.detekt.test.TestConfig
 import net.twisterrob.detekt.testing.rules.ChillRule
 import net.twisterrob.detekt.testing.rules.HodorRule
-import net.twisterrob.detekt.testing.rules.UptightFunRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule
+import net.twisterrob.detekt.testing.rules.UptightFunRule
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsString
 import org.junit.jupiter.api.Nested
@@ -40,6 +41,15 @@ class VerifyTest {
 		}
 
 		@Test
+		fun `passes config to rule`() {
+			val config = TestConfig("extra" to "test")
+			val failure = assertThrows<AssertionFailedError> {
+				verifyNoFindings<UptightFileRule>(config = config, originalCode = "")
+			}
+			assertThat(failure.message, containsString(UptightFileRule.MESSAGE + "test"))
+		}
+
+		@Test
 		fun `fails on multiple findings`() {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyNoFindings<UptightFunRule>(
@@ -68,6 +78,16 @@ class VerifyTest {
 			verifySimpleFinding<UptightFileRule>(
 				originalCode = "",
 				message = UptightFileRule.MESSAGE,
+				pointedCode = ".Test.kt",
+			)
+		}
+
+		@Test
+		fun `passes config to the rule`() {
+			verifySimpleFinding<UptightFileRule>(
+				config = TestConfig("extra" to "test"),
+				originalCode = "",
+				message = UptightFileRule.MESSAGE + "test",
 				pointedCode = ".Test.kt",
 			)
 		}
@@ -233,6 +253,16 @@ class VerifyTest {
 			verifySingleFinding<UptightFileRule>(
 				originalCode = "",
 				message = UptightFileRule.MESSAGE,
+				pointedCode = ".Test.kt",
+			)
+		}
+
+		@Test
+		fun `passes config to the rule`() {
+			verifySingleFinding<UptightFileRule>(
+				config = TestConfig("extra" to "test"),
+				originalCode = "",
+				message = UptightFileRule.MESSAGE + "test",
 				pointedCode = ".Test.kt",
 			)
 		}

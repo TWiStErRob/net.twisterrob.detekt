@@ -1,10 +1,12 @@
 package net.twisterrob.detekt.testing
 
+import io.gitlab.arturbosch.detekt.test.TestConfig
 import net.twisterrob.detekt.testing.rules.ChillRule
-import net.twisterrob.detekt.testing.rules.UptightFunRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule
+import net.twisterrob.detekt.testing.rules.UptightFunRule
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.empty
+import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.hasSize
 import org.junit.jupiter.api.Test
 
@@ -37,5 +39,13 @@ class LintTest {
 		)
 
 		assertThat(findings, hasSize(2))
+	}
+
+	@Test
+	fun `lint passes config to rule`() {
+		val config = TestConfig("extra" to "test")
+		val findings = lint<UptightFileRule>("", config = config)
+		assertThat(findings, hasSize(1))
+		assertThat(findings[0].message, equalTo(UptightFileRule.MESSAGE + "test"))
 	}
 }

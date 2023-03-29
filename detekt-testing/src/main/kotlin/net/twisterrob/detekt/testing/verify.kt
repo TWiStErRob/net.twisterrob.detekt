@@ -1,5 +1,6 @@
 package net.twisterrob.detekt.testing
 
+import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Rule
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
@@ -9,8 +10,9 @@ import org.junit.jupiter.api.Assertions
  */
 inline fun <reified T : Rule> verifyNoFindings(
 	@Language("kotlin") originalCode: String,
+	config: Config = Config.empty,
 ) {
-	val findings = lint<T>(originalCode)
+	val findings = lint<T>(originalCode, config)
 
 	Assertions.assertEquals(
 		0,
@@ -29,12 +31,13 @@ inline fun <reified T : Rule> verifyNoFindings(
  * If the [Rule] supports [Rule.autoCorrect] then [autoCorrectedCode] should be provided.
  */
 inline fun <reified T : Rule> verifySimpleFinding(
+	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	message: String,
 	pointedCode: String,
 	@Language("kotlin") autoCorrectedCode: String = originalCode,
 ) {
-	verifySingleFinding<T>(originalCode, message, pointedCode)
+	verifySingleFinding<T>(config, originalCode, message, pointedCode)
 	verifyNoChangesWithoutAutoCorrect<T>(originalCode)
 	verifyAutoCorrect<T>(originalCode = originalCode, autoCorrectedCode = autoCorrectedCode)
 }
@@ -46,11 +49,12 @@ inline fun <reified T : Rule> verifySimpleFinding(
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
 inline fun <reified T : Rule> verifySingleFinding(
-	originalCode: String,
+	config: Config = Config.empty,
+	@Language("kotlin") originalCode: String,
 	message: String,
 	pointedCode: String
 ) {
-	val findings = lint<T>(originalCode)
+	val findings = lint<T>(originalCode, config)
 	assertSingleMessage(findings, message)
 	assertSingleHighlight(findings, pointedCode)
 }
