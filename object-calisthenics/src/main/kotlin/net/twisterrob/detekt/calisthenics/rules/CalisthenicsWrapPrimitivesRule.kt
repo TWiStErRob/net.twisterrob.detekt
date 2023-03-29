@@ -7,6 +7,7 @@ import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
+import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtParameter
@@ -86,11 +87,12 @@ class CalisthenicsWrapPrimitivesRule(
 
 		private val qualifiedPrimitiveNames = primitivesNames.map { type -> "kotlin.${type}" }
 
-		private val typesNeedWrapping = (primitivesNames + qualifiedPrimitiveNames + extraTypes)
+		private val nullablePrimitiveNames = (primitivesNames + qualifiedPrimitiveNames + extraTypes)
 			.flatMap { listOf(it, "$it?") }
+
+		private val typesNeedWrapping = nullablePrimitiveNames.map(Name::identifier)
 	}
 }
 
-@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
-private val KtCallableDeclaration.typeName: String?
-	get() = typeReference?.text
+private val KtCallableDeclaration.typeName: Name?
+	get() = typeReference?.text?.let(Name::identifier)
