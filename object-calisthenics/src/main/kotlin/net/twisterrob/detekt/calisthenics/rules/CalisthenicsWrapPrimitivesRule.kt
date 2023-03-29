@@ -10,9 +10,14 @@ import io.gitlab.arturbosch.detekt.api.Severity
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
+import org.jetbrains.kotlin.psi.KtClassOrObject
+import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtParameter
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.psiUtil.containingClass
+import org.jetbrains.kotlin.psi.psiUtil.isPrivate
+import org.jetbrains.kotlin.psi.psiUtil.isPropertyParameter
 
 /**
  * Object Calisthenics: Rule #3 - Wrap all primitives and Strings.
@@ -47,7 +52,9 @@ class CalisthenicsWrapPrimitivesRule(
 
 	override fun visitParameter(parameter: KtParameter) {
 		super.visitParameter(parameter)
-		validate(parameter)
+		if (!parameter.isPrimitiveWrapper()) {
+			validate(parameter)
+		}
 	}
 
 	override fun visitProperty(property: KtProperty) {
@@ -99,3 +106,15 @@ class CalisthenicsWrapPrimitivesRule(
 
 private val KtCallableDeclaration.typeName: Name?
 	get() = typeReference?.text?.let(Name::identifier)
+
+@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+private fun KtParameter.isPrimitiveWrapper(): Boolean =
+	this.isPropertyParameter() && (this.isInValueClass() || this.isPrivate())
+
+@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+private fun KtDeclaration.isInValueClass(): Boolean =
+	this.containingClass()?.isValueClass() == true
+
+@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+private fun KtClassOrObject.isValueClass(): Boolean =
+	this.hasModifier(KtTokens.VALUE_KEYWORD)

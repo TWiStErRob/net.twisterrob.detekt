@@ -278,6 +278,52 @@ class CalisthenicsWrapPrimitivesRuleTest {
 					""".trimIndent(),
 				)
 			}
+
+			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#primitiveTypes")
+			@ParameterizedTest fun `does not flag primitive val properties in inline classes`(type: Name) {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						@JvmInline
+						value class PrimitiveWrapper(
+							val primitive: ${type}
+						)
+					""".trimIndent(),
+				)
+			}
+
+			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#primitiveTypes")
+			@ParameterizedTest fun `does not flag primitive val properties in inline classes - nullable`(type: Name) {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						@JvmInline
+						value class PrimitiveWrapper(
+							val primitive: ${type}?
+						)
+					""".trimIndent(),
+				)
+			}
+
+			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#primitiveTypes")
+			@ParameterizedTest fun `does not flag primitive private val properties`(type: Name) {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						class PrimitiveWrapper(
+							private val primitive: ${type}
+						)
+					""".trimIndent(),
+				)
+			}
+
+			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#primitiveTypes")
+			@ParameterizedTest fun `does not flag primitive private val properties - nullable`(type: Name) {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						class PrimitiveWrapper(
+							private val primitive: ${type}?
+						)
+					""".trimIndent(),
+				)
+			}
 		}
 	}
 
