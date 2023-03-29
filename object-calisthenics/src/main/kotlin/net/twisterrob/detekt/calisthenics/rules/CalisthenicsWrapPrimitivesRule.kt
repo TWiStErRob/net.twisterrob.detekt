@@ -1,10 +1,16 @@
 package net.twisterrob.detekt.calisthenics.rules
 
+import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Debt
+import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
+import org.jetbrains.kotlin.psi.KtCallableDeclaration
+import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.psi.KtParameter
+import org.jetbrains.kotlin.psi.KtProperty
 
 /**
  * Object Calisthenics: Rule #3 - Wrap all primitives and Strings.
@@ -12,9 +18,17 @@ import io.gitlab.arturbosch.detekt.api.Severity
  * See [Object Calisthenics by Jeff Bay](https://www.cs.helsinki.fi/u/luontola/tdd-2009/ext/ObjectCalisthenics.pdf).
  *
  * <noncompliant>
+ * fun foo(a: Int, b: String)
+ * val p: Double
+ * var q: Float
+ * fun bar(): Boolean
  * </noncompliant>
  *
  * <compliant>
+ * fun foo(h: Hour, m: Minute)
+ * val p: Pressure
+ * val q: Quantity
+ * fun bar(): IsAlive
  * </compliant>
  */
 class CalisthenicsWrapPrimitivesRule(
@@ -28,4 +42,55 @@ class CalisthenicsWrapPrimitivesRule(
 			description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
 			debt = Debt.FIVE_MINS
 		)
+
+	override fun visitParameter(parameter: KtParameter) {
+		super.visitParameter(parameter)
+		validate(parameter)
+	}
+
+	override fun visitProperty(property: KtProperty) {
+		super.visitProperty(property)
+		validate(property)
+	}
+
+	override fun visitNamedFunction(function: KtNamedFunction) {
+		super.visitNamedFunction(function)
+		validate(function)
+	}
+
+	private fun validate(declaration: KtCallableDeclaration) {
+		if (declaration.typeName in typesNeedWrapping) {
+			report(CodeSmell(issue, Entity.atName(declaration), issue.description))
+		}
+	}
+
+	companion object {
+
+		private val primitivesNames = listOf(
+			"Boolean",
+			"Char",
+			"Byte",
+			"Short",
+			"Int",
+			"Long",
+			"Float",
+			"Double",
+			"String",
+			"Number",
+		)
+
+		private val extraTypes = listOf(
+			"java.lang.String",
+			"java.lang.Number",
+		)
+
+		private val qualifiedPrimitiveNames = primitivesNames.map { type -> "kotlin.${type}" }
+
+		private val typesNeedWrapping = (primitivesNames + qualifiedPrimitiveNames + extraTypes)
+			.flatMap { listOf(it, "$it?") }
+	}
 }
+
+@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+private val KtCallableDeclaration.typeName: String?
+	get() = typeReference?.text
