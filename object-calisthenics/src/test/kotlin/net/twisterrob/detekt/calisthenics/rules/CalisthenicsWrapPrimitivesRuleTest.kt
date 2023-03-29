@@ -154,6 +154,46 @@ class CalisthenicsWrapPrimitivesRuleTest {
 					""".trimIndent(),
 				)
 			}
+
+			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#nonPrimitiveTypes")
+			@ParameterizedTest fun `does not flag non-primitive overridden return types`(type: Name) {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						interface I {
+							@Suppress("CalisthenicsWrapPrimitive")
+							fun primitive(): ${type}
+						}
+						class C : I {
+							override fun primitive(): ${type} = TODO()
+						}
+					""".trimIndent(),
+				)
+			}
+
+			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#nonPrimitiveTypes")
+			@ParameterizedTest fun `does not flag non-primitive overridden return types - nullable`(type: Name) {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						interface I {
+							@Suppress("CalisthenicsWrapPrimitive")
+							fun primitive(): ${type}?
+						}
+						class C : I {
+							override fun primitive(): ${type}? = TODO()
+						}
+					""".trimIndent(),
+				)
+			}
+
+			@Test fun `does not flag Comparable override`() {
+				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
+					originalCode = """
+						class C : Comparable<C> {
+							override fun compareTo(other: C): Int = TODO()
+						}
+					""".trimIndent(),
+				)
+			}
 		}
 
 		@Nested

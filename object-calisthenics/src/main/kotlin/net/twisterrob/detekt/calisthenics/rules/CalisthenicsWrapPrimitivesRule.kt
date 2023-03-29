@@ -7,6 +7,7 @@ import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
+import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -56,7 +57,9 @@ class CalisthenicsWrapPrimitivesRule(
 
 	override fun visitNamedFunction(function: KtNamedFunction) {
 		super.visitNamedFunction(function)
-		validate(function)
+		if (!function.hasModifier(KtTokens.OVERRIDE_KEYWORD)) {
+			validate(function)
+		}
 	}
 
 	private fun validate(declaration: KtCallableDeclaration) {
