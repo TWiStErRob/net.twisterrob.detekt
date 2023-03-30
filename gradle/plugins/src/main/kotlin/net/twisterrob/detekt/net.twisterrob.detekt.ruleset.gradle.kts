@@ -17,3 +17,12 @@ dependencies {
 	testRuntimeOnly(libs.detekt.api)
 	testImplementation(project(":detekt-testing"))
 }
+
+@Suppress("UnstableApiUsage")
+testing.suites.withType<JvmTestSuite>().configureEach {
+	targets.configureEach {
+		testTask.configure {
+			systemProperty("compile-snippet-tests", project.property("net.twisterrob.detekt.build.compile-test-snippets")!!)
+		}
+	}
+}

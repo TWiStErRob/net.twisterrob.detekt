@@ -68,7 +68,7 @@ class CalisthenicsSmallRuleTest {
 			fun `oneliner is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
 					"""
-						fun f() = TODO()
+						fun f(): Unit = TODO()
 					""".trimIndent(),
 				)
 			}
@@ -290,8 +290,15 @@ class CalisthenicsSmallRuleTest {
 			fun `vararg counts as one`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
 					"""
-						fun f(vararg k: KotlinVersion, vararg e: Exception) { }
+						fun f(k: KotlinVersion, vararg e: Exception) { }
 					""".trimIndent(),
+				)
+				verifySimpleFinding<CalisthenicsSmallRule>(
+					originalCode = """
+						fun f(k: KotlinVersion, e: Exception, vararg error: Error) { }
+					""".trimIndent(),
+					message = "Parameter list for function f is too long (3).",
+					pointedCode = "fun f(k: KotlinVersion, e: Exception, vararg error: Error)",
 				)
 			}
 
@@ -334,7 +341,7 @@ class CalisthenicsSmallRuleTest {
 			fun `function type is detected`() {
 				verifySimpleFinding<CalisthenicsSmallRule>(
 					originalCode = """
-						fun f(ft: (KotlinVersion, Exception, Error) -> Unit) = TODO()
+						fun f(ft: (KotlinVersion, Exception, Error) -> Unit): Unit = TODO()
 					""".trimIndent(),
 					message = "Parameter list for function ft is too long (3).",
 					pointedCode = "ft: (KotlinVersion, Exception, Error) -> Unit",
@@ -345,7 +352,7 @@ class CalisthenicsSmallRuleTest {
 			fun `function type with two params is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
 					originalCode = """
-						fun f(ft: (KotlinVersion, Exception) -> Unit) = TODO()
+						fun f(ft: (KotlinVersion, Exception) -> Unit): Unit = TODO()
 					""".trimIndent(),
 				)
 			}
@@ -354,7 +361,7 @@ class CalisthenicsSmallRuleTest {
 			fun `property accessor is not detected`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
 					originalCode = """
-						val p: Exception
+						var p: Exception
 							get() = TODO()
 							set(value) = TODO()
 					""".trimIndent(),

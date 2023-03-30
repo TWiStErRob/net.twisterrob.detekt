@@ -129,16 +129,16 @@ class CalisthenicsIndentRuleTest {
 		fun `flag anonymous lambda inside lambda`() {
 			verifySimpleFinding<CalisthenicsIndentRule>(
 				originalCode = """
-					fun f() {
-						val lambdas = collection.map {
+					fun f(list: List<Any>) {
+						val lambdas = list.map {
 							{
-								println()
+								println(it)
 							}
 						}
 					}
 				""".trimIndent(),
 				message = "Object Calisthenics: Rule #1 - One level of indentation per method.",
-				pointedCode = "println()",
+				pointedCode = "println(it)",
 			)
 		}
 
@@ -176,8 +176,8 @@ class CalisthenicsIndentRuleTest {
 		fun `does not flag lambda`() {
 			verifyNoFindings<CalisthenicsIndentRule>(
 				originalCode = """
-					fun foo() {
-						collection.forEach {
+					fun foo(list: List<Any>) {
+						list.forEach {
 							println()
 						}
 					}
@@ -189,16 +189,16 @@ class CalisthenicsIndentRuleTest {
 		fun `flags lambda inside if`() {
 			verifySimpleFinding<CalisthenicsIndentRule>(
 				originalCode = """
-					fun foo() {
+					fun foo(list: List<Any>) {
 						if (true) {
-							collection.forEach {
-								println()
+							list.forEach {
+								println(it)
 							}
 						}
 					}
 				""".trimIndent(),
 				message = "Object Calisthenics: Rule #1 - One level of indentation per method.",
-				pointedCode = "println()",
+				pointedCode = "println(it)",
 			)
 		}
 	}

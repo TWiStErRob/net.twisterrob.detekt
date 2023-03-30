@@ -3,7 +3,7 @@ package net.twisterrob.detekt.testing
 import io.gitlab.arturbosch.detekt.api.BaseRule
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Finding
-import io.gitlab.arturbosch.detekt.test.lint
+import io.gitlab.arturbosch.detekt.test.compileAndLint
 import org.intellij.lang.annotations.Language
 import javax.annotation.CheckReturnValue
 import kotlin.reflect.KClass
@@ -18,7 +18,7 @@ inline fun <reified T : BaseRule> lint(
 ): List<Finding> {
 	@Suppress("DEPRECATION_ERROR")
 	val rule = T::class.newInstance(config)
-	return rule.lint(originalCode)
+	return rule.compileAndLint(originalCode)
 }
 
 @CheckReturnValue

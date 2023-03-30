@@ -25,6 +25,7 @@ jobs:
           --no-build-cache
           --stacktrace
           --continue
+          -Pnet.twisterrob.detekt.build.compile-test-snippets=true
           build
 
       - name: "Upload 'Unit Test Results' artifact."

@@ -139,6 +139,8 @@ class CalisthenicsNoElseRuleTest {
 							somethingElse()
 						}
 					}
+					fun something(): String = "something"
+					fun somethingElse(): String = "somethingElse"
 				""".trimIndent(),
 				message = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
 				pointedCode = "else",

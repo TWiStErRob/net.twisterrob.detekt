@@ -203,10 +203,10 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `flags primitive val properties`(type: Name) {
 				verifySimpleFinding<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						val primitive: ${type}
+						val primitive: ${type} = TODO()
 					""".trimIndent(),
 					message = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-					pointedCode = "val primitive: ${type}",
+					pointedCode = "val primitive: ${type} = TODO()",
 				)
 			}
 
@@ -214,10 +214,10 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `flags primitive val properties - nullable`(type: Name) {
 				verifySimpleFinding<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						val primitive: ${type}?
+						val primitive: ${type}? = null
 					""".trimIndent(),
 					message = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-					pointedCode = "val primitive: ${type}?",
+					pointedCode = "val primitive: ${type}? = null",
 				)
 			}
 
@@ -225,7 +225,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `does not flag non-primitive val properties`(type: Name) {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						val primitive: ${type}
+						val primitive: ${type} = TODO()
 					""".trimIndent(),
 				)
 			}
@@ -234,7 +234,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `does not flag non-primitive val properties - nullable`(type: Name) {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						val primitive: ${type}?
+						val primitive: ${type}? = null
 					""".trimIndent(),
 				)
 			}
@@ -243,10 +243,10 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `flags primitive var properties`(type: Name) {
 				verifySimpleFinding<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						var primitive: ${type}
+						var primitive: ${type} = TODO()
 					""".trimIndent(),
 					message = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-					pointedCode = "var primitive: ${type}",
+					pointedCode = "var primitive: ${type} = TODO()",
 				)
 			}
 
@@ -254,10 +254,10 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `flags primitive var properties - nullable`(type: Name) {
 				verifySimpleFinding<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						var primitive: ${type}?
+						var primitive: ${type}? = null
 					""".trimIndent(),
 					message = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-					pointedCode = "var primitive: ${type}?",
+					pointedCode = "var primitive: ${type}? = null",
 				)
 			}
 
@@ -265,7 +265,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `does not flag non-primitive var properties`(type: Name) {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						var primitive: ${type}
+						var primitive: ${type} = TODO()
 					""".trimIndent(),
 				)
 			}
@@ -274,7 +274,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@ParameterizedTest fun `does not flag non-primitive var properties - nullable`(type: Name) {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
-						var primitive: ${type}?
+						var primitive: ${type}? = null
 					""".trimIndent(),
 				)
 			}
@@ -352,7 +352,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			listOf(
 				Name.identifier("Regex"),
 				Name.identifier("kotlin.text.Regex"),
-				Name.identifier("java.lang.Pattern"),
+				Name.identifier("Any"),
 			)
 	}
 }
