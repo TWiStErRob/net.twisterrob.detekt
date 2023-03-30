@@ -22,6 +22,7 @@ class ObjectCalisthenicsRuleSetProvider : RuleSetProvider {
 	@Suppress("CalisthenicsWrapPrimitives") // External API.
 	override val ruleSetId: String = "object-calisthenics"
 
+	@Suppress("CalisthenicsSmall") // Impossible to shorten.
 	override fun instance(config: Config): RuleSet =
 		RuleSet(
 			ruleSetId,
