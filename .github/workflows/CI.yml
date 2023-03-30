@@ -10,6 +10,9 @@ jobs:
     name: "🔨 Build & Verify"
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      # EnricoMi/publish-unit-test-result-action
+      checks: write
     steps:
       - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
         uses: actions/checkout@v3
