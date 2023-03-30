@@ -27,6 +27,8 @@ jobs:
           --continue
           -Pnet.twisterrob.detekt.build.compile-test-snippets=true
           build
+          detektMain
+          detektTest
 
       - name: "Upload 'Unit Test Results' artifact."
         if: success() || failure()

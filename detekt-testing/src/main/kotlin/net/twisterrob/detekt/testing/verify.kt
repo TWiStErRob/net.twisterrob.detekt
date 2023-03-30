@@ -37,8 +37,8 @@ inline fun <reified T : Rule> verifySimpleFinding(
 	pointedCode: String,
 	@Language("kotlin") autoCorrectedCode: String = originalCode,
 ) {
-	verifySingleFinding<T>(config, originalCode, message, pointedCode)
-	verifyNoChangesWithoutAutoCorrect<T>(originalCode)
+	verifySingleFinding<T>(config = config, originalCode = originalCode, message = message, pointedCode = pointedCode)
+	verifyNoChangesWithoutAutoCorrect<T>(originalCode = originalCode)
 	verifyAutoCorrect<T>(originalCode = originalCode, autoCorrectedCode = autoCorrectedCode)
 }
 

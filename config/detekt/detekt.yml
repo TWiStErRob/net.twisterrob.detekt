@@ -22,6 +22,7 @@ console-reports:
 
 
 naming:
+
   FunctionMaxLength:
     ignoreAnnotated:
       # Test names in JUnit 5 are ok to be long as they're likely sentences.
@@ -40,3 +41,7 @@ style:
   NoTabs:
     # I'm a tab guy, I don't pay for space in advance.
     active: false
+
+  UnnecessaryInnerClass:
+    ignoreAnnotated:
+      - 'org.junit.jupiter.api.Nested'

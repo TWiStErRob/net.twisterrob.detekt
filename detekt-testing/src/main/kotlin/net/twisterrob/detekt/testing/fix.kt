@@ -22,7 +22,9 @@ inline fun <reified T : Rule> fix(
 ): String {
 	val sutChecker: T =
 		if (autoCorrect) {
-			T::class.primaryConstructor!!.call(TestConfig("autoCorrect" to true))
+			val primaryConstructor = T::class.primaryConstructor
+				?: error("${T::class} does not have a primary constructor.")
+			primaryConstructor.call(TestConfig("autoCorrect" to true))
 		} else {
 			T::class.createInstance()
 		}

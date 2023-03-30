@@ -35,7 +35,6 @@ class PsiTestingExtensionTest {
 		assertThrows<IncorrectTreeStructureException> {
 			BadRule().visit(ktFile)
 		}
-		println(ktFile.text)
 	}
 }
 

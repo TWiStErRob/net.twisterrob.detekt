@@ -25,12 +25,12 @@ internal class HodorRule(config: Config = Config.empty) : Rule(config) {
 
 	override fun visitNamedFunction(function: KtNamedFunction) {
 		super.visitNamedFunction(function)
-		hodor(function.nameIdentifier)
+		function.nameIdentifier?.hodor()
 	}
 
 	override fun visitCallExpression(expression: KtCallExpression) {
 		super.visitCallExpression(expression)
-		hodor(expression.getCallNameExpression()?.getIdentifier())
+		expression.getCallNameExpression()?.getIdentifier()?.hodor()
 	}
 
 	override fun visitStringTemplateExpression(expression: KtStringTemplateExpression) {
@@ -39,11 +39,10 @@ internal class HodorRule(config: Config = Config.empty) : Rule(config) {
 		expression.replace(KtPsiFactory(expression).createStringTemplate("hodor"))
 	}
 
-	private fun hodor(identifier: PsiElement?) {
-		if (identifier == null) return
-		report(CodeSmell(issue, Entity.from(identifier), MESSAGE))
+	private fun PsiElement.hodor() {
+		report(CodeSmell(issue, Entity.from(this), MESSAGE))
 		if (autoCorrect) {
-			identifier.replace(KtPsiFactory(identifier).createNameIdentifier("hodor"))
+			replace(KtPsiFactory(this).createNameIdentifier("hodor"))
 		}
 	}
 
