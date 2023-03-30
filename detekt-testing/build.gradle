@@ -5,6 +5,7 @@ plugins {
 dependencies {
 	api(libs.detekt.test)
 	implementation(libs.kotlin.reflect)
+	implementation(libs.detekt.core)
 	implementation(libs.jsr305)
 
 	compileOnly(libs.test.jupiter.api)

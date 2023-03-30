@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Assertions
  * Test helper to verify that the [T] rule doesn't find any findings in the given [originalCode].
  */
 inline fun <reified T : Rule> verifyNoFindings(
-	@Language("kotlin") originalCode: String,
 	config: Config = Config.empty,
+	@Language("kotlin") originalCode: String,
 ) {
-	val findings = lint<T>(originalCode, config)
+	val findings = lint<T>(config = config, originalCode = originalCode)
 
 	Assertions.assertEquals(
 		0,
@@ -38,8 +38,8 @@ inline fun <reified T : Rule> verifySimpleFinding(
 	@Language("kotlin") autoCorrectedCode: String = originalCode,
 ) {
 	verifySingleFinding<T>(config = config, originalCode = originalCode, message = message, pointedCode = pointedCode)
-	verifyNoChangesWithoutAutoCorrect<T>(originalCode = originalCode)
-	verifyAutoCorrect<T>(originalCode = originalCode, autoCorrectedCode = autoCorrectedCode)
+	verifyNoChangesWithoutAutoCorrect<T>(config = config, originalCode = originalCode)
+	verifyAutoCorrect<T>(config = config, originalCode = originalCode, autoCorrectedCode = autoCorrectedCode)
 }
 
 /**
@@ -54,7 +54,7 @@ inline fun <reified T : Rule> verifySingleFinding(
 	message: String,
 	pointedCode: String
 ) {
-	val findings = lint<T>(originalCode, config)
+	val findings = lint<T>(config = config, originalCode = originalCode)
 	assertSingleMessage(findings, message)
 	assertSingleHighlight(findings, pointedCode)
 }
@@ -66,10 +66,11 @@ inline fun <reified T : Rule> verifySingleFinding(
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
 inline fun <reified T : Rule> verifyAutoCorrect(
+	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	@Language("kotlin") autoCorrectedCode: String,
 ) {
-	val actualAutoCorrectedCode = fix<T>(originalCode.trimIndent(), autoCorrect = true)
+	val actualAutoCorrectedCode = fix<T>(config = config, originalCode = originalCode.trimIndent(), autoCorrect = true)
 	Assertions.assertEquals(autoCorrectedCode.trimIndent(), actualAutoCorrectedCode) {
 		"Unexpected changes with autoCorrect = true."
 	}
@@ -82,9 +83,10 @@ inline fun <reified T : Rule> verifyAutoCorrect(
  */
 @Suppress("FunctionMaxLength")
 inline fun <reified T : Rule> verifyNoChangesWithoutAutoCorrect(
+	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 ) {
-	val actualNotCorrectedCode = fix<T>(originalCode, autoCorrect = false)
+	val actualNotCorrectedCode = fix<T>(config = config, originalCode = originalCode, autoCorrect = false)
 	Assertions.assertEquals(originalCode.trimIndent(), actualNotCorrectedCode) {
 		"No changes with autoCorrect = false."
 	}

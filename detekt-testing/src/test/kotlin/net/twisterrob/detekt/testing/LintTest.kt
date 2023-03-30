@@ -17,14 +17,14 @@ class LintTest {
 
 	@Test
 	fun `lint returns no violations for good code`() {
-		val findings = lint<ChillRule>("")
+		val findings = lint<ChillRule>(originalCode = "")
 
 		assertThat(findings, empty())
 	}
 
 	@Test
 	fun `lint returns a violation for bad code`() {
-		val findings = lint<UptightFileRule>("")
+		val findings = lint<UptightFileRule>(originalCode = "")
 
 		assertThat(findings, hasSize(1))
 	}
@@ -32,7 +32,7 @@ class LintTest {
 	@Test
 	fun `lint returns multiple violations for bad code`() {
 		val findings = lint<UptightFunRule>(
-			"""
+			originalCode = """
 				fun a() { }
 				fun b() { }
 			""".trimIndent()
@@ -44,7 +44,7 @@ class LintTest {
 	@Test
 	fun `lint passes config to rule`() {
 		val config = TestConfig("extra" to "test")
-		val findings = lint<UptightFileRule>("", config = config)
+		val findings = lint<UptightFileRule>(originalCode = "", config = config)
 		assertThat(findings, hasSize(1))
 		assertThat(findings[0].message, equalTo(UptightFileRule.MESSAGE + "test"))
 	}

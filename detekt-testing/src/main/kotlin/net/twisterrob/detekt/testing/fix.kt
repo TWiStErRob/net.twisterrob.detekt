@@ -1,12 +1,13 @@
 package net.twisterrob.detekt.testing
 
 import io.github.detekt.test.utils.compileContentForTest
+import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Rule
+import io.gitlab.arturbosch.detekt.core.config.CompositeConfig
 import io.gitlab.arturbosch.detekt.test.TestConfig
+import net.twisterrob.detekt.testing.internal.newInstance
 import org.intellij.lang.annotations.Language
 import javax.annotation.CheckReturnValue
-import kotlin.reflect.full.createInstance
-import kotlin.reflect.full.primaryConstructor
 
 /**
  * Run the rule [T] with [Rule.autoCorrect] turned on.
@@ -17,18 +18,20 @@ import kotlin.reflect.full.primaryConstructor
  */
 @CheckReturnValue
 inline fun <reified T : Rule> fix(
+	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	autoCorrect: Boolean = true,
 ): String {
-	val sutChecker: T =
+	val realConfig =
 		if (autoCorrect) {
-			val primaryConstructor = T::class.primaryConstructor
-				?: error("${T::class} does not have a primary constructor.")
-			primaryConstructor.call(TestConfig("autoCorrect" to true))
+			CompositeConfig(TestConfig("autoCorrect" to true), config)
 		} else {
-			T::class.createInstance()
+			config
 		}
-	return sutChecker.fix(originalCode.trimIndent())
+
+	@Suppress("DEPRECATION_ERROR")
+	val rule = T::class.newInstance(realConfig)
+	return rule.fix(originalCode.trimIndent())
 }
 
 /**

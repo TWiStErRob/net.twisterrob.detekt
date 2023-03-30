@@ -67,7 +67,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `oneliner is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f(): Unit = TODO()
 					""".trimIndent(),
 				)
@@ -76,7 +76,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `empty function is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun empty() {
 						}
 					""".trimIndent(),
@@ -103,7 +103,7 @@ class CalisthenicsSmallRuleTest {
 			@ParameterizedTest
 			internal fun `few statements within threshold are accepted`(statements: Count) {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f${statements}() {
 							${"println()\n".repeat(statements)}
 						}
@@ -130,7 +130,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `complex expression within threshold is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f() = 
 							(
 								1 +
@@ -144,7 +144,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `complex expression on threshold is flagged`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f() = 
 							(
 								1 +
@@ -164,7 +164,7 @@ class CalisthenicsSmallRuleTest {
 			fun `oneliner is accepted`() {
 				@Suppress("SelfReferenceConstructorParameter")
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						class C(private val c: C)
 					""".trimIndent(),
 				)
@@ -173,7 +173,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `class stub is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						class C
 					""".trimIndent(),
 				)
@@ -183,7 +183,7 @@ class CalisthenicsSmallRuleTest {
 			fun `empty class is accepted`() {
 				@Suppress("RemoveEmptyClassBody")
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						class C {
 						}
 					""".trimIndent(),
@@ -251,7 +251,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `no params is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f() { }
 					""".trimIndent(),
 				)
@@ -260,7 +260,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `one param is accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f(e: Exception) { }
 					""".trimIndent(),
 				)
@@ -269,7 +269,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `two params are accepted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f(k: KotlinVersion, e: Exception) { }
 					""".trimIndent(),
 				)
@@ -289,7 +289,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `vararg counts as one`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					"""
+					originalCode = """
 						fun f(k: KotlinVersion, vararg e: Exception) { }
 					""".trimIndent(),
 				)

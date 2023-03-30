@@ -26,6 +26,27 @@ class FixTest {
 	inner class `generic fix` {
 
 		@Test
+		fun `fix passes config to rule`() {
+			val originalCode = """
+				fun main() {
+					println()
+				}
+			""".trimIndent()
+
+			@Language("kotlin")
+			val expectedCode = """
+				fun test() {
+					test()
+				}
+			""".trimIndent()
+
+			val config = TestConfig("replacement" to "test")
+			val fixedCode = fix<HodorRule>(config = config, originalCode = originalCode)
+
+			assertThat(fixedCode, equalTo(expectedCode))
+		}
+
+		@Test
 		fun `returns original code when rule does not support autoCorrect`() {
 			val originalCode = """
 				fun main() {
@@ -33,7 +54,7 @@ class FixTest {
 				}
 			""".trimIndent()
 
-			val fixedCode = fix<ChillRule>(originalCode)
+			val fixedCode = fix<ChillRule>(originalCode = originalCode)
 
 			assertThat(fixedCode, equalTo(originalCode))
 		}
@@ -46,7 +67,7 @@ class FixTest {
 				}
 			""".trimIndent()
 
-			val fixedCode = fix<UptightFileRule>(originalCode)
+			val fixedCode = fix<UptightFileRule>(originalCode = originalCode)
 
 			assertThat(fixedCode, equalTo(originalCode))
 		}
@@ -66,7 +87,7 @@ class FixTest {
 				}
 			""".trimIndent()
 
-			val fixedCode = fix<HodorRule>(originalCode)
+			val fixedCode = fix<HodorRule>(originalCode = originalCode)
 
 			assertThat(fixedCode, equalTo(expectedCode))
 		}
@@ -79,7 +100,7 @@ class FixTest {
 				}
 			""".trimIndent()
 
-			val fixedCode = fix<HodorRule>(originalCode, autoCorrect = false)
+			val fixedCode = fix<HodorRule>(originalCode = originalCode, autoCorrect = false)
 
 			assertThat(fixedCode, equalTo(originalCode))
 		}
@@ -89,7 +110,7 @@ class FixTest {
 	 * @see Rule.fix
 	 */
 	@Nested
-	inner class `fix on rule asdf asd fasdfsad fasdf sadf sadf` {
+	inner class `fix on rule` {
 
 		@Test
 		fun `returns modified code when rule supports autoCorrect and autoCorrect is on`() {

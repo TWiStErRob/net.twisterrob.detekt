@@ -28,13 +28,13 @@ class VerifyTest {
 
 		@Test
 		fun `passes on no findings`() {
-			verifyNoFindings<ChillRule>("")
+			verifyNoFindings<ChillRule>(originalCode = "")
 		}
 
 		@Test
 		fun `fails on one finding`() {
 			val failure = assertThrows<AssertionFailedError> {
-				verifyNoFindings<UptightFileRule>("")
+				verifyNoFindings<UptightFileRule>(originalCode = "")
 			}
 			assertThat(failure.message, containsString(UptightFileRule().issue.toString()))
 			assertThat(failure.message, containsString(UptightFileRule.MESSAGE))
@@ -53,7 +53,7 @@ class VerifyTest {
 		fun `fails on multiple findings`() {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyNoFindings<UptightFunRule>(
-					"""
+					originalCode = """
 						fun aaa() { }
 						fun bbb() { }
 					""".trimIndent()
@@ -214,6 +214,20 @@ class VerifyTest {
 		}
 
 		@Test
+		fun `passes config to the rule of autoCorrect no change verification`() {
+			val failure = assertThrows<AssertionFailedError> {
+				verifySimpleFinding<HodorRule>(
+					config = TestConfig("replacement" to "test"),
+					originalCode = """fun main() { "Hello, world!" }""",
+					message = HodorRule.MESSAGE,
+					pointedCode = "main",
+					autoCorrectedCode = """fun test() { "Hello, world!" }""",
+				)
+			}
+			assertThat(failure.message, containsString("""fun main() { "test" }"""))
+		}
+
+		@Test
 		fun `fails when autoCorrect expectation is wrong`() {
 			val failure = assertThrows<AssertionFailedError> {
 				verifySimpleFinding<HodorRule>(
@@ -239,6 +253,20 @@ class VerifyTest {
 				failure.message,
 				containsString("""fun hodor(vararg args: String) { }""")
 			)
+		}
+
+		@Test
+		fun `passes config to the rule of autoCorrect verification`() {
+			val failure = assertThrows<AssertionFailedError> {
+				verifySimpleFinding<HodorRule>(
+					config = TestConfig("replacement" to "test"),
+					originalCode = """fun main(vararg args: String) { }""",
+					message = HodorRule.MESSAGE,
+					pointedCode = "main",
+					autoCorrectedCode = """fun test(vararg test: String) { }""",
+				)
+			}
+			assertThat(failure.message, containsString("""fun test(vararg args: String) { }"""))
 		}
 	}
 
@@ -375,6 +403,23 @@ class VerifyTest {
 		}
 
 		@Test
+		fun `passes config to the rule`() {
+			verifyAutoCorrect<HodorRule>(
+				config = TestConfig("replacement" to "test"),
+				originalCode = """
+					fun main() {
+						println("Hello, world!")
+					}
+				""".trimIndent(),
+				autoCorrectedCode = """
+					fun test() {
+						test("test")
+					}
+				""".trimIndent(),
+			)
+		}
+
+		@Test
 		fun `fails when code is not modified`() {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyAutoCorrect<ChillRule>(
@@ -398,7 +443,7 @@ class VerifyTest {
 		@Test
 		fun `passes when code is not modified`() {
 			verifyNoChangesWithoutAutoCorrect<ChillRule>(
-				"""
+				originalCode = """
 					fun main() {
 						println("Hello, world!")
 					}
@@ -409,7 +454,7 @@ class VerifyTest {
 		@Test
 		fun `passes rule supports autoCorrect and autoCorrect is implemented correctly`() {
 			verifyNoChangesWithoutAutoCorrect<HodorRule>(
-				"""
+				originalCode = """
 					fun main() {
 						// Not using a string, as that's implemented incorrectly.
 						println()
@@ -422,7 +467,9 @@ class VerifyTest {
 		fun `passes rule supports autoCorrect but autoCorrect is not implemented correctly`() {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyNoChangesWithoutAutoCorrect<HodorRule>(
-					"""fun main() { println("Hello, world!") }""",
+					originalCode = """
+						fun main() { println("Hello, world!") }
+					""".trimIndent(),
 				)
 			}
 
@@ -441,6 +488,19 @@ class VerifyTest {
 				failure.message,
 				containsString("""fun main() { println("hodor") }""")
 			)
+		}
+
+		@Test
+		fun `passes config to the rule`() {
+			val failure = assertThrows<AssertionFailedError> {
+				verifyNoChangesWithoutAutoCorrect<HodorRule>(
+					config = TestConfig("replacement" to "test"),
+					originalCode = """
+						fun main() { println("Hello, world!") }
+					""".trimIndent(),
+				)
+			}
+			assertThat(failure.message, containsString("""fun main() { println("test") }"""))
 		}
 	}
 }

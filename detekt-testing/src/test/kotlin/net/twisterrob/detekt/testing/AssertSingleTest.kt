@@ -21,7 +21,7 @@ class AssertSingleTest {
 
 		@Test
 		fun `passes when single message matches`() {
-			val findings = lint<UptightFileRule>("")
+			val findings = lint<UptightFileRule>(originalCode = "")
 
 			assertSingleMessage(findings, UptightFileRule.MESSAGE)
 		}
@@ -29,7 +29,7 @@ class AssertSingleTest {
 		@Test
 		fun `fails on multiple findings`() {
 			val findings = lint<UptightFunRule>(
-				"""
+				originalCode = """
 					fun aaa() { }
 					fun bbb() { }
 				""".trimIndent()
@@ -47,7 +47,7 @@ class AssertSingleTest {
 
 		@Test
 		fun `fails when message expectation is wrong`() {
-			val findings = lint<UptightFileRule>("")
+			val findings = lint<UptightFileRule>(originalCode = "")
 
 			val failure = assertThrows<AssertionFailedError> {
 				assertSingleMessage(findings, HodorRule.MESSAGE)
@@ -79,7 +79,7 @@ class AssertSingleTest {
 
 		@Test
 		fun `passes when single message matches`() {
-			val findings = lint<UptightFileRule>("")
+			val findings = lint<UptightFileRule>(originalCode = "")
 
 			assertSingleHighlight(findings, ".Test.kt")
 		}
@@ -87,7 +87,7 @@ class AssertSingleTest {
 		@Test
 		fun `fails on multiple findings`() {
 			val findings = lint<UptightFunRule>(
-				"""
+				originalCode = """
 					fun aaa() { }
 					fun bbb() { }
 				""".trimIndent()
@@ -105,7 +105,7 @@ class AssertSingleTest {
 
 		@Test
 		fun `fails when location expectation is wrong`() {
-			val findings = lint<UptightFileRule>("")
+			val findings = lint<UptightFileRule>(originalCode = "")
 
 			val failure = assertThrows<AssertionFailedError> {
 				assertSingleHighlight(findings, "file")

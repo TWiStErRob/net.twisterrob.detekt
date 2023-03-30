@@ -92,7 +92,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#nonPrimitiveTypes")
 			@ParameterizedTest fun `does not flag non-primitive function parameters`(type: Name) {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
-					"""
+					originalCode = """
 						fun f(nonPrimitive: ${type}) {
 							println(nonPrimitive)
 						}
@@ -103,7 +103,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			@MethodSource("net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRuleTest#nonPrimitiveTypes")
 			@ParameterizedTest fun `does not flag non-primitive function parameters - nullable`(type: Name) {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
-					"""
+					originalCode = """
 						fun f(nonPrimitive: ${type}?) {
 							println(nonPrimitive)
 						}
