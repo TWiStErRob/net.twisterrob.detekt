@@ -1,0 +1,53 @@
+name: CI
+on:
+  push
+
+concurrency:
+  group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}', github.sha) || format('ci-{0}', github.ref) }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: "🔨 Build & Verify"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
+        uses: actions/checkout@v3
+
+      - name: "Validate Gradle Wrapper JARs."
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: "Build & Verify project using Gradle."
+        id: gradle
+        run: >
+          ./gradlew
+          --no-daemon
+          --no-build-cache
+          --stacktrace
+          --continue
+          build
+
+      - name: "Upload 'Unit Test Results' artifact."
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'Unit Test Results'
+          path: ${{ github.workspace }}/**/build/reports/tests/*/
+
+      - name: "Publish 'Unit Results' check suite."
+        if: success() || failure()
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          check_name: '🔔 Test: Unit Results'
+          comment_mode: off
+          report_individual_runs: true
+          test_changes_limit: 0
+          junit_files: ${{ github.workspace }}/**/build/test-results/*/TEST-*.xml
+
+      - name: "Upload 'Detekt Results' artifact."
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'Detekt Results'
+          path: |
+            ${{ github.workspace }}/**/build/reports/detekt/detekt.*
