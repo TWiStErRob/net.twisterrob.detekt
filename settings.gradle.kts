@@ -19,7 +19,7 @@ dependencyResolutionManagement {
 	}
 }
 
-enableFeaturePreviewQuietly("TYPESAFE_PROJECT_ACCESSORS", "Type-safe project accessors is an incubating feature.")
+enableFeaturePreviewQuietly("TYPESAFE_PROJECT_ACCESSORS", "Type-safe project accessors")
 
 include(":object-calisthenics")
 include(":detekt-testing")
