@@ -10,7 +10,7 @@ plugins {
 detekt {
 	ignoreFailures = false
 	allRules = true
-	basePath = rootProject.projectDir.absolutePath
+	basePath = rootProject.projectDir
 
 	parallel = true
 
