@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions
 /**
  * Test helper to verify that the [T] rule doesn't find any findings in the given [originalCode].
  */
-inline fun <reified T : Rule> verifyNoFindings(
+public inline fun <reified T : Rule> verifyNoFindings(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 ) {
@@ -30,7 +30,7 @@ inline fun <reified T : Rule> verifyNoFindings(
  * This is the expectation for most Detekt rules.
  * If the [Rule] supports [Rule.autoCorrect] then [autoCorrectedCode] should be provided.
  */
-inline fun <reified T : Rule> verifySimpleFinding(
+public inline fun <reified T : Rule> verifySimpleFinding(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	message: String,
@@ -48,7 +48,7 @@ inline fun <reified T : Rule> verifySimpleFinding(
  *
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
-inline fun <reified T : Rule> verifySingleFinding(
+public inline fun <reified T : Rule> verifySingleFinding(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	message: String,
@@ -65,7 +65,7 @@ inline fun <reified T : Rule> verifySingleFinding(
  *
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
-inline fun <reified T : Rule> verifyAutoCorrect(
+public inline fun <reified T : Rule> verifyAutoCorrect(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	@Language("kotlin") autoCorrectedCode: String,
@@ -82,7 +82,7 @@ inline fun <reified T : Rule> verifyAutoCorrect(
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
 @Suppress("FunctionMaxLength")
-inline fun <reified T : Rule> verifyNoChangesWithoutAutoCorrect(
+public inline fun <reified T : Rule> verifyNoChangesWithoutAutoCorrect(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 ) {

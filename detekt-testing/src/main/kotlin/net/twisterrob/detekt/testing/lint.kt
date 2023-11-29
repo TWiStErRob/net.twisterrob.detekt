@@ -12,7 +12,7 @@ import javax.annotation.CheckReturnValue
  * Generic wrapper for instantiating and running a rule.
  */
 @CheckReturnValue
-inline fun <reified T : BaseRule> lint(
+public inline fun <reified T : BaseRule> lint(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 ): List<Finding> {
