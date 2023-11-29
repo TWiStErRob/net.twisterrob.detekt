@@ -7,6 +7,12 @@ pluginManagement {
 	includeBuild("gradle/plugins")
 	repositories {
 		gradlePluginPortal()
+		maven("Sonatype OSS Snapshots") {
+			url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+			content {
+				includeVersionByRegex("""io\.gitlab\.arturbosch\.detekt""", """.*""", """main-SNAPSHOT""")
+			}
+		}
 	}
 }
 
@@ -20,6 +26,12 @@ dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
 		mavenCentral()
+		maven("Sonatype OSS Snapshots") {
+			url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+			content {
+				includeVersionByRegex("""io\.gitlab\.arturbosch\.detekt""", """.*""", """main-SNAPSHOT""")
+			}
+		}
 	}
 }
 
