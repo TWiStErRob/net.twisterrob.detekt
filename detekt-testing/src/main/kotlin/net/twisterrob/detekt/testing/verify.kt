@@ -76,7 +76,7 @@ public inline fun <reified T : Rule> verifyAutoCorrect(
  *
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
-@Suppress("detekt.FunctionMaxLength")
+@Suppress("detekt.FunctionNameMaxLength")
 public inline fun <reified T : Rule> verifyNoChangesWithoutAutoCorrect(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
