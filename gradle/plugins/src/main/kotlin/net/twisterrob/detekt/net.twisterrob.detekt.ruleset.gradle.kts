@@ -16,6 +16,8 @@ dependencies {
 
 	testRuntimeOnly(libs.detekt.api)
 	testImplementation(project(":detekt-testing"))
+
+	detektPlugins(libs.detekt.rules.ruleAuthors)
 }
 
 @Suppress("UnstableApiUsage")

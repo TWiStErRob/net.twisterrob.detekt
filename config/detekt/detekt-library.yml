@@ -1,0 +1,9 @@
+style:
+  RedundantVisibilityModifierRule:
+    # Contradicts Kotlin Explicit API mode.
+    active: false
+
+libraries:
+  LibraryEntitiesShouldNotBePublic:
+    # If everything is internal, then there's no library.
+    active: false
