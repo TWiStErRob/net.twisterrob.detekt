@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtensionContext
  *
  * @see fix
  */
-class PsiTestingExtension : BeforeEachCallback, AfterEachCallback {
+public class PsiTestingExtension : BeforeEachCallback, AfterEachCallback {
 
 	override fun beforeEach(context: ExtensionContext?) {
 		org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.CHECK = true

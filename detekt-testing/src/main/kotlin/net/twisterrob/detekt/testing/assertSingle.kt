@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions
  *
  * Implicitly validates that there is only one finding.
  */
-fun assertSingleMessage(findings: List<Finding>, message: String) {
+public fun assertSingleMessage(findings: List<Finding>, message: String) {
 	val finding = assertSingleFinding(findings)
 	Assertions.assertEquals(message, finding.message) {
 		"Finding message matches."
@@ -20,7 +20,7 @@ fun assertSingleMessage(findings: List<Finding>, message: String) {
  *
  * Implicitly validates that there is only one finding.
  */
-fun assertSingleHighlight(findings: List<Finding>, location: String) {
+public fun assertSingleHighlight(findings: List<Finding>, location: String) {
 	val finding = assertSingleFinding(findings)
 	Assertions.assertEquals("Test.kt\$$location", finding.entity.signature) {
 		"Highlight location matches."

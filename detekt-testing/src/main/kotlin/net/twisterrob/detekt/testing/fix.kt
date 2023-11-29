@@ -17,7 +17,7 @@ import javax.annotation.CheckReturnValue
  * @return the modified code
  */
 @CheckReturnValue
-inline fun <reified T : Rule> fix(
+public inline fun <reified T : Rule> fix(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 	autoCorrect: Boolean = true,
@@ -41,7 +41,7 @@ inline fun <reified T : Rule> fix(
  *
  * @return the modified code
  */
-fun Rule.fix(@Language("kotlin") content: String): String {
+public fun Rule.fix(@Language("kotlin") content: String): String {
 	val ktFile = compileContentForTest(content.trimIndent())
 	visit(ktFile)
 	return ktFile.text
