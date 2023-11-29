@@ -1,8 +1,6 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Severity
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import net.twisterrob.detekt.testing.verifySimpleFinding
 import org.hamcrest.MatcherAssert.assertThat
@@ -26,8 +24,6 @@ class CalisthenicsNoElseRuleTest {
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsNoElseRule().issue) {
 				assertThat(id, equalTo("CalisthenicsNoElse"))
-				assertThat(debt, equalTo(Debt.FIVE_MINS))
-				assertThat(severity, equalTo(Severity.Maintainability))
 				assertThat(
 					description,
 					equalTo(

@@ -1,10 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 
 /**
  * Object Calisthenics: Rule #9 - No getters/setters/properties.
@@ -26,8 +24,6 @@ class CalisthenicsNoExposeRule(
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsNoExpose",
-			severity = Severity.Maintainability,
 			description = "Object Calisthenics: Rule #9 - No getters/setters/properties.",
-			debt = Debt.FIVE_MINS
 		)
 }

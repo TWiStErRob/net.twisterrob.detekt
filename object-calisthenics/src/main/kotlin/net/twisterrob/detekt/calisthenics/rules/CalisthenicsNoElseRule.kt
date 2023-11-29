@@ -2,11 +2,9 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 import org.jetbrains.kotlin.psi.KtIfExpression
 
 /**
@@ -55,9 +53,7 @@ class CalisthenicsNoElseRule(
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsNoElse",
-			severity = Severity.Maintainability,
 			description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
-			debt = Debt.FIVE_MINS
 		)
 
 	override fun visitIfExpression(expression: KtIfExpression) {

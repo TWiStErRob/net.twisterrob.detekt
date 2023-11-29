@@ -1,10 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 
 /**
  * Object Calisthenics: Rule #10 - All classes must have state.
@@ -27,8 +25,6 @@ class CalisthenicsStateRule(
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsState",
-			severity = Severity.Maintainability,
 			description = "Object Calisthenics: Rule #10 - All classes must have state.",
-			debt = Debt.FIVE_MINS
 		)
 }

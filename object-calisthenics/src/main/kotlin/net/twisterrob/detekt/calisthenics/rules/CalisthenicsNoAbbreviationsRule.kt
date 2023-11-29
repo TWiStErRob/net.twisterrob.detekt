@@ -1,10 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 
 /**
  * Object Calisthenics: Rule #6 - Don’t abbreviate.
@@ -26,8 +24,6 @@ class CalisthenicsNoAbbreviationsRule(
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsNoAbbreviations",
-			severity = Severity.Maintainability,
 			description = "Object Calisthenics: Rule #6 - Don’t abbreviate.",
-			debt = Debt.FIVE_MINS
 		)
 }
