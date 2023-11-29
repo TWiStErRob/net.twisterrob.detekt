@@ -35,14 +35,17 @@ detekt-core = { module = "io.gitlab.arturbosch.detekt:detekt-core", version.ref 
 detekt-cli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
 detekt-metrics = { module = "io.gitlab.arturbosch.detekt:detekt-metrics", version.ref = "detekt" }
 detekt-rules = { module = "io.gitlab.arturbosch.detekt:detekt-rules", version.ref = "detekt" }
+detekt-rules-comments = { module = "io.gitlab.arturbosch.detekt:detekt-rules-documentation", version.ref = "detekt" }
 detekt-rules-complexity = { module = "io.gitlab.arturbosch.detekt:detekt-rules-complexity", version.ref = "detekt" }
 detekt-rules-coroutines = { module = "io.gitlab.arturbosch.detekt:detekt-rules-coroutines", version.ref = "detekt" }
-detekt-rules-documentation = { module = "io.gitlab.arturbosch.detekt:detekt-rules-documentation", version.ref = "detekt" }
-detekt-rules-empty = { module = "io.gitlab.arturbosch.detekt:detekt-rules-empty", version.ref = "detekt" }
-detekt-rules-errorprone = { module = "io.gitlab.arturbosch.detekt:detekt-rules-errorprone", version.ref = "detekt" }
+detekt-rules-emptyBlocks = { module = "io.gitlab.arturbosch.detekt:detekt-rules-empty", version.ref = "detekt" }
 detekt-rules-exceptions = { module = "io.gitlab.arturbosch.detekt:detekt-rules-exceptions", version.ref = "detekt" }
+detekt-rules-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-rules-libraries = { module = "io.gitlab.arturbosch.detekt:detekt-rules-libraries", version.ref = "detekt" }
 detekt-rules-naming = { module = "io.gitlab.arturbosch.detekt:detekt-rules-naming", version.ref = "detekt" }
 detekt-rules-performance = { module = "io.gitlab.arturbosch.detekt:detekt-rules-performance", version.ref = "detekt" }
+detekt-rules-potentialBugs = { module = "io.gitlab.arturbosch.detekt:detekt-rules-errorprone", version.ref = "detekt" }
+detekt-rules-ruleAuthors = { module = "io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors", version.ref = "detekt" }
 detekt-rules-style = { module = "io.gitlab.arturbosch.detekt:detekt-rules-style", version.ref = "detekt" }
 
 jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
