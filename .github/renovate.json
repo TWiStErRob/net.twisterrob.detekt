@@ -1,0 +1,17 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"local>TWiStErRob/renovate-config"
+	],
+	"packageRules": [
+		{
+			"description": "Keep old Kotlin version, see libs.gradle.toml for explanation.",
+			"matchPackageNames": [
+				"org.jetbrains.kotlin:kotlin-stdlib-jdk8",
+				"org.jetbrains.kotlin:kotlin-reflect"
+			],
+			"matchCurrentVersion": "1.4.32",
+			"enabled": false
+		}
+	]
+}

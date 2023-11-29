@@ -39,13 +39,13 @@ internal class HodorRule(config: Config = Config.empty) : Rule(config) {
 	override fun visitStringTemplateExpression(expression: KtStringTemplateExpression) {
 		super.visitStringTemplateExpression(expression)
 		// Intentionally buggy, not wrapped in autoCorrect, but modifies the PSI tree.
-		expression.replace(KtPsiFactory(expression).createStringTemplate(replacement))
+		expression.replace(KtPsiFactory.contextual(expression).createStringTemplate(replacement))
 	}
 
 	private fun PsiElement.hodor() {
 		report(CodeSmell(issue, Entity.from(this), MESSAGE))
 		if (autoCorrect) {
-			replace(KtPsiFactory(this).createNameIdentifier(replacement))
+			replace(KtPsiFactory.contextual(this).createNameIdentifier(replacement))
 		}
 	}
 
