@@ -1,10 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 
 /**
  * Object Calisthenics: Rule #4 - First class collections.
@@ -26,8 +24,6 @@ class CalisthenicsWrapCollectionsRule(
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsWrapCollections",
-			severity = Severity.Maintainability,
 			description = "Object Calisthenics: Rule #4 - First class collections.",
-			debt = Debt.FIVE_MINS
 		)
 }
