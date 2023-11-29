@@ -1,3 +1,5 @@
+rootProject.name = "net-twisterrob-detekt-plugins"
+
 dependencyResolutionManagement {
 	versionCatalogs {
 		create("libs") {
