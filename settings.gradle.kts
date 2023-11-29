@@ -5,6 +5,9 @@ rootProject.name = "net-twisterrob-detekt"
 
 pluginManagement {
 	includeBuild("gradle/plugins")
+	repositories {
+		gradlePluginPortal()
+	}
 }
 
 plugins {
