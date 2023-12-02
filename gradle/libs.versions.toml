@@ -1,6 +1,6 @@
 [versions]
 idea = "2022.1.2"
-intellij = "1.16.0"
+intellij = "1.16.1"
 # This might seem old, but since this is a plugin to a Gradle Plugin,
 # it's customary to support whatever Java range Gradle supports:
 # https://docs.gradle.org/current/userguide/compatibility.html
