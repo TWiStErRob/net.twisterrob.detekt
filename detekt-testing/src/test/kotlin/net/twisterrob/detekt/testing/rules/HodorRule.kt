@@ -39,13 +39,13 @@ internal class HodorRule(config: Config = Config.empty) : Rule(config) {
 	override fun visitStringTemplateExpression(expression: KtStringTemplateExpression) {
 		super.visitStringTemplateExpression(expression)
 		// Intentionally buggy, not wrapped in autoCorrect, but modifies the PSI tree.
-		expression.replace(KtPsiFactory.contextual(expression).createStringTemplate(replacement))
+		expression.replaceSelf(KtPsiFactory.contextual(expression).createStringTemplate(replacement))
 	}
 
 	private fun PsiElement.hodor() {
 		report(CodeSmell(issue, Entity.from(this), MESSAGE))
 		if (autoCorrect) {
-			replace(KtPsiFactory.contextual(this).createNameIdentifier(replacement))
+			replaceSelf(KtPsiFactory.contextual(this).createNameIdentifier(replacement))
 		}
 	}
 
@@ -53,4 +53,10 @@ internal class HodorRule(config: Config = Config.empty) : Rule(config) {
 
 		const val MESSAGE = "Hodor hodor"
 	}
+}
+
+private fun PsiElement.replaceSelf(newElement: PsiElement) {
+	// Ideally this would be just replace(newElement), however that requires additional setup.
+	// https://github.com/detekt/detekt/issues/6666
+	this.node.treeParent.replaceChild(this.node, newElement.node)
 }
