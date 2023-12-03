@@ -4,6 +4,7 @@ import net.twisterrob.gradle.settings.enableFeaturePreviewQuietly
 rootProject.name = "net-twisterrob-detekt"
 
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+enableFeaturePreviewQuietly("TYPESAFE_PROJECT_ACCESSORS", "Type-safe project accessors")
 
 pluginManagement {
 	includeBuild("gradle/plugins")
@@ -36,8 +37,6 @@ dependencyResolutionManagement {
 		}
 	}
 }
-
-enableFeaturePreviewQuietly("TYPESAFE_PROJECT_ACCESSORS", "Type-safe project accessors")
 
 include(":object-calisthenics")
 include(":detekt-testing")
