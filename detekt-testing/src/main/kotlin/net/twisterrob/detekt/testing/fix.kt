@@ -24,7 +24,7 @@ public inline fun <reified T : Rule> fix(
 ): String {
 	val realConfig =
 		if (autoCorrect) {
-			CompositeConfig(TestConfig("autoCorrect" to true), config)
+			CompositeConfig(lookFirst = TestConfig("autoCorrect" to true), lookSecond = config)
 		} else {
 			config
 		}
