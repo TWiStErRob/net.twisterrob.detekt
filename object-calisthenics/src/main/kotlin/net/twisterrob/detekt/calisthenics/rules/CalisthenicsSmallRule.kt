@@ -50,17 +50,17 @@ class CalisthenicsSmallRule(
 	override fun visitParameterList(list: KtParameterList) {
 		super.visitParameterList(list)
 		val owner = list.owner
-		owner.validate("Parameter list for function", list.parameterCount, maxAllowedParameterCount)
+		owner.validate("Parameter list for function", count = list.parameterCount, threshold = maxAllowedParameterCount)
 	}
 
 	override fun visitNamedFunction(function: KtNamedFunction) {
 		super.visitNamedFunction(function)
-		function.validate("Function", function.linesOfCode, maxAllowedFunctionLines)
+		function.validate("Function", count = function.linesOfCode, threshold = maxAllowedFunctionLines)
 	}
 
 	override fun visitClass(klass: KtClass) {
 		super.visitClass(klass)
-		klass.validate("Class", klass.linesOfCode, maxAllowedClassLines)
+		klass.validate("Class", count = klass.linesOfCode, threshold = maxAllowedClassLines)
 	}
 
 	@Suppress("CalisthenicsSmall", "CalisthenicsWrapPrimitives") // Suggestions welcome.
