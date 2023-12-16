@@ -35,7 +35,7 @@ jobs:
 
       - name: "Upload 'Unit Test Results' artifact."
         if: success() || failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Unit Test Results'
           path: ${{ github.workspace }}/**/build/reports/tests/*/
@@ -52,7 +52,7 @@ jobs:
 
       - name: "Upload 'Detekt Results' artifact."
         if: success() || failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Detekt Results'
           path: |
