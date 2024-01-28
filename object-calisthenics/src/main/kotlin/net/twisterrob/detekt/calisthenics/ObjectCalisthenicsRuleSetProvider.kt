@@ -20,7 +20,7 @@ import net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRule
 class ObjectCalisthenicsRuleSetProvider : RuleSetProvider {
 
 	@Suppress("CalisthenicsWrapPrimitives") // External API.
-	override val ruleSetId: String = "object-calisthenics"
+	override val ruleSetId = RuleSet.Id("object-calisthenics")
 
 	@Suppress("CalisthenicsSmall") // Impossible to shorten.
 	override fun instance(config: Config): RuleSet =
