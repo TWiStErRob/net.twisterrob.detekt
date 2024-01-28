@@ -1,7 +1,6 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 
 /**
@@ -18,13 +17,12 @@ import io.gitlab.arturbosch.detekt.api.Rule
  */
 class CalisthenicsStateRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #10 - All classes must have state.",
+) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/7
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsState",
-			description = "Object Calisthenics: Rule #10 - All classes must have state.",
-		)
+	override val ruleId = Id("CalisthenicsState")
 }
