@@ -38,8 +38,8 @@ class ObjectCalisthenicsRuleSetProviderTest {
 	}
 
 	@Test
-	fun `ruleSet's id is the same as the provider's`(@Mock mockConfig: Config) {
-		val ruleSet = sut.instance(mockConfig)
+	fun `ruleSet's id is the same as the provider's`() {
+		val ruleSet = sut.instance()
 
 		assertThat(ruleSet.id, equalTo(sut.ruleSetId))
 	}
@@ -59,67 +59,74 @@ class ObjectCalisthenicsRuleSetProviderTest {
 
 	@Test
 	fun `all rules get the ruleset config`(@Mock mockConfig: Config) {
-		val ruleSet = sut.instance(mockConfig)
+		val ruleSet = sut.instance()
 		val rules = ruleSet.rules
 
-		assertAll(rules.map { rule -> lazyAssertRuleHasConfig(rule, mockConfig) })
+		assertAll(rules.map { (_, provider) -> lazyAssertRuleHasConfig(provider, mockConfig) })
 	}
 
-	private fun lazyAssertRuleHasConfig(rule: Rule, mockConfig: Config): () -> Unit = {
+	private fun lazyAssertRuleHasConfig(ruleProvider: (Config) -> Rule, mockConfig: Config): () -> Unit = {
+		val rule = ruleProvider(mockConfig)
 		assertThat(rule.config, sameInstance(mockConfig))
 	}
 
 	@Test
 	fun `has rule 1`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsIndentRule::class)
+		assertHasRule(sut.instance(), CalisthenicsIndentRule::class)
 	}
 
 	@Test
 	fun `has rule 2`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsNoElseRule::class)
+		assertHasRule(sut.instance(), CalisthenicsNoElseRule::class)
 	}
 
 	@Test
 	fun `has rule 3`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsWrapPrimitivesRule::class)
+		assertHasRule(sut.instance(), CalisthenicsWrapPrimitivesRule::class)
 	}
 
 	@Test
 	fun `has rule 4`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsWrapCollectionsRule::class)
+		assertHasRule(sut.instance(), CalisthenicsWrapCollectionsRule::class)
 	}
 
 	@Test
 	fun `has rule 5`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsDotsRule::class)
+		assertHasRule(sut.instance(), CalisthenicsDotsRule::class)
 	}
 
 	@Test
 	fun `has rule 6`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsNoAbbreviationsRule::class)
+		assertHasRule(sut.instance(), CalisthenicsNoAbbreviationsRule::class)
 	}
 
 	@Test
 	fun `has rule 7`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsSmallRule::class)
+		assertHasRule(sut.instance(), CalisthenicsSmallRule::class)
 	}
 
 	@Test
 	fun `has rule 8`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsInstanceVarRule::class)
+		assertHasRule(sut.instance(), CalisthenicsInstanceVarRule::class)
 	}
 
 	@Test
 	fun `has rule 9`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsNoExposeRule::class)
+		assertHasRule(sut.instance(), CalisthenicsNoExposeRule::class)
 	}
 
 	@Test
 	fun `has rule 10`() {
-		assertHasRule(sut.instance(Config.empty), CalisthenicsStateRule::class)
+		assertHasRule(sut.instance(), CalisthenicsStateRule::class)
 	}
 }
 
 private fun <T : Rule> assertHasRule(ruleSet: RuleSet, ruleClass: KClass<T>) {
-	assertThat(ruleSet.rules, hasItem<Rule>(instanceOf(ruleClass.java)))
+	assertThat(ruleSet.createRules(Config.empty), hasItem<Rule>(instanceOf(ruleClass.java)))
 }
+
+private val RuleSet.ruleFactories: Collection<(Config) -> Rule>
+	get() = this.rules.values
+
+private fun RuleSet.createRules(config: Config): List<Rule> =
+	this.ruleFactories.map { it(config) }
