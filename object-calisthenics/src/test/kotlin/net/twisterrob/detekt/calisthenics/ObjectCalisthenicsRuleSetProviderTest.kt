@@ -1,6 +1,5 @@
 package net.twisterrob.detekt.calisthenics
 
-import io.gitlab.arturbosch.detekt.api.BaseRule
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.RuleSet
@@ -53,8 +52,7 @@ class ObjectCalisthenicsRuleSetProviderTest {
 		assertAll(rules.map { rule -> lazyAssertRuleHasConfig(rule, mockConfig) })
 	}
 
-	private fun lazyAssertRuleHasConfig(rule: BaseRule, mockConfig: Config): () -> Unit = {
-		assertThat(rule, instanceOf(Rule::class.java)); rule as Rule
+	private fun lazyAssertRuleHasConfig(rule: Rule, mockConfig: Config): () -> Unit = {
 		assertThat(rule.ruleSetConfig, sameInstance(mockConfig))
 	}
 
@@ -109,6 +107,6 @@ class ObjectCalisthenicsRuleSetProviderTest {
 	}
 }
 
-private fun <T : BaseRule> assertHasRule(ruleSet: RuleSet, ruleClass: KClass<T>) {
-	assertThat(ruleSet.rules, hasItem<BaseRule>(instanceOf(ruleClass.java)))
+private fun <T : Rule> assertHasRule(ruleSet: RuleSet, ruleClass: KClass<T>) {
+	assertThat(ruleSet.rules, hasItem<Rule>(instanceOf(ruleClass.java)))
 }
