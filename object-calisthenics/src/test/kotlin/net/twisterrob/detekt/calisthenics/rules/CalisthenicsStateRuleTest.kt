@@ -34,7 +34,7 @@ class CalisthenicsStateRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsStateRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsStateRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -43,7 +43,7 @@ class CalisthenicsStateRuleTest {
 
 			val issue = CalisthenicsStateRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

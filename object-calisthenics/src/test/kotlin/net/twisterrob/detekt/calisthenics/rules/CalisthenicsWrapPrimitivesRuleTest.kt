@@ -40,7 +40,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsWrapPrimitivesRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsWrapPrimitivesRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -49,7 +49,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 			val issue = CalisthenicsWrapPrimitivesRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

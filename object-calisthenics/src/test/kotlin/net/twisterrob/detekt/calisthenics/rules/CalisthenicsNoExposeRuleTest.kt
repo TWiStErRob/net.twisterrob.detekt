@@ -34,7 +34,7 @@ class CalisthenicsNoExposeRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsNoExposeRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsNoExposeRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -43,7 +43,7 @@ class CalisthenicsNoExposeRuleTest {
 
 			val issue = CalisthenicsNoExposeRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

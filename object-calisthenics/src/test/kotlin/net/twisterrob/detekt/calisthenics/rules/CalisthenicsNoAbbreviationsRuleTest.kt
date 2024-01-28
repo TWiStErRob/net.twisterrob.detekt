@@ -34,7 +34,7 @@ class CalisthenicsNoAbbreviationsRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsNoAbbreviationsRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsNoAbbreviationsRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -43,7 +43,7 @@ class CalisthenicsNoAbbreviationsRuleTest {
 
 			val issue = CalisthenicsNoAbbreviationsRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

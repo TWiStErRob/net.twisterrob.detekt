@@ -53,7 +53,7 @@ class ObjectCalisthenicsRuleSetProviderTest {
 	}
 
 	private fun lazyAssertRuleHasConfig(rule: Rule, mockConfig: Config): () -> Unit = {
-		assertThat(rule.ruleSetConfig, sameInstance(mockConfig))
+		assertThat(rule.config, sameInstance(mockConfig))
 	}
 
 	@Test

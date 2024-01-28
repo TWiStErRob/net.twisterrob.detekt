@@ -36,7 +36,7 @@ class CalisthenicsIndentRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsIndentRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsIndentRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -45,7 +45,7 @@ class CalisthenicsIndentRuleTest {
 
 			val issue = CalisthenicsIndentRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 
