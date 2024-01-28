@@ -3,7 +3,6 @@ package net.twisterrob.detekt.calisthenics.rules
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.Name
@@ -38,13 +37,12 @@ import org.jetbrains.kotlin.psi.psiUtil.isPropertyParameter
  */
 class CalisthenicsWrapPrimitivesRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsWrapPrimitives",
-			description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-		)
+	override val ruleId = Id("CalisthenicsWrapPrimitives")
 
 	override fun visitParameter(parameter: KtParameter) {
 		super.visitParameter(parameter)
