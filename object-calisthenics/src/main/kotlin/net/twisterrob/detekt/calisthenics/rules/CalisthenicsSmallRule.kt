@@ -4,7 +4,6 @@ import io.github.detekt.metrics.linesOfCode
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.config
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
@@ -31,13 +30,12 @@ private typealias Lines = Count
  */
 class CalisthenicsSmallRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #7 - Keep all entities small.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsSmall",
-			description = "Object Calisthenics: Rule #7 - Keep all entities small.",
-		)
+	override val ruleId = Id("CalisthenicsSmall")
 
 	private val maxAllowedClassLines: Lines by config(@Suppress("detekt.MagicNumber") 50, ::Lines)
 	private val maxAllowedFunctionLines: Lines by config(@Suppress("detekt.MagicNumber") 5, ::Lines)
