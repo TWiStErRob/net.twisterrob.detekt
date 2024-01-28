@@ -5,10 +5,11 @@ import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.rules.parentsOfTypeUntil
+import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtElement
+import org.jetbrains.kotlin.psi.psiUtil.parents
 
 /**
  * Object Calisthenics: Rule #1 - One level of indentation per method.
@@ -51,3 +52,9 @@ class CalisthenicsIndentRule(
 
 private fun KtElement.blockParents(): List<KtBlockExpression> =
 	this.parentsOfTypeUntil<KtBlockExpression, KtClassOrObject>().toList()
+
+private inline fun <reified T, reified Stop> PsiElement.parentsOfTypeUntil(): Sequence<T> =
+	this.parentsUpTo<Stop>().filterIsInstance<T>()
+
+private inline fun <reified T> PsiElement.parentsUpTo(): Sequence<PsiElement> =
+	this.parents.takeWhile { it !is T }
