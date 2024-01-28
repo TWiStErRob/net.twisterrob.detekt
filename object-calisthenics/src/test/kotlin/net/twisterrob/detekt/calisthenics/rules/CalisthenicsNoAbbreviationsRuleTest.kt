@@ -1,6 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
+import io.gitlab.arturbosch.detekt.api.Rule
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -22,7 +23,7 @@ class CalisthenicsNoAbbreviationsRuleTest {
 		@Test
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsNoAbbreviationsRule().issue) {
-				assertThat(id, equalTo("CalisthenicsNoAbbreviations"))
+				assertThat(id, equalTo(Rule.Id("CalisthenicsNoAbbreviations")))
 				assertThat(
 					description,
 					equalTo(

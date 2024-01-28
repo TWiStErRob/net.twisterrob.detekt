@@ -34,7 +34,7 @@ class ObjectCalisthenicsRuleSetProviderTest {
 	fun `ruleSetId is object-calisthenics`() {
 		val ruleSetId = sut.ruleSetId
 
-		assertThat(ruleSetId, equalTo("object-calisthenics"))
+		assertThat(ruleSetId, equalTo(RuleSet.Id("object-calisthenics")))
 	}
 
 	@Test
@@ -42,6 +42,19 @@ class ObjectCalisthenicsRuleSetProviderTest {
 		val ruleSet = sut.instance(mockConfig)
 
 		assertThat(ruleSet.id, equalTo(sut.ruleSetId))
+	}
+
+	@Test
+	fun `all rules have a consistent id`() {
+		val ruleSet = sut.instance()
+		val rules = ruleSet.rules
+
+		assertAll(rules.map { (id, provider) -> lazyAssertRuleHasId(provider, id) })
+	}
+
+	private fun lazyAssertRuleHasId(ruleProvider: (Config) -> Rule, id: Rule.Id): () -> Unit = {
+		val rule = ruleProvider(Config.empty)
+		assertThat(rule.ruleId, equalTo(id))
 	}
 
 	@Test
