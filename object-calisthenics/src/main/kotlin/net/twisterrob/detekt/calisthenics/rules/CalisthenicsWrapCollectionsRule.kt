@@ -1,7 +1,6 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 
 /**
@@ -17,13 +16,12 @@ import io.gitlab.arturbosch.detekt.api.Rule
  */
 class CalisthenicsWrapCollectionsRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #4 - First class collections.",
+) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/8
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsWrapCollections",
-			description = "Object Calisthenics: Rule #4 - First class collections.",
-		)
+	override val ruleId = Id("CalisthenicsWrapCollections")
 }

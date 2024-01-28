@@ -2,7 +2,6 @@ package net.twisterrob.detekt.testing
 
 import io.github.detekt.test.utils.compileContentForTest
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.IncorrectTreeStructureException
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -37,12 +36,12 @@ class PsiTestingExtensionTest {
 	}
 }
 
-private class BadRule : Rule(Config.empty) {
-
-	override val issue = Issue(
-		id = "BadRule",
-		description = "Breaks PSI invariants.",
-	)
+private class BadRule(
+	config: Config = Config.empty,
+) : Rule(
+	config = config,
+	description = "Breaks PSI invariants.",
+) {
 
 	override fun visitCallExpression(expression: KtCallExpression) {
 		super.visitCallExpression(expression)

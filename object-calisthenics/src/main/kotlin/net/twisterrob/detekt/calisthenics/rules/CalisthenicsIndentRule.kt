@@ -3,7 +3,6 @@ package net.twisterrob.detekt.calisthenics.rules
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtBlockExpression
@@ -32,13 +31,12 @@ import org.jetbrains.kotlin.psi.psiUtil.parents
  */
 class CalisthenicsIndentRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #1 - One level of indentation per method.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsIndent",
-			description = "Object Calisthenics: Rule #1 - One level of indentation per method.",
-		)
+	override val ruleId = Id("CalisthenicsIndent")
 
 	override fun visitBlockExpression(expression: KtBlockExpression) {
 		super.visitBlockExpression(expression)

@@ -1,7 +1,6 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 
 /**
@@ -17,13 +16,12 @@ import io.gitlab.arturbosch.detekt.api.Rule
  */
 class CalisthenicsNoExposeRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #9 - No getters/setters/properties.",
+) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/6
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsNoExpose",
-			description = "Object Calisthenics: Rule #9 - No getters/setters/properties.",
-		)
+	override val ruleId = Id("CalisthenicsNoExpose")
 }

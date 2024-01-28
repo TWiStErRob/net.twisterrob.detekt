@@ -3,7 +3,6 @@ package net.twisterrob.detekt.calisthenics.rules
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import org.jetbrains.kotlin.psi.KtIfExpression
 
@@ -48,13 +47,12 @@ import org.jetbrains.kotlin.psi.KtIfExpression
  */
 class CalisthenicsNoElseRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsNoElse",
-			description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
-		)
+	override val ruleId = Id("CalisthenicsNoElse")
 
 	override fun visitIfExpression(expression: KtIfExpression) {
 		super.visitIfExpression(expression)

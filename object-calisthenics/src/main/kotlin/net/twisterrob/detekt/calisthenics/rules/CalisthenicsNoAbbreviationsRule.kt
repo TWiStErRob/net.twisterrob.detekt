@@ -1,7 +1,6 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 
 /**
@@ -17,13 +16,12 @@ import io.gitlab.arturbosch.detekt.api.Rule
  */
 class CalisthenicsNoAbbreviationsRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #6 - Don’t abbreviate.",
+) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/5
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsNoAbbreviations",
-			description = "Object Calisthenics: Rule #6 - Don’t abbreviate.",
-		)
+	override val ruleId = Id("CalisthenicsNoAbbreviations")
 }
