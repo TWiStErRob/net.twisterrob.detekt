@@ -22,7 +22,7 @@ testing.suites.withType<JvmTestSuite>().configureEach {
 			if (libs.versions.kotlin.target.get() < "1.5") {
 				jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 			} else {
-				@Suppress("ThrowingExceptionsWithoutMessageOrCause")
+				@Suppress("detekt.ThrowingExceptionsWithoutMessageOrCause")
 				logger.warn("Review --add-opens hack for https://youtrack.jetbrains.com/issue/KT-51619.", Throwable())
 			}
 		}

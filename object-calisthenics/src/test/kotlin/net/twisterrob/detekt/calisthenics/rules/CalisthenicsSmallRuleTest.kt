@@ -162,7 +162,7 @@ class CalisthenicsSmallRuleTest {
 
 			@Test
 			fun `oneliner is accepted`() {
-				@Suppress("SelfReferenceConstructorParameter")
+				@Suppress("detekt.SelfReferenceConstructorParameter")
 				verifyNoFindings<CalisthenicsSmallRule>(
 					originalCode = """
 						class C(private val c: C)

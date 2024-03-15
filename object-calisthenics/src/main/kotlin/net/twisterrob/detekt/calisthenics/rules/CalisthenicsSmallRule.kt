@@ -43,9 +43,9 @@ class CalisthenicsSmallRule(
 			debt = Debt.FIVE_MINS
 		)
 
-	private val maxAllowedClassLines: Lines by config(@Suppress("MagicNumber") 50, ::Lines)
-	private val maxAllowedFunctionLines: Lines by config(@Suppress("MagicNumber") 5, ::Lines)
-	private val maxAllowedParameterCount: Count by config(@Suppress("MagicNumber") 2, ::Count)
+	private val maxAllowedClassLines: Lines by config(@Suppress("detekt.MagicNumber") 50, ::Lines)
+	private val maxAllowedFunctionLines: Lines by config(@Suppress("detekt.MagicNumber") 5, ::Lines)
+	private val maxAllowedParameterCount: Count by config(@Suppress("detekt.MagicNumber") 2, ::Count)
 
 	override fun visitParameterList(list: KtParameterList) {
 		super.visitParameterList(list)
