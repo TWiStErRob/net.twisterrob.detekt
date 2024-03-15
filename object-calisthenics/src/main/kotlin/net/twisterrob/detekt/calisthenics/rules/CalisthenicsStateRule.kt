@@ -19,7 +19,7 @@ import io.gitlab.arturbosch.detekt.api.Severity
  * </compliant>
  */
 class CalisthenicsStateRule(
-	config: Config = Config.empty
+	config: Config = Config.empty,
 ) : Rule(config) {
 
 	override val issue: Issue =

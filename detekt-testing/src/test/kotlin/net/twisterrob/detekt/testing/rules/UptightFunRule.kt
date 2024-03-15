@@ -9,7 +9,9 @@ import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
 import org.jetbrains.kotlin.psi.KtNamedFunction
 
-internal class UptightFunRule(config: Config = Config.empty) : Rule(config) {
+internal class UptightFunRule(
+	config: Config = Config.empty,
+) : Rule(config) {
 
 	override val issue: Issue = Issue(
 		id = "UptightFun",

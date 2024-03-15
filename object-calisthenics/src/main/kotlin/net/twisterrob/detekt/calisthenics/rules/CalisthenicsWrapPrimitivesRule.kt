@@ -39,7 +39,7 @@ import org.jetbrains.kotlin.psi.psiUtil.isPropertyParameter
  * </compliant>
  */
 class CalisthenicsWrapPrimitivesRule(
-	config: Config = Config.empty
+	config: Config = Config.empty,
 ) : Rule(config) {
 
 	override val issue: Issue =

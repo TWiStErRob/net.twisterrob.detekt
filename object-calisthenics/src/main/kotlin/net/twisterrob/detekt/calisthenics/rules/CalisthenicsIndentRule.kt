@@ -32,7 +32,7 @@ import org.jetbrains.kotlin.psi.KtElement
  * </compliant>
  */
 class CalisthenicsIndentRule(
-	config: Config = Config.empty
+	config: Config = Config.empty,
 ) : Rule(config) {
 
 	override val issue: Issue =
