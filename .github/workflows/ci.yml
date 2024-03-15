@@ -5,26 +5,38 @@ on:
 concurrency:
   group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}', github.sha) || format('ci-{0}', github.ref) }}
   cancel-in-progress: true
+
 jobs:
+
   validate:
     name: "🦺 Validation"
-    uses: TWiStErRob/github-workflows/.github/workflows/validate.yml@19333c04e57739ec6074b09c6ca09c225c94dc09 # v1
+    uses: TWiStErRob/github-workflows/.github/workflows/validate.yml@94f2ec4f96e146200f801fe7e09310c79cb2d2b3 # v2
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
 
   build:
     name: "🔨 Build & Verify"
-    runs-on: ubuntu-latest
     timeout-minutes: 10
     needs:
       - validate
+
     permissions:
+      # actions/checkout
+      contents: read
       # EnricoMi/publish-unit-test-result-action
       checks: write
+
+    runs-on: ubuntu-latest
     steps:
+
       - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
         uses: actions/checkout@v4
 
       - name: "Build & Verify project using Gradle."
         id: gradle
+        shell: bash
         run: >
           ./gradlew
           --no-daemon
@@ -37,26 +49,30 @@ jobs:
           detektTest
 
       - name: "Upload 'Unit Test Results' artifact."
-        if: success() || failure()
+        if: ${{ success() || failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: 'Unit Test Results'
-          path: ${{ github.workspace }}/**/build/reports/tests/*/
+          if-no-files-found: error
+          path: |
+            ${{ github.workspace }}/**/build/reports/tests/*/
 
       - name: "Publish 'Unit Results' check suite."
-        if: success() || failure()
+        if: ${{ success() || failure() }}
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           check_name: '🔔 Test: Unit Results'
           comment_mode: off
           report_individual_runs: true
+          action_fail_on_inconclusive: true
           test_changes_limit: 0
           junit_files: ${{ github.workspace }}/**/build/test-results/*/TEST-*.xml
 
       - name: "Upload 'Detekt Results' artifact."
-        if: success() || failure()
+        if: ${{ success() || failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: 'Detekt Results'
+          if-no-files-found: error
           path: |
             ${{ github.workspace }}/**/build/reports/detekt/detekt.*
