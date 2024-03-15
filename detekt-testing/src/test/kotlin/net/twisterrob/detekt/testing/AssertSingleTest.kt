@@ -39,7 +39,7 @@ class AssertSingleTest {
 				assertSingleMessage(findings, UptightFunRule.MESSAGE)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -97,7 +97,7 @@ class AssertSingleTest {
 				assertSingleHighlight(findings, UptightFunRule.MESSAGE)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
