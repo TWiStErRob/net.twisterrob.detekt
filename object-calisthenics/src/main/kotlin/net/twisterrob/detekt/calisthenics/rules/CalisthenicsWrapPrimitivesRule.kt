@@ -99,14 +99,14 @@ class CalisthenicsWrapPrimitivesRule(
 private val KtCallableDeclaration.typeName: Name?
 	get() = typeReference?.text?.let(Name::identifier)
 
-@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+@Suppress("CalisthenicsWrapPrimitivesRule") // Suggestions welcome.
 private fun KtParameter.isPrimitiveWrapper(): Boolean =
 	this.isPropertyParameter() && (this.isInValueClass() || this.isPrivate())
 
-@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+@Suppress("CalisthenicsWrapPrimitivesRule") // Suggestions welcome.
 private fun KtDeclaration.isInValueClass(): Boolean =
 	this.containingClass()?.isValueClass() == true
 
-@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+@Suppress("CalisthenicsWrapPrimitivesRule") // Suggestions welcome.
 private fun KtClassOrObject.isValueClass(): Boolean =
 	this.hasModifier(KtTokens.VALUE_KEYWORD)

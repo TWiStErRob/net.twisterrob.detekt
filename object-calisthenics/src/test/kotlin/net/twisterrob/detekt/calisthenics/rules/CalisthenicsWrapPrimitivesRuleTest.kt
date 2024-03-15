@@ -158,7 +158,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
 						interface I {
-							@Suppress("CalisthenicsWrapPrimitive")
+							@Suppress("CalisthenicsWrapPrimitiveRule")
 							fun primitive(): ${type}
 						}
 						class C : I {
@@ -173,7 +173,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
 						interface I {
-							@Suppress("CalisthenicsWrapPrimitive")
+							@Suppress("CalisthenicsWrapPrimitiveRule")
 							fun primitive(): ${type}?
 						}
 						class C : I {
@@ -339,7 +339,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 				Name.identifier("java.lang.Number"),
 			)
 
-			@Suppress("CalisthenicsDots")
+			@Suppress("CalisthenicsDotsRule")
 			val primitiveNames = PrimitiveType.values().map { it.typeName }
 			return primitiveNames + primitiveLikeNames
 		}

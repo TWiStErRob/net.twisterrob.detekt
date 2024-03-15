@@ -1,31 +1,31 @@
 object-calisthenics:
 
   # Rule #1: One level of indentation per method.
-  CalisthenicsIndent:
+  CalisthenicsIndentRule:
     active: true
 
   # Rule #2: Don’t use the ELSE keyword.
-  CalisthenicsNoElse:
+  CalisthenicsNoElseRule:
     active: true
 
   # Rule #3: Wrap all primitives and Strings.
-  CalisthenicsWrapPrimitives:
+  CalisthenicsWrapPrimitivesRule:
     active: true
 
   # Rule #4: First class collections.
-  CalisthenicsWrapCollections:
+  CalisthenicsWrapCollectionsRule:
     active: true
 
   # Rule #5: One dot per line.
-  CalisthenicsDots:
+  CalisthenicsDotsRule:
     active: true
     
   # Rule #6: Don’t abbreviate.
-  CalisthenicsNoAbbreviations:
+  CalisthenicsNoAbbreviationsRule:
     active: true
 
   # Rule #7: Keep all entities small.
-  CalisthenicsSmall:
+  CalisthenicsSmallRule:
     active: true
     ignoreAnnotated:
       - 'org.junit.Test'
@@ -37,13 +37,13 @@ object-calisthenics:
       - 'org.junit.jupiter.api.extension.ExtendWith'
 
   # Rule #8: No classes with more than two instance variables.
-  CalisthenicsInstanceVar:
+  CalisthenicsInstanceVarRule:
     active: true
 
   # Rule #9: No getters/setters/properties.
-  CalisthenicsNoExpose:
+  CalisthenicsNoExposeRule:
     active: true
   
   # Rule #10: All classes must have state.
-  CalisthenicsState:
+  CalisthenicsStateRule:
     active: true

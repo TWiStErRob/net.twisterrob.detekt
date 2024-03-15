@@ -41,13 +41,13 @@ class CalisthenicsDotsRule(
 	}
 }
 
-@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+@Suppress("CalisthenicsWrapPrimitivesRule") // Suggestions welcome.
 private fun KtDotQualifiedExpression.allowsDots(): Boolean =
 	this.receiverExpression.isQualifiedThis()
 			|| this.isPartOf<KtImportDirective>()
 			|| this.isPartOf<KtPackageDirective>()
 
-@Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
+@Suppress("CalisthenicsWrapPrimitivesRule") // Suggestions welcome.
 private fun KtExpression.isQualifiedThis(): Boolean =
 	this is KtDotQualifiedExpression && this.receiverExpression is KtThisExpression
 

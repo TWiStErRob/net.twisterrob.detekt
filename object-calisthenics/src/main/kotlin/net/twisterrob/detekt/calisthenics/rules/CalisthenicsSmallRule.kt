@@ -55,7 +55,7 @@ class CalisthenicsSmallRule(
 		klass.validate("Class", count = klass.linesOfCode, threshold = maxAllowedClassLines)
 	}
 
-	@Suppress("CalisthenicsSmall", "CalisthenicsWrapPrimitives") // Suggestions welcome.
+	@Suppress("CalisthenicsSmallRule", "CalisthenicsWrapPrimitivesRule") // Suggestions welcome.
 	private fun KtNamedDeclaration.validate(type: String, count: Count, threshold: Count) {
 		if (count > threshold) {
 			val message = "${type} ${this.name ?: "<unnamed>"} is too long (${count})."
