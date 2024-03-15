@@ -21,6 +21,8 @@ class CalisthenicsInstanceVarRule(
 	config: Config = Config.empty,
 ) : Rule(config) {
 
+	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/4
+
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsInstanceVar",

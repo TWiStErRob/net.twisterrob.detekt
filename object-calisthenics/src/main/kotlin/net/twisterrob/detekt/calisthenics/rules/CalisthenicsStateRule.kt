@@ -22,6 +22,8 @@ class CalisthenicsStateRule(
 	config: Config = Config.empty,
 ) : Rule(config) {
 
+	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/7
+
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsState",

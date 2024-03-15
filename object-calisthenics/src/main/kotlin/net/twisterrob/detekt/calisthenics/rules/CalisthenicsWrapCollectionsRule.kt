@@ -21,6 +21,8 @@ class CalisthenicsWrapCollectionsRule(
 	config: Config = Config.empty,
 ) : Rule(config) {
 
+	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/8
+
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsWrapCollections",

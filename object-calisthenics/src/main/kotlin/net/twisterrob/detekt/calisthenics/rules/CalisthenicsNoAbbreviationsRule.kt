@@ -21,6 +21,8 @@ class CalisthenicsNoAbbreviationsRule(
 	config: Config = Config.empty,
 ) : Rule(config) {
 
+	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/5
+
 	override val issue: Issue =
 		Issue(
 			id = "CalisthenicsNoAbbreviations",
