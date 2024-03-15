@@ -1,10 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 
 /**
  * Object Calisthenics: Rule #8 - No classes with more than two instance variables.
@@ -19,15 +16,10 @@ import io.gitlab.arturbosch.detekt.api.Severity
  */
 class CalisthenicsInstanceVarRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #8 - No classes with more than two instance variables.",
+) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/4
-
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsInstanceVar",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #8 - No classes with more than two instance variables.",
-			debt = Debt.FIVE_MINS
-		)
 }

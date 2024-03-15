@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Severity
+import io.gitlab.arturbosch.detekt.api.Rule
+import io.gitlab.arturbosch.detekt.api.ruleId
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import net.twisterrob.detekt.testing.verifyNoFindings
 import net.twisterrob.detekt.testing.verifySimpleFinding
@@ -29,10 +29,8 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsWrapPrimitivesRule().issue) {
-				assertThat(id, equalTo("CalisthenicsWrapPrimitives"))
-				assertThat(debt, equalTo(Debt.FIVE_MINS))
-				assertThat(severity, equalTo(Severity.Maintainability))
+			with(CalisthenicsWrapPrimitivesRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsWrapPrimitives")))
 				assertThat(
 					description,
 					equalTo(
@@ -44,7 +42,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsWrapPrimitivesRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsWrapPrimitivesRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -53,7 +51,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 			val issue = CalisthenicsWrapPrimitivesRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 
@@ -160,7 +158,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
 						interface I {
-							@Suppress("CalisthenicsWrapPrimitive")
+							@Suppress("CalisthenicsWrapPrimitiveRule")
 							fun primitive(): ${type}
 						}
 						class C : I {
@@ -175,7 +173,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 				verifyNoFindings<CalisthenicsWrapPrimitivesRule>(
 					originalCode = """
 						interface I {
-							@Suppress("CalisthenicsWrapPrimitive")
+							@Suppress("CalisthenicsWrapPrimitiveRule")
 							fun primitive(): ${type}?
 						}
 						class C : I {
@@ -341,7 +339,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 				Name.identifier("java.lang.Number"),
 			)
 
-			@Suppress("CalisthenicsDots")
+			@Suppress("CalisthenicsDotsRule")
 			val primitiveNames = PrimitiveType.values().map { it.typeName }
 			return primitiveNames + primitiveLikeNames
 		}

@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Severity
+import io.gitlab.arturbosch.detekt.api.Rule
+import io.gitlab.arturbosch.detekt.api.ruleId
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import net.twisterrob.detekt.testing.verifySimpleFinding
 import org.hamcrest.MatcherAssert.assertThat
@@ -24,10 +24,8 @@ class CalisthenicsNoElseRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsNoElseRule().issue) {
-				assertThat(id, equalTo("CalisthenicsNoElse"))
-				assertThat(debt, equalTo(Debt.FIVE_MINS))
-				assertThat(severity, equalTo(Severity.Maintainability))
+			with(CalisthenicsNoElseRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsNoElse")))
 				assertThat(
 					description,
 					equalTo(
@@ -39,7 +37,7 @@ class CalisthenicsNoElseRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsNoElseRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsNoElseRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -48,7 +46,7 @@ class CalisthenicsNoElseRuleTest {
 
 			val issue = CalisthenicsNoElseRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

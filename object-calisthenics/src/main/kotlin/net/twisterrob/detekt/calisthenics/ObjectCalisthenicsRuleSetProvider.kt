@@ -1,6 +1,5 @@
 package net.twisterrob.detekt.calisthenics
 
-import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.RuleSet
 import io.gitlab.arturbosch.detekt.api.RuleSetProvider
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
@@ -19,24 +18,24 @@ import net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRule
  */
 class ObjectCalisthenicsRuleSetProvider : RuleSetProvider {
 
-	@Suppress("CalisthenicsWrapPrimitives") // External API.
-	override val ruleSetId: String = "object-calisthenics"
+	@Suppress("CalisthenicsWrapPrimitivesRule") // External API.
+	override val ruleSetId = RuleSet.Id("object-calisthenics")
 
-	@Suppress("CalisthenicsSmall") // Impossible to shorten.
-	override fun instance(config: Config): RuleSet =
+	@Suppress("CalisthenicsSmallRule") // Impossible to shorten.
+	override fun instance(): RuleSet =
 		RuleSet(
 			ruleSetId,
 			listOf(
-				CalisthenicsIndentRule(config),
-				CalisthenicsNoElseRule(config),
-				CalisthenicsWrapPrimitivesRule(config),
-				CalisthenicsWrapCollectionsRule(config),
-				CalisthenicsDotsRule(config),
-				CalisthenicsNoAbbreviationsRule(config),
-				CalisthenicsSmallRule(config),
-				CalisthenicsInstanceVarRule(config),
-				CalisthenicsNoExposeRule(config),
-				CalisthenicsStateRule(config),
+				::CalisthenicsIndentRule,
+				::CalisthenicsNoElseRule,
+				::CalisthenicsWrapPrimitivesRule,
+				::CalisthenicsWrapCollectionsRule,
+				::CalisthenicsDotsRule,
+				::CalisthenicsNoAbbreviationsRule,
+				::CalisthenicsSmallRule,
+				::CalisthenicsInstanceVarRule,
+				::CalisthenicsNoExposeRule,
+				::CalisthenicsStateRule,
 			)
 		)
 }

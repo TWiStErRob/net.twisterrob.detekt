@@ -13,7 +13,7 @@ internal value class Count(
 
 	companion object {
 
-		@Suppress("CalisthenicsWrapPrimitives")
+		@Suppress("CalisthenicsWrapPrimitivesRule")
 		fun String.repeat(count: Count): String =
 			this.repeat(count.count)
 	}

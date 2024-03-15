@@ -1,5 +1,6 @@
 package net.twisterrob.detekt.testing
 
+import io.gitlab.arturbosch.detekt.api.ruleId
 import net.twisterrob.detekt.testing.rules.HodorRule
 import net.twisterrob.detekt.testing.rules.UptightFunRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule
@@ -39,7 +40,7 @@ class AssertSingleTest {
 				assertSingleMessage(findings, UptightFunRule.MESSAGE)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.toString()))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -97,7 +98,7 @@ class AssertSingleTest {
 				assertSingleHighlight(findings, UptightFunRule.MESSAGE)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.toString()))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))

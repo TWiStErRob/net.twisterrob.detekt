@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Severity
+import io.gitlab.arturbosch.detekt.api.Rule
+import io.gitlab.arturbosch.detekt.api.ruleId
 import io.gitlab.arturbosch.detekt.test.TestConfig
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
 import net.twisterrob.detekt.calisthenics.rules.internal.Count.Companion.repeat
@@ -30,10 +30,8 @@ class CalisthenicsSmallRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsSmallRule().issue) {
-				assertThat(id, equalTo("CalisthenicsSmall"))
-				assertThat(debt, equalTo(Debt.FIVE_MINS))
-				assertThat(severity, equalTo(Severity.Maintainability))
+			with(CalisthenicsSmallRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsSmall")))
 				assertThat(
 					description,
 					equalTo(
@@ -45,7 +43,7 @@ class CalisthenicsSmallRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsSmallRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsSmallRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -54,7 +52,7 @@ class CalisthenicsSmallRuleTest {
 
 			val issue = CalisthenicsSmallRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 
