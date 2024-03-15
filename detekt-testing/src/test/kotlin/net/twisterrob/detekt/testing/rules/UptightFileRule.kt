@@ -10,7 +10,9 @@ import io.gitlab.arturbosch.detekt.api.Severity
 import io.gitlab.arturbosch.detekt.api.config
 import org.jetbrains.kotlin.psi.KtFile
 
-internal class UptightFileRule(config: Config = Config.empty) : Rule(config) {
+internal class UptightFileRule(
+	config: Config = Config.empty,
+) : Rule(config) {
 
 	override val issue: Issue = Issue(
 		id = "UptightFile",

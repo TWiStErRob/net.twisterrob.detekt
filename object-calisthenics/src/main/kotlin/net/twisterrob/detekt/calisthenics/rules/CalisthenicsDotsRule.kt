@@ -29,7 +29,7 @@ import org.jetbrains.kotlin.psi.KtThisExpression
  * </compliant>
  */
 class CalisthenicsDotsRule(
-	config: Config = Config.empty
+	config: Config = Config.empty,
 ) : Rule(config) {
 
 	override val issue: Issue =

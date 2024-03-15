@@ -49,7 +49,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 		@Test
 		fun `config is propagated to parent`() {
-			val mockConfig: Config = Mockito.mock(Config::class.java)
+			val mockConfig: Config = Mockito.mock()
 
 			val issue = CalisthenicsWrapPrimitivesRule(mockConfig)
 
@@ -329,7 +329,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 	companion object {
 
-		@Suppress("UnusedPrivateMember") // Unaware of JUnit 5's @MethodSource.
+		@Suppress("detekt.UnusedPrivateMember") // Unaware of JUnit 5's @MethodSource.
 		@JvmStatic
 		private fun primitiveTypes(): List<Name> {
 			val primitiveLikeNames = listOf(
@@ -346,7 +346,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			return primitiveNames + primitiveLikeNames
 		}
 
-		@Suppress("UnusedPrivateMember") // Unaware of JUnit 5's @MethodSource.
+		@Suppress("detekt.UnusedPrivateMember") // Unaware of JUnit 5's @MethodSource.
 		@JvmStatic
 		private fun nonPrimitiveTypes(): List<Name> =
 			listOf(

@@ -46,7 +46,7 @@ class CalisthenicsDotsRuleTest {
 
 		@Test
 		fun `config is propagated to parent`() {
-			val mockConfig: Config = Mockito.mock(Config::class.java)
+			val mockConfig: Config = Mockito.mock()
 
 			val issue = CalisthenicsDotsRule(mockConfig)
 

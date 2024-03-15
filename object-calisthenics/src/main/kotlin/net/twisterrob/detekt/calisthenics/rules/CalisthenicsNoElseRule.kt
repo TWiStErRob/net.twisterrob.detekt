@@ -49,7 +49,7 @@ import org.jetbrains.kotlin.psi.KtIfExpression
  * </compliant>
  */
 class CalisthenicsNoElseRule(
-	config: Config = Config.empty
+	config: Config = Config.empty,
 ) : Rule(config) {
 
 	override val issue: Issue =

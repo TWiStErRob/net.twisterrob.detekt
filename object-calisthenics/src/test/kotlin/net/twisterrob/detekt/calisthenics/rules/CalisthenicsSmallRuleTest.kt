@@ -50,7 +50,7 @@ class CalisthenicsSmallRuleTest {
 
 		@Test
 		fun `config is propagated to parent`() {
-			val mockConfig: Config = Mockito.mock(Config::class.java)
+			val mockConfig: Config = Mockito.mock()
 
 			val issue = CalisthenicsSmallRule(mockConfig)
 
@@ -162,7 +162,7 @@ class CalisthenicsSmallRuleTest {
 
 			@Test
 			fun `oneliner is accepted`() {
-				@Suppress("SelfReferenceConstructorParameter")
+				@Suppress("detekt.SelfReferenceConstructorParameter")
 				verifyNoFindings<CalisthenicsSmallRule>(
 					originalCode = """
 						class C(private val c: C)

@@ -7,7 +7,7 @@ import kotlin.reflect.KClass
 
 @CheckReturnValue
 @Deprecated("Do not use this method, only visible so that inlining works.", level = DeprecationLevel.ERROR)
-@Suppress("UndocumentedPublicFunction") // Only public because of inlining.
+@Suppress("detekt.UndocumentedPublicFunction") // Only public because of inlining.
 public fun <T : BaseRule> KClass<T>.newInstance(config: Config): T {
 	val constructor =
 		this.constructors.singleOrNull { it.parameters.size == 1 && it.parameters[0].type.classifier == Config::class }

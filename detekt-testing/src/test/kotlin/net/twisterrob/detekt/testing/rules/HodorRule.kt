@@ -15,7 +15,9 @@ import org.jetbrains.kotlin.psi.KtPsiFactory
 import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.kotlin.psi.psiUtil.getCallNameExpression
 
-internal class HodorRule(config: Config = Config.empty) : Rule(config) {
+internal class HodorRule(
+	config: Config = Config.empty,
+) : Rule(config) {
 
 	override val issue: Issue = Issue(
 		id = "Hodor",

@@ -18,8 +18,10 @@ import io.gitlab.arturbosch.detekt.api.Severity
  * </compliant>
  */
 class CalisthenicsNoExposeRule(
-	config: Config = Config.empty
+	config: Config = Config.empty,
 ) : Rule(config) {
+
+	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/6
 
 	override val issue: Issue =
 		Issue(
