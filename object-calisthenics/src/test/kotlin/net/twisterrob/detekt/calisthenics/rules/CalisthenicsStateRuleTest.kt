@@ -22,7 +22,7 @@ class CalisthenicsStateRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsStateRule().issue) {
+			with(CalisthenicsStateRule()) {
 				assertThat(id, equalTo(Rule.Id("CalisthenicsState")))
 				assertThat(
 					description,

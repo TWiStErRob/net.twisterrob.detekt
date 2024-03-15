@@ -18,7 +18,7 @@ internal class UptightFileRule(
 
 	override fun visitKtFile(file: KtFile) {
 		super.visitKtFile(file)
-		report(CodeSmell(issue, Entity.from(file), MESSAGE + extra))
+		report(CodeSmell(Entity.from(file), MESSAGE + extra))
 	}
 
 	companion object {

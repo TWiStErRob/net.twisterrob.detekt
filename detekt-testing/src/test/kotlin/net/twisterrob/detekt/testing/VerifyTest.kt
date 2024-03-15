@@ -1,5 +1,6 @@
 package net.twisterrob.detekt.testing
 
+import io.gitlab.arturbosch.detekt.api.ruleId
 import io.gitlab.arturbosch.detekt.test.TestConfig
 import net.twisterrob.detekt.testing.rules.ChillRule
 import net.twisterrob.detekt.testing.rules.HodorRule
@@ -36,7 +37,7 @@ class VerifyTest {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyNoFindings<UptightFileRule>(originalCode = "")
 			}
-			assertThat(failure.message, containsString(UptightFileRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFileRule().ruleId.toString()))
 			assertThat(failure.message, containsString(UptightFileRule.MESSAGE))
 		}
 
@@ -60,7 +61,7 @@ class VerifyTest {
 				)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.toString()))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -126,7 +127,7 @@ class VerifyTest {
 				)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.toString()))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -319,7 +320,7 @@ class VerifyTest {
 				)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleId.toString()))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
