@@ -58,7 +58,7 @@ class CalisthenicsNoElseRule(
 		super.visitIfExpression(expression)
 		if (expression.`else` != null) {
 			val target = expression.elseKeyword ?: error("No `else` in `${expression.text}`.")
-			report(CodeSmell(issue, Entity.from(target), issue.description))
+			report(CodeSmell(Entity.from(target), description))
 		}
 	}
 }

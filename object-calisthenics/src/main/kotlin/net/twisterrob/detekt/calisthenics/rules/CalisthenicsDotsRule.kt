@@ -38,7 +38,7 @@ class CalisthenicsDotsRule(
 		super.visitDotQualifiedExpression(expression)
 		if (expression.allowsDots()) return
 		if (expression.receiverExpression is KtDotQualifiedExpression) {
-			report(CodeSmell(issue, Entity.from(expression.dot), issue.description))
+			report(CodeSmell(Entity.from(expression.dot), description))
 		}
 	}
 }

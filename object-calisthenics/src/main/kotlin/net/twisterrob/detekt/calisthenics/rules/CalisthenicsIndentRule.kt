@@ -43,7 +43,7 @@ class CalisthenicsIndentRule(
 
 		val parents = expression.blockParents()
 		if (parents.size > 1) {
-			report(CodeSmell(issue, Entity.from(expression), issue.description))
+			report(CodeSmell(Entity.from(expression), description))
 		}
 	}
 }

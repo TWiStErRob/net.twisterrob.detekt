@@ -22,8 +22,8 @@ class CalisthenicsNoExposeRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsNoExposeRule().issue) {
-				assertThat(id, equalTo(Rule.Id("CalisthenicsNoExpose")))
+			with(CalisthenicsNoExposeRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsNoExpose")))
 				assertThat(
 					description,
 					equalTo(

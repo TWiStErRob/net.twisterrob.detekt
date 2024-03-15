@@ -61,7 +61,7 @@ class CalisthenicsSmallRule(
 	private fun KtNamedDeclaration.validate(type: String, count: Count, threshold: Count) {
 		if (count > threshold) {
 			val message = "${type} ${this.name ?: "<unnamed>"} is too long (${count})."
-			report(CodeSmell(issue, Entity.atName(this), message))
+			report(CodeSmell(Entity.atName(this), message))
 		}
 	}
 }
