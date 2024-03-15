@@ -42,8 +42,6 @@ class CalisthenicsWrapPrimitivesRule(
 	description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
 ) {
 
-	override val ruleId = Id("CalisthenicsWrapPrimitives")
-
 	override fun visitParameter(parameter: KtParameter) {
 		super.visitParameter(parameter)
 		if (!parameter.isPrimitiveWrapper()) {

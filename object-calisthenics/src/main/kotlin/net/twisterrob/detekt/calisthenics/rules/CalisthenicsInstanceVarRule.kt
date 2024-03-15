@@ -22,6 +22,4 @@ class CalisthenicsInstanceVarRule(
 ) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/4
-
-	override val ruleId = Id("CalisthenicsInstanceVar")
 }

@@ -52,8 +52,6 @@ class CalisthenicsNoElseRule(
 	description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
 ) {
 
-	override val ruleId = Id("CalisthenicsNoElse")
-
 	override fun visitIfExpression(expression: KtIfExpression) {
 		super.visitIfExpression(expression)
 		if (expression.`else` != null) {

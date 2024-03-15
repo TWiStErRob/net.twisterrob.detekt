@@ -3,6 +3,7 @@ package net.twisterrob.detekt.calisthenics
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.RuleSet
+import io.gitlab.arturbosch.detekt.api.ruleId
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsIndentRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsInstanceVarRule

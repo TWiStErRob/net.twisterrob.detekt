@@ -36,8 +36,6 @@ class CalisthenicsIndentRule(
 	description = "Object Calisthenics: Rule #1 - One level of indentation per method.",
 ) {
 
-	override val ruleId = Id("CalisthenicsIndent")
-
 	override fun visitBlockExpression(expression: KtBlockExpression) {
 		super.visitBlockExpression(expression)
 

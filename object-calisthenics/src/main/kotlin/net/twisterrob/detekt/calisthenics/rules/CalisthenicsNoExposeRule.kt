@@ -22,6 +22,4 @@ class CalisthenicsNoExposeRule(
 ) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/6
-
-	override val ruleId = Id("CalisthenicsNoExpose")
 }

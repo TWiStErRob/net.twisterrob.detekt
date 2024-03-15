@@ -23,6 +23,4 @@ class CalisthenicsStateRule(
 ) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/7
-
-	override val ruleId = Id("CalisthenicsState")
 }

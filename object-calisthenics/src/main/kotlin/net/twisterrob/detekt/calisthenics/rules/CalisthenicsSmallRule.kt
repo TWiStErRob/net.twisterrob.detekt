@@ -35,8 +35,6 @@ class CalisthenicsSmallRule(
 	description = "Object Calisthenics: Rule #7 - Keep all entities small.",
 ) {
 
-	override val ruleId = Id("CalisthenicsSmall")
-
 	private val maxAllowedClassLines: Lines by config(@Suppress("detekt.MagicNumber") 50, ::Lines)
 	private val maxAllowedFunctionLines: Lines by config(@Suppress("detekt.MagicNumber") 5, ::Lines)
 	private val maxAllowedParameterCount: Count by config(@Suppress("detekt.MagicNumber") 2, ::Count)

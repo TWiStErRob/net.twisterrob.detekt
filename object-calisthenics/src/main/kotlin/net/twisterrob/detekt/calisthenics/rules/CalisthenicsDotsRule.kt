@@ -32,8 +32,6 @@ class CalisthenicsDotsRule(
 	description = "Object Calisthenics: Rule #5 - One dot per line.",
 ) {
 
-	override val ruleId = Id("CalisthenicsDots")
-
 	override fun visitDotQualifiedExpression(expression: KtDotQualifiedExpression) {
 		super.visitDotQualifiedExpression(expression)
 		if (expression.allowsDots()) return

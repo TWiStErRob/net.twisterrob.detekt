@@ -22,6 +22,4 @@ class CalisthenicsNoAbbreviationsRule(
 ) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/5
-
-	override val ruleId = Id("CalisthenicsNoAbbreviations")
 }

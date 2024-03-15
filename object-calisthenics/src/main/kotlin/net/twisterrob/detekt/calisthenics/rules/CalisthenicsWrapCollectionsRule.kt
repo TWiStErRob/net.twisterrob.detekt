@@ -22,6 +22,4 @@ class CalisthenicsWrapCollectionsRule(
 ) {
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/8
-
-	override val ruleId = Id("CalisthenicsWrapCollections")
 }

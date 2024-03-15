@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Rule
+import io.gitlab.arturbosch.detekt.api.ruleId
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -23,7 +24,7 @@ class CalisthenicsInstanceVarRuleTest {
 		@Test
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsInstanceVarRule()) {
-				assertThat(id, equalTo(Rule.Id("CalisthenicsInstanceVar")))
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsInstanceVar")))
 				assertThat(
 					description,
 					equalTo(

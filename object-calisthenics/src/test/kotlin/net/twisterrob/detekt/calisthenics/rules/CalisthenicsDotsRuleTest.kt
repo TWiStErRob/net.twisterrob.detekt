@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Rule
+import io.gitlab.arturbosch.detekt.api.ruleId
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import net.twisterrob.detekt.testing.verifyNoFindings
 import net.twisterrob.detekt.testing.verifySimpleFinding
@@ -26,7 +27,7 @@ class CalisthenicsDotsRuleTest {
 		@Test
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsDotsRule()) {
-				assertThat(id, equalTo(Rule.Id("CalisthenicsDots")))
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsDots")))
 				assertThat(
 					description,
 					equalTo(
