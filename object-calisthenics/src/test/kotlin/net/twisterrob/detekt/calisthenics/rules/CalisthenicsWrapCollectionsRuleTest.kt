@@ -22,8 +22,8 @@ class CalisthenicsWrapCollectionsRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsWrapCollectionsRule().issue) {
-				assertThat(id, equalTo(Rule.Id("CalisthenicsWrapCollections")))
+			with(CalisthenicsWrapCollectionsRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsWrapCollections")))
 				assertThat(
 					description,
 					equalTo(

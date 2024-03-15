@@ -65,7 +65,7 @@ class CalisthenicsWrapPrimitivesRule(
 
 	private fun validate(declaration: KtCallableDeclaration) {
 		if (declaration.typeName in typesNeedWrapping) {
-			report(CodeSmell(issue, Entity.atName(declaration), issue.description))
+			report(CodeSmell(Entity.atName(declaration), description))
 		}
 	}
 

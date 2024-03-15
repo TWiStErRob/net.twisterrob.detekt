@@ -38,7 +38,7 @@ internal class HodorRule(
 	}
 
 	private fun PsiElement.hodor() {
-		report(CodeSmell(issue, Entity.from(this), MESSAGE))
+		report(CodeSmell(Entity.from(this), MESSAGE))
 		if (autoCorrect) {
 			replaceSelf(KtPsiFactory.contextual(this).createNameIdentifier(replacement))
 		}

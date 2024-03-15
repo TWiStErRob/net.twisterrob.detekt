@@ -15,7 +15,7 @@ internal class UptightFunRule(
 
 	override fun visitNamedFunction(function: KtNamedFunction) {
 		super.visitNamedFunction(function)
-		report(CodeSmell(issue, Entity.from(function), MESSAGE))
+		report(CodeSmell(Entity.from(function), MESSAGE))
 	}
 
 	companion object {

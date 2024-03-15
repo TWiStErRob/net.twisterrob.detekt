@@ -24,8 +24,8 @@ class CalisthenicsIndentRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsIndentRule().issue) {
-				assertThat(id, equalTo(Rule.Id("CalisthenicsIndent")))
+			with(CalisthenicsIndentRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsIndent")))
 				assertThat(
 					description,
 					equalTo(

@@ -22,8 +22,8 @@ class CalisthenicsNoAbbreviationsRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsNoAbbreviationsRule().issue) {
-				assertThat(id, equalTo(Rule.Id("CalisthenicsNoAbbreviations")))
+			with(CalisthenicsNoAbbreviationsRule()) {
+				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsNoAbbreviations")))
 				assertThat(
 					description,
 					equalTo(
