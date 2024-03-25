@@ -14,7 +14,7 @@ kotlin-build = "1.9.23"
 kotlin-target = { strictly = "1.4.32" }
 kotlin-language = "1.4"
 
-detekt = "1.23.5"
+detekt = "1.23.6"
 
 junit-jupiter = "5.10.2"
 hamcrest = "1.3"
