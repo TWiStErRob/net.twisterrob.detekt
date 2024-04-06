@@ -9,6 +9,7 @@ plugins {
 
 detekt {
 	ignoreFailures = false
+	buildUponDefaultConfig = true
 	allRules = true
 	basePath = rootProject.projectDir
 
