@@ -3,11 +3,8 @@ package net.twisterrob.detekt.calisthenics.rules
 import io.github.detekt.metrics.linesOfCode
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 import io.gitlab.arturbosch.detekt.api.config
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
 import org.jetbrains.kotlin.psi.KtClass
@@ -33,15 +30,12 @@ private typealias Lines = Count
  */
 class CalisthenicsSmallRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #7 - Keep all entities small.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsSmall",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #7 - Keep all entities small.",
-			debt = Debt.FIVE_MINS
-		)
+	override val ruleId = Id("CalisthenicsSmall")
 
 	private val maxAllowedClassLines: Lines by config(@Suppress("detekt.MagicNumber") 50, ::Lines)
 	private val maxAllowedFunctionLines: Lines by config(@Suppress("detekt.MagicNumber") 5, ::Lines)
@@ -67,7 +61,7 @@ class CalisthenicsSmallRule(
 	private fun KtNamedDeclaration.validate(type: String, count: Count, threshold: Count) {
 		if (count > threshold) {
 			val message = "${type} ${this.name ?: "<unnamed>"} is too long (${count})."
-			report(CodeSmell(issue, Entity.atName(this), message))
+			report(CodeSmell(Entity.atName(this), message))
 		}
 	}
 }
