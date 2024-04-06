@@ -1,5 +1,5 @@
 style:
-  RedundantVisibilityModifierRule:
+  RedundantVisibilityModifier:
     # Contradicts Kotlin Explicit API mode.
     active: false
 
