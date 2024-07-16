@@ -2,11 +2,8 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
@@ -40,15 +37,12 @@ import org.jetbrains.kotlin.psi.psiUtil.isPropertyParameter
  */
 class CalisthenicsWrapPrimitivesRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsWrapPrimitives",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-			debt = Debt.FIVE_MINS
-		)
+	override val ruleId = Id("CalisthenicsWrapPrimitives")
 
 	override fun visitParameter(parameter: KtParameter) {
 		super.visitParameter(parameter)
@@ -71,7 +65,7 @@ class CalisthenicsWrapPrimitivesRule(
 
 	private fun validate(declaration: KtCallableDeclaration) {
 		if (declaration.typeName in typesNeedWrapping) {
-			report(CodeSmell(issue, Entity.atName(declaration), issue.description))
+			report(CodeSmell(Entity.atName(declaration), description))
 		}
 	}
 

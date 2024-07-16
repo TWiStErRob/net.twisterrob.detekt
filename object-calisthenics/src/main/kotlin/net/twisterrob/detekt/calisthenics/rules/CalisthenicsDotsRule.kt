@@ -2,11 +2,8 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
 import io.gitlab.arturbosch.detekt.rules.isPartOf
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
@@ -30,21 +27,18 @@ import org.jetbrains.kotlin.psi.KtThisExpression
  */
 class CalisthenicsDotsRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #5 - One dot per line.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsDots",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #5 - One dot per line.",
-			debt = Debt.FIVE_MINS
-		)
+	override val ruleId = Id("CalisthenicsDots")
 
 	override fun visitDotQualifiedExpression(expression: KtDotQualifiedExpression) {
 		super.visitDotQualifiedExpression(expression)
 		if (expression.allowsDots()) return
 		if (expression.receiverExpression is KtDotQualifiedExpression) {
-			report(CodeSmell(issue, Entity.from(expression.dot), issue.description))
+			report(CodeSmell(Entity.from(expression.dot), description))
 		}
 	}
 }
