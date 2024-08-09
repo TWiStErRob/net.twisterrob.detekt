@@ -31,16 +31,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
+      - name: "Checkout ${{ github.ref }} in ${{ github.repository }} repository."
         uses: actions/checkout@v4
 
+      - name: "Set up Java."
+        uses: actions/setup-java@v4
+        with:
+          java-version-file: .java-version
+          distribution: temurin
+
+      - name: "Set up Gradle."
+        uses: gradle/actions/setup-gradle@v4
+        
       - name: "Build & Verify project using Gradle."
         id: gradle
         shell: bash
         run: >
           ./gradlew
           --no-daemon
-          --no-build-cache
           --stacktrace
           --continue
           -Pnet.twisterrob.detekt.build.compile-test-snippets=true
