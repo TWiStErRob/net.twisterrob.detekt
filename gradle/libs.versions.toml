@@ -10,15 +10,15 @@ java-toolchain = "8"
 java-toolchainTest = "11"
 # Same applies as for Java version,
 # but in this case we can use the latest Kotlin Gradle Plugin to produce old-compatible bytecode.
-kotlin-build = "2.0.10"
+kotlin-build = "2.0.20"
 kotlin-target = { strictly = "1.4.32" }
 kotlin-language = "1.4"
 
 detekt = "1.23.6"
 
-junit-jupiter = "5.10.3"
+junit-jupiter = "5.11.0"
 hamcrest = "1.3"
-mockito = "5.12.0"
+mockito = "5.13.0"
 jsr305 = "3.0.2"
 
 [libraries]
