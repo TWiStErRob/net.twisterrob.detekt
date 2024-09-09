@@ -75,7 +75,7 @@ class CalisthenicsWrapPrimitivesRule(
 		}
 	}
 
-	companion object {
+	private companion object {
 
 		private val primitivesNames = listOf(
 			"Boolean",
