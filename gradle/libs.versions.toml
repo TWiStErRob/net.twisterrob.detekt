@@ -5,7 +5,6 @@ intellij = "1.17.4"
 # it's customary to support whatever Java range Gradle supports:
 # https://docs.gradle.org/current/userguide/compatibility.html
 java-compile = "24" # `gradlew updateDaemonJvm` when changed.
-java-source = "17"
 java-target = "17"
 # Same applies as for Java version,
 # but in this case we can use the latest Kotlin Gradle Plugin to produce old-compatible bytecode.

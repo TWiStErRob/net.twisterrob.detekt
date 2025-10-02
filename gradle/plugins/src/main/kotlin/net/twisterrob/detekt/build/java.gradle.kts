@@ -7,7 +7,6 @@ plugins {
 }
 
 java {
-	sourceCompatibility = libs.versions.java.source.map(JavaVersion::toVersion).get()
 	targetCompatibility = libs.versions.java.target.map(JavaVersion::toVersion).get()
 }
 
