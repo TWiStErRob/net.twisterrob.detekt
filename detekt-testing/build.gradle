@@ -8,5 +8,5 @@ dependencies {
 	implementation(libs.detekt.core)
 	implementation(libs.jsr305)
 
-	compileOnly(libs.test.jupiter.api)
+	compileOnly(libs.test.jupiter)
 }
