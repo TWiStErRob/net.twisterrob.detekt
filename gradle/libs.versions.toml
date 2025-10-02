@@ -4,15 +4,14 @@ intellij = "1.17.4"
 # This might seem old, but since this is a plugin to a Gradle Plugin,
 # it's customary to support whatever Java range Gradle supports:
 # https://docs.gradle.org/current/userguide/compatibility.html
-java-source = "1.8"
-java-target = "1.8"
-java-toolchain = "8"
-java-toolchainTest = "11"
+java-source = "17"
+java-target = "17"
+java-test = "25"
 # Same applies as for Java version,
 # but in this case we can use the latest Kotlin Gradle Plugin to produce old-compatible bytecode.
 kotlin-build = "2.2.20"
-kotlin-target = { strictly = "1.4.32" }
-kotlin-language = "1.4"
+kotlin-target = { strictly = "2.0.21" }
+kotlin-language = "2.1"
 
 detekt = "1.23.8"
 

@@ -17,13 +17,7 @@ testing.suites.withType<JvmTestSuite>().configureEach {
 	targets.configureEach {
 		testTask.configure {
 			javaLauncher = javaToolchains.launcherFor {
-				languageVersion = libs.versions.java.toolchainTest.map(JavaLanguageVersion::of)
-			}
-			if (libs.versions.kotlin.target.get() < "1.5") {
-				jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
-			} else {
-				@Suppress("detekt.ThrowingExceptionsWithoutMessageOrCause")
-				logger.warn("Review --add-opens hack for https://youtrack.jetbrains.com/issue/KT-51619.", Throwable())
+				languageVersion = libs.versions.java.test.map(JavaLanguageVersion::of)
 			}
 		}
 	}
