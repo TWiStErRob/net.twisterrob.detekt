@@ -8,13 +8,10 @@ plugins {
 }
 
 kotlin {
-	jvmToolchain(libs.versions.java.toolchain.get().toInt())
-}
-
-tasks.withType<KotlinCompile>().configureEach {
+	jvmToolchain(libs.versions.java.toolchain.map(String::toInt).get())
 	compilerOptions {
-		allWarningsAsErrors.set(true)
-		verbose.set(true)
+		allWarningsAsErrors = true
+		verbose = true
 		freeCompilerArgs.add("-opt-in=kotlin.ExperimentalStdlibApi")
 	}
 }

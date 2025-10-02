@@ -16,9 +16,9 @@ testing.suites.withType<JvmTestSuite>().configureEach {
 
 	targets.configureEach {
 		testTask.configure {
-			javaLauncher.set(javaToolchains.launcherFor {
-				languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchainTest.get()))
-			})
+			javaLauncher = javaToolchains.launcherFor {
+				languageVersion = libs.versions.java.toolchainTest.map(JavaLanguageVersion::of)
+			}
 			if (libs.versions.kotlin.target.get() < "1.5") {
 				jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 			} else {

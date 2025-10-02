@@ -7,7 +7,7 @@ dependencyResolutionManagement {
 		}
 	}
 	repositories {
-		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 		gradlePluginPortal()
 		maven("Sonatype OSS Snapshots") {
 			url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
