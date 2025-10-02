@@ -8,10 +8,6 @@ plugins {
 }
 
 kotlin {
-	jvmToolchain {
-		languageVersion = libs.versions.java.compile.map(JavaLanguageVersion::of)
-	}
-	
 	compilerOptions {
 		allWarningsAsErrors = true
 		freeCompilerArgs.add(jvmTarget.map { "-Xjdk-release=${it.target}" })

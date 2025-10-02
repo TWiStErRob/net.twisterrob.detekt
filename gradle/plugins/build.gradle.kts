@@ -15,8 +15,5 @@ kotlin {
 	explicitApi()
 	compilerOptions {
 		allWarningsAsErrors = true
-		jvmToolchain {
-			languageVersion = libs.versions.java.compile.map(JavaLanguageVersion::of)
-		}
 	}
 }
