@@ -12,6 +12,5 @@ kotlin {
 	compilerOptions {
 		allWarningsAsErrors = true
 		verbose = true
-		freeCompilerArgs.add("-opt-in=kotlin.ExperimentalStdlibApi")
 	}
 }
