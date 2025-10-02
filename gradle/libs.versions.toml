@@ -7,7 +7,6 @@ intellij = "1.17.4"
 java-compile = "24" # `gradlew updateDaemonJvm` when changed.
 java-source = "17"
 java-target = "17"
-java-test = "25"
 # Same applies as for Java version,
 # but in this case we can use the latest Kotlin Gradle Plugin to produce old-compatible bytecode.
 kotlin-build = "2.2.20"
