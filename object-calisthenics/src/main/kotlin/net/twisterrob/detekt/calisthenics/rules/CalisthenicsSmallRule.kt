@@ -1,11 +1,11 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.github.detekt.metrics.linesOfCode
-import io.gitlab.arturbosch.detekt.api.CodeSmell
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.config
+import dev.detekt.api.CodeSmell
+import dev.detekt.api.Config
+import dev.detekt.api.Entity
+import dev.detekt.api.Rule
+import dev.detekt.api.config
+import dev.detekt.metrics.linesOfCode
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFunction

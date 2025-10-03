@@ -1,6 +1,6 @@
 package net.twisterrob.detekt.testing
 
-import io.gitlab.arturbosch.detekt.test.TestConfig
+import dev.detekt.test.TestConfig
 import net.twisterrob.detekt.testing.rules.ChillRule
 import net.twisterrob.detekt.testing.rules.HodorRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule

@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import net.twisterrob.detekt.testing.verifySimpleFinding
 import org.hamcrest.MatcherAssert.assertThat

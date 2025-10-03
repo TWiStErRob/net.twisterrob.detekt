@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.RuleSet
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
+import dev.detekt.api.RuleSet
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsIndentRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsInstanceVarRule

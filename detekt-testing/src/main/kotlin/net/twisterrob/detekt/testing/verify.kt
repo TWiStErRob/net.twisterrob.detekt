@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.testing
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
 

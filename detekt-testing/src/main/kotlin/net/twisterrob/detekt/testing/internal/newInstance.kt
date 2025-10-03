@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.testing.internal
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 import javax.annotation.CheckReturnValue
 import kotlin.reflect.KClass
 

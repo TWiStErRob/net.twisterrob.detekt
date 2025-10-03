@@ -1,6 +1,6 @@
 package net.twisterrob.detekt.testing
 
-import io.gitlab.arturbosch.detekt.api.Finding
+import dev.detekt.api.Finding
 import org.junit.jupiter.api.Assertions
 
 /**
