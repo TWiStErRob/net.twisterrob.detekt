@@ -13,11 +13,11 @@ import org.junit.jupiter.api.extension.ExtensionContext
  */
 public class PsiTestingExtension : BeforeEachCallback, AfterEachCallback {
 
-	override fun beforeEach(context: ExtensionContext?) {
+	override fun beforeEach(context: ExtensionContext) {
 		org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.CHECK = true
 	}
 
-	override fun afterEach(context: ExtensionContext?) {
+	override fun afterEach(context: ExtensionContext) {
 		org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.CHECK = false
 	}
 }
