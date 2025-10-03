@@ -36,7 +36,7 @@ class VerifyTest {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyNoFindings<UptightFileRule>(originalCode = "")
 			}
-//			assertThat(failure.message, containsString(UptightFileRule().ruleId.value))
+			assertThat(failure.message, containsString(UptightFileRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFileRule.MESSAGE))
 		}
 
@@ -60,7 +60,7 @@ class VerifyTest {
 				)
 			}
 
-//			assertThat(failure.message, containsString(UptightFunRule().ruleId.value))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -126,7 +126,7 @@ class VerifyTest {
 				)
 			}
 
-//			assertThat(failure.message, containsString(UptightFunRule().ruleId.value))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -319,7 +319,7 @@ class VerifyTest {
 				)
 			}
 
-//			assertThat(failure.message, containsString(UptightFunRule().ruleId.value))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))

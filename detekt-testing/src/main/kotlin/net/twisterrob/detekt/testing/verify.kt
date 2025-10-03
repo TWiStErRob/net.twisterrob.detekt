@@ -13,7 +13,7 @@ public inline fun <reified T : Rule> verifyNoFindings(
 	@Language("kotlin") originalCode: String,
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-	assertSize(0, findings)
+	assertSize(0, findings, T::class)
 }
 
 /**
@@ -50,8 +50,8 @@ public inline fun <reified T : Rule> verifySingleFinding(
 	pointedCode: String
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-	assertSingleMessage(findings, message)
-	assertSingleHighlight(findings, pointedCode)
+	assertSingleMessage(findings, message, T::class)
+	assertSingleHighlight(findings, pointedCode, T::class)
 }
 
 /**
