@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.test.TestConfig
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
+import dev.detekt.test.TestConfig
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
 import net.twisterrob.detekt.calisthenics.rules.internal.Count.Companion.repeat
 import net.twisterrob.detekt.testing.PsiTestingExtension

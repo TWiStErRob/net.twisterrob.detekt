@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.calisthenics
 
-import io.gitlab.arturbosch.detekt.api.RuleSet
-import io.gitlab.arturbosch.detekt.api.RuleSetProvider
+import dev.detekt.api.RuleSet
+import dev.detekt.api.RuleSetProvider
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsIndentRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsInstanceVarRule
@@ -14,7 +14,7 @@ import net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapCollectionsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRule
 
 /**
- * @see `META-INF/services/io.gitlab.arturbosch.detekt.api.RuleSetProvider` in resources
+ * @see `META-INF/services/dev.detekt.api.RuleSetProvider` in resources
  */
 class ObjectCalisthenicsRuleSetProvider : RuleSetProvider {
 

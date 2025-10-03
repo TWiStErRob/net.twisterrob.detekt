@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 
 /**
  * Object Calisthenics: Rule #8 - No classes with more than two instance variables.

@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.testing.rules
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 
 internal class ChillRule(
 	config: Config = Config.empty,

@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.testing
 
-import io.github.detekt.test.utils.compileContentForTest
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
+import dev.detekt.test.utils.compileContentForTest
 import org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.IncorrectTreeStructureException
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.junit.jupiter.api.Test
