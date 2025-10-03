@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import dev.detekt.api.CodeSmell
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
+import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtBlockExpression
@@ -43,7 +43,7 @@ class CalisthenicsIndentRule(
 
 		val parents = expression.blockParents()
 		if (parents.size > 1) {
-			report(CodeSmell(Entity.from(expression), description))
+			report(Finding(Entity.from(expression), description))
 		}
 	}
 }

@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.testing.rules
 
-import dev.detekt.api.CodeSmell
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
+import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import dev.detekt.api.config
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
@@ -38,7 +38,7 @@ internal class HodorRule(
 	}
 
 	private fun PsiElement.hodor() {
-		report(CodeSmell(Entity.from(this), MESSAGE))
+		report(Finding(Entity.from(this), MESSAGE))
 		if (autoCorrect) {
 			replaceSelf(KtPsiFactory.contextual(this).createNameIdentifier(replacement))
 		}

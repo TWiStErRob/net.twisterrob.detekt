@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import dev.detekt.api.CodeSmell
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
+import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import dev.detekt.api.config
 import dev.detekt.metrics.linesOfCode
@@ -61,7 +61,7 @@ class CalisthenicsSmallRule(
 	private fun KtNamedDeclaration.validate(type: String, count: Count, threshold: Count) {
 		if (count > threshold) {
 			val message = "${type} ${this.name ?: "<unnamed>"} is too long (${count})."
-			report(CodeSmell(Entity.atName(this), message))
+			report(Finding(Entity.atName(this), message))
 		}
 	}
 }

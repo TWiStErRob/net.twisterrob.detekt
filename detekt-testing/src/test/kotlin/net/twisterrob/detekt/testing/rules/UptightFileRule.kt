@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.testing.rules
 
-import dev.detekt.api.CodeSmell
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
+import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import dev.detekt.api.config
 import org.jetbrains.kotlin.psi.KtFile
@@ -18,7 +18,7 @@ internal class UptightFileRule(
 
 	override fun visitKtFile(file: KtFile) {
 		super.visitKtFile(file)
-		report(CodeSmell(Entity.from(file), MESSAGE + extra))
+		report(Finding(Entity.from(file), MESSAGE + extra))
 	}
 
 	companion object {

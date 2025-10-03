@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import dev.detekt.api.CodeSmell
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
+import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import org.jetbrains.kotlin.psi.KtIfExpression
 
@@ -58,7 +58,7 @@ class CalisthenicsNoElseRule(
 		super.visitIfExpression(expression)
 		if (expression.`else` != null) {
 			val target = expression.elseKeyword ?: error("No `else` in `${expression.text}`.")
-			report(CodeSmell(Entity.from(target), description))
+			report(Finding(Entity.from(target), description))
 		}
 	}
 }
