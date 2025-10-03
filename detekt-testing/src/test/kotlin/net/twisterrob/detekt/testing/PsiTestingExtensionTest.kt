@@ -1,9 +1,9 @@
 package net.twisterrob.detekt.testing
 
+import com.intellij.psi.impl.DebugUtil.IncorrectTreeStructureException
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
 import dev.detekt.test.utils.compileContentForTest
-import org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.IncorrectTreeStructureException
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
