@@ -1,5 +1,4 @@
 import net.twisterrob.detekt.build.dsl.libs
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 
 plugins {
 	id("org.gradle.java-library")
@@ -14,7 +13,7 @@ dependencies {
 }
 
 kotlin {
-	explicitApi = ExplicitApiMode.Strict
+	explicitApi()
 }
 
 detekt {

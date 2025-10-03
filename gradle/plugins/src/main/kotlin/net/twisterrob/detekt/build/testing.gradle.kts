@@ -14,17 +14,26 @@ testing.suites.withType<JvmTestSuite>().configureEach {
 		implementation(project(":test-helpers"))
 	}
 
-	targets.configureEach {
-		testTask.configure {
-			javaLauncher.set(javaToolchains.launcherFor {
-				languageVersion.set(JavaLanguageVersion.of(libs.versions.java.toolchainTest.get()))
-			})
-			if (libs.versions.kotlin.target.get() < "1.5") {
-				jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
-			} else {
-				@Suppress("detekt.ThrowingExceptionsWithoutMessageOrCause")
-				logger.warn("Review --add-opens hack for https://youtrack.jetbrains.com/issue/KT-51619.", Throwable())
+	targets {
+		val minJava = libs.versions.java.target.map(String::toInt).get()
+		val maxJava = libs.versions.java.compile.map(String::toInt).get()
+		named(name).configure {
+			testTask.configure {
+				// javaLauncher = <not set, inherited from Gradle, see java-compile.
+				description = "Runs the test suite on JDK ${maxJava}"
 			}
 		}
+		listOf(minJava) // Not (minJava..<maxJava) to save time.
+			.map(JavaLanguageVersion::of)
+			.forEach { javaVersion ->
+				register("testJdk${javaVersion.asInt()}") {
+					testTask.configure {
+						description = "Runs the test suite on JDK ${javaVersion}"
+						javaLauncher = javaToolchains.launcherFor {
+							languageVersion = javaVersion
+						}
+					}
+				}
+			}
 	}
 }

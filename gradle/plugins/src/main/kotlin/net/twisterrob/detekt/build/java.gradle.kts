@@ -6,7 +6,10 @@ plugins {
 	id("org.gradle.java")
 }
 
+java {
+	targetCompatibility = libs.versions.java.target.map(JavaVersion::toVersion).get()
+}
+
 tasks.withType<JavaCompile>().configureEach {
-	sourceCompatibility = libs.versions.java.source.get()
-	targetCompatibility = libs.versions.java.target.get()
+	options.release = libs.versions.java.target.map(String::toInt)
 }
