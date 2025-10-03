@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import dev.detekt.api.CodeSmell
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
+import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import dev.detekt.rules.isPartOf
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
@@ -38,7 +38,7 @@ class CalisthenicsDotsRule(
 		super.visitDotQualifiedExpression(expression)
 		if (expression.allowsDots()) return
 		if (expression.receiverExpression is KtDotQualifiedExpression) {
-			report(CodeSmell(Entity.from(expression.dot), description))
+			report(Finding(Entity.from(expression.dot), description))
 		}
 	}
 }
