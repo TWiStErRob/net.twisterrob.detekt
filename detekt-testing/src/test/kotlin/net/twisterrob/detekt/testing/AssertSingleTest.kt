@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.testing
 
 import net.twisterrob.detekt.testing.rules.HodorRule
-import net.twisterrob.detekt.testing.rules.UptightFunRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule
+import net.twisterrob.detekt.testing.rules.UptightFunRule
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsString
 import org.junit.jupiter.api.Nested
@@ -39,7 +39,7 @@ class AssertSingleTest {
 				assertSingleMessage(findings, UptightFunRule.MESSAGE)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -97,7 +97,7 @@ class AssertSingleTest {
 				assertSingleHighlight(findings, UptightFunRule.MESSAGE)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -119,12 +119,12 @@ class AssertSingleTest {
 			assertThat(
 				"Show expected location.",
 				failure.message,
-				containsString("""Test.kt${'$'}file""")
+				containsString("""file""")
 			)
 			assertThat(
 				"Show actual location.",
 				failure.message,
-				containsString("""Test.kt${'$'}.Test.kt""")
+				containsString(""".Test.kt""")
 			)
 		}
 	}

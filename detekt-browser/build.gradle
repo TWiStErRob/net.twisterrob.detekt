@@ -11,7 +11,7 @@ dependencies {
 	api(libs.detekt.rules.coroutines)
 	api(libs.detekt.rules.emptyBlocks)
 	api(libs.detekt.rules.exceptions)
-	api(libs.detekt.rules.formatting)
+	api(libs.detekt.rules.ktlintWrapper)
 	api(libs.detekt.rules.libraries)
 	api(libs.detekt.rules.naming)
 	api(libs.detekt.rules.performance)

@@ -23,7 +23,7 @@ console-reports:
 
 naming:
 
-  FunctionMaxLength:
+  FunctionNameMaxLength:
     ignoreAnnotated:
       # Test names in JUnit 5 are ok to be long as they're likely sentences.
       - 'org.junit.jupiter.api.Test'

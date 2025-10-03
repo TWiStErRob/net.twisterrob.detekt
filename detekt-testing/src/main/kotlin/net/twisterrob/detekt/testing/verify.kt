@@ -1,9 +1,11 @@
 package net.twisterrob.detekt.testing
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
+import kotlin.collections.joinToString
+import kotlin.reflect.jvm.jvmName
 
 /**
  * Test helper to verify that the [T] rule doesn't find any findings in the given [originalCode].
@@ -17,7 +19,7 @@ public inline fun <reified T : Rule> verifyNoFindings(
 	Assertions.assertEquals(
 		0,
 		findings.size,
-		findings.joinToString(prefix = "Found findings:\n", separator = "\n"),
+		findings.joinToString(prefix = "Found findings for ${T::class.jvmName}:\n", separator = "\n"),
 	)
 }
 
@@ -55,8 +57,8 @@ public inline fun <reified T : Rule> verifySingleFinding(
 	pointedCode: String
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-	assertSingleMessage(findings, message)
-	assertSingleHighlight(findings, pointedCode)
+	assertSingleMessage(findings, message, T::class.jvmName)
+	assertSingleHighlight(findings, pointedCode, T::class.jvmName)
 }
 
 /**
@@ -81,7 +83,7 @@ public inline fun <reified T : Rule> verifyAutoCorrect(
  *
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
-@Suppress("detekt.FunctionMaxLength")
+@Suppress("detekt.FunctionNameMaxLength")
 public inline fun <reified T : Rule> verifyNoChangesWithoutAutoCorrect(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,

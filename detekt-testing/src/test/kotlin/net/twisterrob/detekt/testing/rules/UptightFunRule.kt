@@ -1,28 +1,21 @@
 package net.twisterrob.detekt.testing.rules
 
-import io.gitlab.arturbosch.detekt.api.CodeSmell
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
+import dev.detekt.api.Config
+import dev.detekt.api.Entity
+import dev.detekt.api.Finding
+import dev.detekt.api.Rule
 import org.jetbrains.kotlin.psi.KtNamedFunction
 
 internal class UptightFunRule(
 	config: Config = Config.empty,
-) : Rule(config) {
-
-	override val issue: Issue = Issue(
-		id = "UptightFun",
-		description = "Everything is wrong.",
-		severity = Severity.Minor,
-		debt = Debt.FIVE_MINS,
-	)
+) : Rule(
+	config = config,
+	description = "Everything is wrong.",
+) {
 
 	override fun visitNamedFunction(function: KtNamedFunction) {
 		super.visitNamedFunction(function)
-		report(CodeSmell(issue, Entity.from(function), MESSAGE))
+		report(Finding(Entity.from(function), MESSAGE))
 	}
 
 	companion object {

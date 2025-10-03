@@ -1,10 +1,10 @@
 package net.twisterrob.detekt.testing
 
-import io.github.detekt.test.utils.compileContentForTest
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.core.config.CompositeConfig
-import io.gitlab.arturbosch.detekt.test.TestConfig
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
+import dev.detekt.core.config.CompositeConfig
+import dev.detekt.test.TestConfig
+import dev.detekt.test.utils.compileContentForTest
 import net.twisterrob.detekt.testing.internal.newInstance
 import org.intellij.lang.annotations.Language
 import javax.annotation.CheckReturnValue

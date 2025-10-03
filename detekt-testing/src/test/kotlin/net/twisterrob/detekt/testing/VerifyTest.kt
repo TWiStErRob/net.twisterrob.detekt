@@ -1,6 +1,6 @@
 package net.twisterrob.detekt.testing
 
-import io.gitlab.arturbosch.detekt.test.TestConfig
+import dev.detekt.test.TestConfig
 import net.twisterrob.detekt.testing.rules.ChillRule
 import net.twisterrob.detekt.testing.rules.HodorRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule
@@ -36,7 +36,7 @@ class VerifyTest {
 			val failure = assertThrows<AssertionFailedError> {
 				verifyNoFindings<UptightFileRule>(originalCode = "")
 			}
-			assertThat(failure.message, containsString(UptightFileRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFileRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFileRule.MESSAGE))
 		}
 
@@ -60,7 +60,7 @@ class VerifyTest {
 				)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -126,7 +126,7 @@ class VerifyTest {
 				)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -176,12 +176,12 @@ class VerifyTest {
 			assertThat(
 				"Show expected location.",
 				failure.message,
-				containsString("""Test.kt${'$'}file""")
+				containsString("""file""")
 			)
 			assertThat(
 				"Show actual location.",
 				failure.message,
-				containsString("""Test.kt${'$'}.Test.kt""")
+				containsString(""".Test.kt""")
 			)
 		}
 
@@ -319,7 +319,7 @@ class VerifyTest {
 				)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString(UptightFunRule().ruleName.value))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -370,12 +370,12 @@ class VerifyTest {
 			assertThat(
 				"Show expected location.",
 				failure.message,
-				containsString("""Test.kt${'$'}file""")
+				containsString("""file""")
 			)
 			assertThat(
 				"Show actual location.",
 				failure.message,
-				containsString("""Test.kt${'$'}.Test.kt""")
+				containsString(""".Test.kt""")
 			)
 		}
 	}

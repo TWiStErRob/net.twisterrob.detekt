@@ -1,11 +1,9 @@
 package net.twisterrob.detekt.testing
 
-import io.github.detekt.test.utils.compileContentForTest
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Issue
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
-import org.jetbrains.kotlin.com.intellij.psi.impl.DebugUtil.IncorrectTreeStructureException
+import com.intellij.psi.impl.DebugUtil.IncorrectTreeStructureException
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
+import dev.detekt.test.utils.compileContentForTest
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -38,14 +36,12 @@ class PsiTestingExtensionTest {
 	}
 }
 
-private class BadRule : Rule() {
-
-	override val issue = Issue(
-		id = "BadRule",
-		description = "Breaks PSI invariants.",
-		severity = Severity.Defect,
-		debt = Debt.TWENTY_MINS,
-	)
+private class BadRule(
+	config: Config = Config.empty,
+) : Rule(
+	config = config,
+	description = "Breaks PSI invariants.",
+) {
 
 	override fun visitCallExpression(expression: KtCallExpression) {
 		super.visitCallExpression(expression)
