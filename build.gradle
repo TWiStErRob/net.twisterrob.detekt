@@ -10,3 +10,7 @@ idea {
 		excludeDirs.addAll(excludes.collect { new File(rootDir, it) })
 	}
 }
+
+tasks.named("updateDaemonJvm") { UpdateDaemonJvm task ->
+	task.languageVersion = libs.versions.java.compile.map(JavaLanguageVersion::of)
+}
