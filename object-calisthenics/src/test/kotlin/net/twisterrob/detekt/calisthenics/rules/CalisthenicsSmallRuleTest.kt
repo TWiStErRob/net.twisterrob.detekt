@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
-import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import dev.detekt.test.TestConfig
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
 import net.twisterrob.detekt.calisthenics.rules.internal.Count.Companion.repeat
@@ -30,7 +30,7 @@ class CalisthenicsSmallRuleTest {
 		@Test
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsSmallRule()) {
-				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsSmall")))
+				assertThat(ruleName, equalTo(RuleName("CalisthenicsSmall")))
 				assertThat(
 					description,
 					equalTo(

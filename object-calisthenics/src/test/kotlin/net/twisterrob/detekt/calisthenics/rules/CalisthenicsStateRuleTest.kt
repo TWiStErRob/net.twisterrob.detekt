@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
-import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -23,7 +23,7 @@ class CalisthenicsStateRuleTest {
 		@Test
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsStateRule()) {
-				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsState")))
+				assertThat(ruleName, equalTo(RuleName("CalisthenicsState")))
 				assertThat(
 					description,
 					equalTo(
