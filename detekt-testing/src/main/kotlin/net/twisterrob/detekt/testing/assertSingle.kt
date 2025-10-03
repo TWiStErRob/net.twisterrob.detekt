@@ -36,7 +36,7 @@ internal fun assertSingleMessage(findings: List<Finding>, message: String) {
 @PublishedApi
 internal fun assertSingleHighlight(findings: List<Finding>, location: String) {
 	val finding = assertSingleFinding(findings)
-	Assertions.assertEquals("Test.kt\$$location", finding.entity.signature) {
+	Assertions.assertEquals(location, finding.entity.signature) {
 		"Highlight location matches."
 	}
 }
