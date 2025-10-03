@@ -4,6 +4,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Rule
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
+import kotlin.collections.joinToString
 import kotlin.reflect.jvm.jvmName
 
 /**
@@ -56,8 +57,8 @@ public inline fun <reified T : Rule> verifySingleFinding(
 	pointedCode: String
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-	assertSingleMessage(findings, message)
-	assertSingleHighlight(findings, pointedCode)
+	assertSingleMessage(findings, message, T::class.jvmName)
+	assertSingleHighlight(findings, pointedCode, T::class.jvmName)
 }
 
 /**
