@@ -27,24 +27,24 @@ plugin-detekt = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "det
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin-target" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin-target" }
 
-detekt-api = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detekt" }
-detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref = "detekt" }
-detekt-core = { module = "io.gitlab.arturbosch.detekt:detekt-core", version.ref = "detekt" }
-detekt-cli = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
-detekt-metrics = { module = "io.gitlab.arturbosch.detekt:detekt-metrics", version.ref = "detekt" }
-detekt-rules = { module = "io.gitlab.arturbosch.detekt:detekt-rules", version.ref = "detekt" }
-detekt-rules-comments = { module = "io.gitlab.arturbosch.detekt:detekt-rules-documentation", version.ref = "detekt" }
-detekt-rules-complexity = { module = "io.gitlab.arturbosch.detekt:detekt-rules-complexity", version.ref = "detekt" }
-detekt-rules-coroutines = { module = "io.gitlab.arturbosch.detekt:detekt-rules-coroutines", version.ref = "detekt" }
-detekt-rules-emptyBlocks = { module = "io.gitlab.arturbosch.detekt:detekt-rules-empty", version.ref = "detekt" }
-detekt-rules-exceptions = { module = "io.gitlab.arturbosch.detekt:detekt-rules-exceptions", version.ref = "detekt" }
-detekt-rules-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-detekt-rules-libraries = { module = "io.gitlab.arturbosch.detekt:detekt-rules-libraries", version.ref = "detekt" }
-detekt-rules-naming = { module = "io.gitlab.arturbosch.detekt:detekt-rules-naming", version.ref = "detekt" }
-detekt-rules-performance = { module = "io.gitlab.arturbosch.detekt:detekt-rules-performance", version.ref = "detekt" }
-detekt-rules-potentialBugs = { module = "io.gitlab.arturbosch.detekt:detekt-rules-errorprone", version.ref = "detekt" }
-detekt-rules-ruleAuthors = { module = "io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors", version.ref = "detekt" }
-detekt-rules-style = { module = "io.gitlab.arturbosch.detekt:detekt-rules-style", version.ref = "detekt" }
+detekt-api = { module = "dev.detekt:detekt-api", version.ref = "detekt" }
+detekt-test = { module = "dev.detekt:detekt-test", version.ref = "detekt" }
+detekt-core = { module = "dev.detekt:detekt-core", version.ref = "detekt" }
+detekt-cli = { module = "dev.detekt:detekt-cli", version.ref = "detekt" }
+detekt-metrics = { module = "dev.detekt:detekt-metrics", version.ref = "detekt" }
+detekt-rules = { module = "dev.detekt:detekt-rules", version.ref = "detekt" }
+detekt-rules-comments = { module = "dev.detekt:detekt-rules-documentation", version.ref = "detekt" }
+detekt-rules-complexity = { module = "dev.detekt:detekt-rules-complexity", version.ref = "detekt" }
+detekt-rules-coroutines = { module = "dev.detekt:detekt-rules-coroutines", version.ref = "detekt" }
+detekt-rules-emptyBlocks = { module = "dev.detekt:detekt-rules-empty", version.ref = "detekt" }
+detekt-rules-exceptions = { module = "dev.detekt:detekt-rules-exceptions", version.ref = "detekt" }
+detekt-rules-ktlintWrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
+detekt-rules-libraries = { module = "dev.detekt:detekt-rules-libraries", version.ref = "detekt" }
+detekt-rules-naming = { module = "dev.detekt:detekt-rules-naming", version.ref = "detekt" }
+detekt-rules-performance = { module = "dev.detekt:detekt-rules-performance", version.ref = "detekt" }
+detekt-rules-potentialBugs = { module = "dev.detekt:detekt-rules-errorprone", version.ref = "detekt" }
+detekt-rules-ruleAuthors = { module = "dev.detekt:detekt-rules-ruleauthors", version.ref = "detekt" }
+detekt-rules-style = { module = "dev.detekt:detekt-rules-style", version.ref = "detekt" }
 
 jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
 
