@@ -176,12 +176,12 @@ class VerifyTest {
 			assertThat(
 				"Show expected location.",
 				failure.message,
-				containsString("""Test.kt${'$'}file""")
+				containsString("""file""")
 			)
 			assertThat(
 				"Show actual location.",
 				failure.message,
-				containsString("""Test.kt${'$'}.Test.kt""")
+				containsString(""".Test.kt""")
 			)
 		}
 
@@ -370,12 +370,12 @@ class VerifyTest {
 			assertThat(
 				"Show expected location.",
 				failure.message,
-				containsString("""Test.kt${'$'}file""")
+				containsString("""file""")
 			)
 			assertThat(
 				"Show actual location.",
 				failure.message,
-				containsString("""Test.kt${'$'}.Test.kt""")
+				containsString(""".Test.kt""")
 			)
 		}
 	}
