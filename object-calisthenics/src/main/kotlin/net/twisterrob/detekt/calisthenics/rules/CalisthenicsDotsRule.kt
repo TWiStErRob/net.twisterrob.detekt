@@ -1,12 +1,12 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.parentOfType
 import dev.detekt.api.Config
 import dev.detekt.api.Entity
 import dev.detekt.api.Finding
 import dev.detekt.api.Rule
 import dev.detekt.api.RuleName
-import dev.detekt.rules.isPartOf
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtImportDirective
@@ -47,8 +47,8 @@ class CalisthenicsDotsRule(
 @Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
 private fun KtDotQualifiedExpression.allowsDots(): Boolean =
 	this.receiverExpression.isQualifiedThis()
-			|| this.isPartOf<KtImportDirective>()
-			|| this.isPartOf<KtPackageDirective>()
+			|| this.parentOfType<KtImportDirective>() != null
+			|| this.parentOfType<KtPackageDirective>() != null
 
 @Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
 private fun KtExpression.isQualifiedThis(): Boolean =
