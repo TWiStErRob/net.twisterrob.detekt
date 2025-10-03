@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 
 /**
  * Object Calisthenics: Rule #10 - All classes must have state.
@@ -24,5 +25,5 @@ class CalisthenicsStateRule(
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/7
 
-	override val ruleId = Id("CalisthenicsState")
+	override val ruleName = RuleName("CalisthenicsState")
 }

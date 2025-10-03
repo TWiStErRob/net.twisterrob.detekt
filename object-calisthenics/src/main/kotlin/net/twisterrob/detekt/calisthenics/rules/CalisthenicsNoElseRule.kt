@@ -4,6 +4,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Entity
 import dev.detekt.api.Finding
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import org.jetbrains.kotlin.psi.KtIfExpression
 
 /**
@@ -52,7 +53,7 @@ class CalisthenicsNoElseRule(
 	description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
 ) {
 
-	override val ruleId = Id("CalisthenicsNoElse")
+	override val ruleName = RuleName("CalisthenicsNoElse")
 
 	override fun visitIfExpression(expression: KtIfExpression) {
 		super.visitIfExpression(expression)

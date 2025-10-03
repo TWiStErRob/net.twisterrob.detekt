@@ -5,6 +5,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Entity
 import dev.detekt.api.Finding
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtElement
@@ -36,7 +37,7 @@ class CalisthenicsIndentRule(
 	description = "Object Calisthenics: Rule #1 - One level of indentation per method.",
 ) {
 
-	override val ruleId = Id("CalisthenicsIndent")
+	override val ruleName = RuleName("CalisthenicsIndent")
 
 	override fun visitBlockExpression(expression: KtBlockExpression) {
 		super.visitBlockExpression(expression)

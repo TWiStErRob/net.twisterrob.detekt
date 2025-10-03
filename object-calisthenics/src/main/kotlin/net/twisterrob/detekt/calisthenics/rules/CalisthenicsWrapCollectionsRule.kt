@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 
 /**
  * Object Calisthenics: Rule #4 - First class collections.
@@ -23,5 +24,5 @@ class CalisthenicsWrapCollectionsRule(
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/8
 
-	override val ruleId = Id("CalisthenicsWrapCollections")
+	override val ruleName = RuleName("CalisthenicsWrapCollections")
 }

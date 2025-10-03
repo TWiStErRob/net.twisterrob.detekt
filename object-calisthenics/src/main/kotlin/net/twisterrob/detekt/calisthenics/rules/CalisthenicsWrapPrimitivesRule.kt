@@ -4,6 +4,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Entity
 import dev.detekt.api.Finding
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
@@ -42,7 +43,7 @@ class CalisthenicsWrapPrimitivesRule(
 	description = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
 ) {
 
-	override val ruleId = Id("CalisthenicsWrapPrimitives")
+	override val ruleName = RuleName("CalisthenicsWrapPrimitives")
 
 	override fun visitParameter(parameter: KtParameter) {
 		super.visitParameter(parameter)

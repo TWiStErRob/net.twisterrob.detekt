@@ -4,6 +4,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Entity
 import dev.detekt.api.Finding
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import dev.detekt.api.config
 import dev.detekt.metrics.linesOfCode
 import net.twisterrob.detekt.calisthenics.rules.internal.Count
@@ -35,7 +36,7 @@ class CalisthenicsSmallRule(
 	description = "Object Calisthenics: Rule #7 - Keep all entities small.",
 ) {
 
-	override val ruleId = Id("CalisthenicsSmall")
+	override val ruleName = RuleName("CalisthenicsSmall")
 
 	private val maxAllowedClassLines: Lines by config(@Suppress("detekt.MagicNumber") 50, ::Lines)
 	private val maxAllowedFunctionLines: Lines by config(@Suppress("detekt.MagicNumber") 5, ::Lines)

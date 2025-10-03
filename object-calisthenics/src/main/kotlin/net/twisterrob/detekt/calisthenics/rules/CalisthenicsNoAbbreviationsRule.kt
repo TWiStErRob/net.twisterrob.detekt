@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 
 /**
  * Object Calisthenics: Rule #6 - Don’t abbreviate.
@@ -23,5 +24,5 @@ class CalisthenicsNoAbbreviationsRule(
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/5
 
-	override val ruleId = Id("CalisthenicsNoAbbreviations")
+	override val ruleName = RuleName("CalisthenicsNoAbbreviations")
 }
