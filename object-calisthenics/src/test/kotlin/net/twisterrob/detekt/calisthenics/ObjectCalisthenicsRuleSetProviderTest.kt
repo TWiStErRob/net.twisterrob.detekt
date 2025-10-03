@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics
 
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import dev.detekt.api.RuleSet
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsIndentRule
@@ -49,12 +50,12 @@ class ObjectCalisthenicsRuleSetProviderTest {
 		val ruleSet = sut.instance()
 		val rules = ruleSet.rules
 
-		assertAll(rules.map { (id, provider) -> lazyAssertRuleHasId(provider, id) })
+		assertAll(rules.map { (ruleName, provider) -> lazyAssertRuleHasName(provider, ruleName) })
 	}
 
-	private fun lazyAssertRuleHasId(ruleProvider: (Config) -> Rule, id: Rule.Id): () -> Unit = {
+	private fun lazyAssertRuleHasName(ruleProvider: (Config) -> Rule, ruleName: RuleName): () -> Unit = {
 		val rule = ruleProvider(Config.empty)
-		assertThat(rule.ruleId, equalTo(id))
+		assertThat(rule.ruleName, equalTo(ruleName))
 	}
 
 	@Test

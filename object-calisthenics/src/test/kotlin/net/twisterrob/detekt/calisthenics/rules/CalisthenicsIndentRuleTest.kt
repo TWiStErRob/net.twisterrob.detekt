@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
-import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import net.twisterrob.detekt.testing.verifyNoFindings
 import net.twisterrob.detekt.testing.verifySimpleFinding
@@ -25,7 +25,7 @@ class CalisthenicsIndentRuleTest {
 		@Test
 		fun `the rule's metadata is correct`() {
 			with(CalisthenicsIndentRule()) {
-				assertThat(ruleId, equalTo(Rule.Id("CalisthenicsIndent")))
+				assertThat(ruleName, equalTo(RuleName("CalisthenicsIndent")))
 				assertThat(
 					description,
 					equalTo(
