@@ -1,8 +1,8 @@
 package net.twisterrob.detekt.testing
 
 import net.twisterrob.detekt.testing.rules.HodorRule
-import net.twisterrob.detekt.testing.rules.UptightFunRule
 import net.twisterrob.detekt.testing.rules.UptightFileRule
+import net.twisterrob.detekt.testing.rules.UptightFunRule
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsString
 import org.junit.jupiter.api.Nested
