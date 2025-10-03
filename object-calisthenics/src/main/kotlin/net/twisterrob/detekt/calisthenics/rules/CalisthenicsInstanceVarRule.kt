@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 
 /**
  * Object Calisthenics: Rule #8 - No classes with more than two instance variables.
@@ -23,5 +24,5 @@ class CalisthenicsInstanceVarRule(
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/4
 
-	override val ruleId = Id("CalisthenicsInstanceVar")
+	override val ruleName = RuleName("CalisthenicsInstanceVar")
 }

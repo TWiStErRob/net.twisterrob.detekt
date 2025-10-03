@@ -5,6 +5,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Entity
 import dev.detekt.api.Finding
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import dev.detekt.rules.isPartOf
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
@@ -32,7 +33,7 @@ class CalisthenicsDotsRule(
 	description = "Object Calisthenics: Rule #5 - One dot per line.",
 ) {
 
-	override val ruleId = Id("CalisthenicsDots")
+	override val ruleName = RuleName("CalisthenicsDots")
 
 	override fun visitDotQualifiedExpression(expression: KtDotQualifiedExpression) {
 		super.visitDotQualifiedExpression(expression)

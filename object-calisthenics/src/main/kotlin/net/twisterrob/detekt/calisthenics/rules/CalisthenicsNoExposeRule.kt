@@ -2,6 +2,7 @@ package net.twisterrob.detekt.calisthenics.rules
 
 import dev.detekt.api.Config
 import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 
 /**
  * Object Calisthenics: Rule #9 - No getters/setters/properties.
@@ -23,5 +24,5 @@ class CalisthenicsNoExposeRule(
 
 	// TODO https://github.com/TWiStErRob/net.twisterrob.detekt/issues/6
 
-	override val ruleId = Id("CalisthenicsNoExpose")
+	override val ruleName = RuleName("CalisthenicsNoExpose")
 }
