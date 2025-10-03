@@ -4,6 +4,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Rule
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
+import kotlin.reflect.jvm.jvmName
 
 /**
  * Test helper to verify that the [T] rule doesn't find any findings in the given [originalCode].
@@ -17,7 +18,7 @@ public inline fun <reified T : Rule> verifyNoFindings(
 	Assertions.assertEquals(
 		0,
 		findings.size,
-		findings.joinToString(prefix = "Found findings:\n", separator = "\n"),
+		findings.joinToString(prefix = "Found findings for ${T::class.jvmName}:\n", separator = "\n"),
 	)
 }
 
