@@ -12,7 +12,7 @@ internal fun assertSize(expected: Int, findings: List<Finding>) {
 		expected,
 		findings.size,
 		findings.joinToString(prefix = "Found findings:\n", separator = "\n"),
-	)	
+	)
 }
 
 /**
