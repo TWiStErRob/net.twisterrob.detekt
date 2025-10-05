@@ -16,7 +16,6 @@ public inline fun <reified T : BaseRule> lint(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,
 ): List<Finding> {
-	@Suppress("DEPRECATION_ERROR")
 	val rule = T::class.newInstance(config)
 	return rule.compileAndLint(originalCode)
 }

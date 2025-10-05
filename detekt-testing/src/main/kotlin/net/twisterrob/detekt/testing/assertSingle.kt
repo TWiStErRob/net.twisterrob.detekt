@@ -4,11 +4,24 @@ import io.gitlab.arturbosch.detekt.api.Finding
 import org.junit.jupiter.api.Assertions
 
 /**
+ * Short assertion for checking no [findings] found.
+ */
+@PublishedApi
+internal fun assertSize(expected: Int, findings: List<Finding>) {
+	Assertions.assertEquals(
+		expected,
+		findings.size,
+		findings.joinToString(prefix = "Found findings:\n", separator = "\n"),
+	)
+}
+
+/**
  * Short assertion for checking the [message] of a single one of the [findings].
  *
  * Implicitly validates that there is only one finding.
  */
-public fun assertSingleMessage(findings: List<Finding>, message: String) {
+@PublishedApi
+internal fun assertSingleMessage(findings: List<Finding>, message: String) {
 	val finding = assertSingleFinding(findings)
 	Assertions.assertEquals(message, finding.message) {
 		"Finding message matches."
@@ -20,7 +33,8 @@ public fun assertSingleMessage(findings: List<Finding>, message: String) {
  *
  * Implicitly validates that there is only one finding.
  */
-public fun assertSingleHighlight(findings: List<Finding>, location: String) {
+@PublishedApi
+internal fun assertSingleHighlight(findings: List<Finding>, location: String) {
 	val finding = assertSingleFinding(findings)
 	Assertions.assertEquals("Test.kt\$$location", finding.entity.signature) {
 		"Highlight location matches."
@@ -28,10 +42,6 @@ public fun assertSingleHighlight(findings: List<Finding>, location: String) {
 }
 
 private fun assertSingleFinding(findings: List<Finding>): Finding {
-	Assertions.assertEquals(
-		1,
-		findings.size,
-		findings.joinToString(prefix = "Found findings:\n", separator = "\n"),
-	)
+	assertSize(1, findings)
 	return findings[0]
 }

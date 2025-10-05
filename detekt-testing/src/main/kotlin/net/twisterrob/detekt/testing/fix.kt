@@ -29,7 +29,6 @@ public inline fun <reified T : Rule> fix(
 			config
 		}
 
-	@Suppress("DEPRECATION_ERROR")
 	val rule = T::class.newInstance(realConfig)
 	return rule.fix(originalCode.trimIndent())
 }

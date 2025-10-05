@@ -13,12 +13,7 @@ public inline fun <reified T : Rule> verifyNoFindings(
 	@Language("kotlin") originalCode: String,
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-
-	Assertions.assertEquals(
-		0,
-		findings.size,
-		findings.joinToString(prefix = "Found findings:\n", separator = "\n"),
-	)
+	assertSize(0, findings)
 }
 
 /**
