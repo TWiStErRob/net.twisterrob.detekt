@@ -1,14 +1,12 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.CodeSmell
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
-import io.gitlab.arturbosch.detekt.rules.isPartOf
-import org.jetbrains.kotlin.com.intellij.psi.PsiElement
+import com.intellij.psi.PsiElement
+import com.intellij.psi.util.parentOfType
+import dev.detekt.api.Config
+import dev.detekt.api.Entity
+import dev.detekt.api.Finding
+import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtImportDirective
@@ -30,21 +28,18 @@ import org.jetbrains.kotlin.psi.KtThisExpression
  */
 class CalisthenicsDotsRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #5 - One dot per line.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsDots",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #5 - One dot per line.",
-			debt = Debt.FIVE_MINS
-		)
+	override val ruleName = RuleName("CalisthenicsDots")
 
 	override fun visitDotQualifiedExpression(expression: KtDotQualifiedExpression) {
 		super.visitDotQualifiedExpression(expression)
 		if (expression.allowsDots()) return
 		if (expression.receiverExpression is KtDotQualifiedExpression) {
-			report(CodeSmell(issue, Entity.from(expression.dot), issue.description))
+			report(Finding(Entity.from(expression.dot), description))
 		}
 	}
 }
@@ -52,8 +47,8 @@ class CalisthenicsDotsRule(
 @Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
 private fun KtDotQualifiedExpression.allowsDots(): Boolean =
 	this.receiverExpression.isQualifiedThis()
-			|| this.isPartOf<KtImportDirective>()
-			|| this.isPartOf<KtPackageDirective>()
+			|| this.parentOfType<KtImportDirective>() != null
+			|| this.parentOfType<KtPackageDirective>() != null
 
 @Suppress("CalisthenicsWrapPrimitives") // Suggestions welcome.
 private fun KtExpression.isQualifiedThis(): Boolean =

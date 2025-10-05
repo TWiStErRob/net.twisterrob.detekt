@@ -1,7 +1,7 @@
 package net.twisterrob.detekt.testing
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Rule
+import dev.detekt.api.Config
+import dev.detekt.api.Rule
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
 
@@ -13,7 +13,7 @@ public inline fun <reified T : Rule> verifyNoFindings(
 	@Language("kotlin") originalCode: String,
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-	assertSize(0, findings)
+	assertSize(0, findings, T::class)
 }
 
 /**
@@ -50,8 +50,8 @@ public inline fun <reified T : Rule> verifySingleFinding(
 	pointedCode: String
 ) {
 	val findings = lint<T>(config = config, originalCode = originalCode)
-	assertSingleMessage(findings, message)
-	assertSingleHighlight(findings, pointedCode)
+	assertSingleMessage(findings, message, T::class)
+	assertSingleHighlight(findings, pointedCode, T::class)
 }
 
 /**
@@ -76,7 +76,7 @@ public inline fun <reified T : Rule> verifyAutoCorrect(
  *
  * Usually this should not be called directly, use [verifySimpleFinding] instead.
  */
-@Suppress("detekt.FunctionMaxLength")
+@Suppress("detekt.FunctionNameMaxLength")
 public inline fun <reified T : Rule> verifyNoChangesWithoutAutoCorrect(
 	config: Config = Config.empty,
 	@Language("kotlin") originalCode: String,

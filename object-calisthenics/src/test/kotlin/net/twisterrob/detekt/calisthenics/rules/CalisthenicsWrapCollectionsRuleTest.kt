@@ -1,8 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Severity
+import dev.detekt.api.Config
+import dev.detekt.api.RuleName
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -23,10 +22,8 @@ class CalisthenicsWrapCollectionsRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsWrapCollectionsRule().issue) {
-				assertThat(id, equalTo("CalisthenicsWrapCollections"))
-				assertThat(debt, equalTo(Debt.FIVE_MINS))
-				assertThat(severity, equalTo(Severity.Maintainability))
+			with(CalisthenicsWrapCollectionsRule()) {
+				assertThat(ruleName, equalTo(RuleName("CalisthenicsWrapCollections")))
 				assertThat(
 					description,
 					equalTo(
@@ -38,7 +35,7 @@ class CalisthenicsWrapCollectionsRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsWrapCollectionsRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsWrapCollectionsRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -47,7 +44,7 @@ class CalisthenicsWrapCollectionsRuleTest {
 
 			val issue = CalisthenicsWrapCollectionsRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

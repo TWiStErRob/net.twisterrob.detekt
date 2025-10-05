@@ -1,12 +1,10 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.CodeSmell
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
+import dev.detekt.api.Config
+import dev.detekt.api.Entity
+import dev.detekt.api.Finding
+import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import org.jetbrains.kotlin.psi.KtIfExpression
 
 /**
@@ -50,21 +48,18 @@ import org.jetbrains.kotlin.psi.KtIfExpression
  */
 class CalisthenicsNoElseRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsNoElse",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #2 - Don't use the ELSE keyword.",
-			debt = Debt.FIVE_MINS
-		)
+	override val ruleName = RuleName("CalisthenicsNoElse")
 
 	override fun visitIfExpression(expression: KtIfExpression) {
 		super.visitIfExpression(expression)
 		if (expression.`else` != null) {
 			val target = expression.elseKeyword ?: error("No `else` in `${expression.text}`.")
-			report(CodeSmell(issue, Entity.from(target), issue.description))
+			report(Finding(Entity.from(target), description))
 		}
 	}
 }

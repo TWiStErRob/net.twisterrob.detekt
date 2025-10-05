@@ -1,16 +1,15 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.CodeSmell
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Issue
-import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.api.Severity
-import io.gitlab.arturbosch.detekt.rules.parentsOfTypeUntil
+import com.intellij.psi.PsiElement
+import dev.detekt.api.Config
+import dev.detekt.api.Entity
+import dev.detekt.api.Finding
+import dev.detekt.api.Rule
+import dev.detekt.api.RuleName
 import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtElement
+import org.jetbrains.kotlin.psi.psiUtil.parents
 
 /**
  * Object Calisthenics: Rule #1 - One level of indentation per method.
@@ -33,25 +32,28 @@ import org.jetbrains.kotlin.psi.KtElement
  */
 class CalisthenicsIndentRule(
 	config: Config = Config.empty,
-) : Rule(config) {
+) : Rule(
+	config = config,
+	description = "Object Calisthenics: Rule #1 - One level of indentation per method.",
+) {
 
-	override val issue: Issue =
-		Issue(
-			id = "CalisthenicsIndent",
-			severity = Severity.Maintainability,
-			description = "Object Calisthenics: Rule #1 - One level of indentation per method.",
-			debt = Debt.FIVE_MINS
-		)
+	override val ruleName = RuleName("CalisthenicsIndent")
 
 	override fun visitBlockExpression(expression: KtBlockExpression) {
 		super.visitBlockExpression(expression)
 
 		val parents = expression.blockParents()
 		if (parents.size > 1) {
-			report(CodeSmell(issue, Entity.from(expression), issue.description))
+			report(Finding(Entity.from(expression), description))
 		}
 	}
 }
 
 private fun KtElement.blockParents(): List<KtBlockExpression> =
 	this.parentsOfTypeUntil<KtBlockExpression, KtClassOrObject>().toList()
+
+private inline fun <reified T, reified Stop> PsiElement.parentsOfTypeUntil(): Sequence<T> =
+	this.parentsUpTo<Stop>().filterIsInstance<T>()
+
+private inline fun <reified T> PsiElement.parentsUpTo(): Sequence<PsiElement> =
+	this.parents.takeWhile { it !is T }

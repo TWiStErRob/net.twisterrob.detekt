@@ -1,8 +1,7 @@
 package net.twisterrob.detekt.calisthenics.rules
 
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.Debt
-import io.gitlab.arturbosch.detekt.api.Severity
+import dev.detekt.api.Config
+import dev.detekt.api.RuleName
 import net.twisterrob.detekt.testing.PsiTestingExtension
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -23,10 +22,8 @@ class CalisthenicsStateRuleTest {
 
 		@Test
 		fun `the rule's metadata is correct`() {
-			with(CalisthenicsStateRule().issue) {
-				assertThat(id, equalTo("CalisthenicsState"))
-				assertThat(debt, equalTo(Debt.FIVE_MINS))
-				assertThat(severity, equalTo(Severity.Maintainability))
+			with(CalisthenicsStateRule()) {
+				assertThat(ruleName, equalTo(RuleName("CalisthenicsState")))
 				assertThat(
 					description,
 					equalTo(
@@ -38,7 +35,7 @@ class CalisthenicsStateRuleTest {
 
 		@Test
 		fun `config is defaulted to empty`() {
-			assertThat(CalisthenicsStateRule().ruleSetConfig, sameInstance(Config.empty))
+			assertThat(CalisthenicsStateRule().config, sameInstance(Config.empty))
 		}
 
 		@Test
@@ -47,7 +44,7 @@ class CalisthenicsStateRuleTest {
 
 			val issue = CalisthenicsStateRule(mockConfig)
 
-			assertThat(issue.ruleSetConfig, sameInstance(mockConfig))
+			assertThat(issue.config, sameInstance(mockConfig))
 		}
 	}
 

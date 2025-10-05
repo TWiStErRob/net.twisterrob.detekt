@@ -23,7 +23,7 @@ class AssertSingleTest {
 		fun `passes when single message matches`() {
 			val findings = lint<UptightFileRule>(originalCode = "")
 
-			assertSingleMessage(findings, UptightFileRule.MESSAGE)
+			assertSingleMessage(findings, UptightFileRule.MESSAGE, UptightFileRule::class)
 		}
 
 		@Test
@@ -36,10 +36,10 @@ class AssertSingleTest {
 			)
 
 			val failure = assertThrows<AssertionFailedError> {
-				assertSingleMessage(findings, UptightFunRule.MESSAGE)
+				assertSingleMessage(findings, UptightFunRule.MESSAGE, UptightFileRule::class)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString("UptightFileRule"))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -50,7 +50,7 @@ class AssertSingleTest {
 			val findings = lint<UptightFileRule>(originalCode = "")
 
 			val failure = assertThrows<AssertionFailedError> {
-				assertSingleMessage(findings, HodorRule.MESSAGE)
+				assertSingleMessage(findings, HodorRule.MESSAGE, UptightFileRule::class)
 			}
 
 			assertThat(
@@ -81,7 +81,7 @@ class AssertSingleTest {
 		fun `passes when single message matches`() {
 			val findings = lint<UptightFileRule>(originalCode = "")
 
-			assertSingleHighlight(findings, ".Test.kt")
+			assertSingleHighlight(findings, ".Test.kt", UptightFileRule::class)
 		}
 
 		@Test
@@ -94,10 +94,10 @@ class AssertSingleTest {
 			)
 
 			val failure = assertThrows<AssertionFailedError> {
-				assertSingleHighlight(findings, UptightFunRule.MESSAGE)
+				assertSingleHighlight(findings, UptightFunRule.MESSAGE, UptightFileRule::class)
 			}
 
-			assertThat(failure.message, containsString(UptightFunRule().issue.toString()))
+			assertThat(failure.message, containsString("UptightFileRule"))
 			assertThat(failure.message, containsString(UptightFunRule.MESSAGE))
 			assertThat(failure.message, containsString("aaa"))
 			assertThat(failure.message, containsString("bbb"))
@@ -108,7 +108,7 @@ class AssertSingleTest {
 			val findings = lint<UptightFileRule>(originalCode = "")
 
 			val failure = assertThrows<AssertionFailedError> {
-				assertSingleHighlight(findings, "file")
+				assertSingleHighlight(findings, "file", UptightFileRule::class)
 			}
 
 			assertThat(
@@ -119,12 +119,12 @@ class AssertSingleTest {
 			assertThat(
 				"Show expected location.",
 				failure.message,
-				containsString("""Test.kt${'$'}file""")
+				containsString("""file""")
 			)
 			assertThat(
 				"Show actual location.",
 				failure.message,
-				containsString("""Test.kt${'$'}.Test.kt""")
+				containsString(""".Test.kt""")
 			)
 		}
 	}
