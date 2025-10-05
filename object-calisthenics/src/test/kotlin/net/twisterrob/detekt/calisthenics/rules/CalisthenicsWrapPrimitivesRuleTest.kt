@@ -326,7 +326,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 
 	companion object {
 
-		@Suppress("detekt.UnusedPrivateMember") // Unaware of JUnit 5's @MethodSource.
+		@Suppress("detekt.UnusedPrivateFunction") // Unaware of JUnit 5's @MethodSource.
 		@JvmStatic
 		private fun primitiveTypes(): List<Name> {
 			val primitiveLikeNames = listOf(
@@ -343,7 +343,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 			return primitiveNames + primitiveLikeNames
 		}
 
-		@Suppress("detekt.UnusedPrivateMember") // Unaware of JUnit 5's @MethodSource.
+		@Suppress("detekt.UnusedPrivateFunction") // Unaware of JUnit 5's @MethodSource.
 		@JvmStatic
 		private fun nonPrimitiveTypes(): List<Name> =
 			listOf(
