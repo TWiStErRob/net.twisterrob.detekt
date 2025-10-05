@@ -20,7 +20,8 @@ internal fun assertSize(expected: Int, findings: List<Finding>) {
  *
  * Implicitly validates that there is only one finding.
  */
-public fun assertSingleMessage(findings: List<Finding>, message: String) {
+@PublishedApi
+internal fun assertSingleMessage(findings: List<Finding>, message: String) {
 	val finding = assertSingleFinding(findings)
 	Assertions.assertEquals(message, finding.message) {
 		"Finding message matches."
@@ -32,7 +33,8 @@ public fun assertSingleMessage(findings: List<Finding>, message: String) {
  *
  * Implicitly validates that there is only one finding.
  */
-public fun assertSingleHighlight(findings: List<Finding>, location: String) {
+@PublishedApi
+internal fun assertSingleHighlight(findings: List<Finding>, location: String) {
 	val finding = assertSingleFinding(findings)
 	Assertions.assertEquals("Test.kt\$$location", finding.entity.signature) {
 		"Highlight location matches."
