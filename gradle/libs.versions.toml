@@ -12,7 +12,7 @@ kotlin-build = "2.2.21"
 kotlin-target = { strictly = "2.2.21" }
 kotlin-language = "2.1"
 
-detekt = "2.0.0-alpha.0"
+detekt = "2.0.0-alpha.1"
 
 junit-jupiter = "6.0.0"
 hamcrest = "1.3"
