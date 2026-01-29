@@ -33,16 +33,16 @@ detekt-core = { module = "dev.detekt:detekt-core", version.ref = "detekt" }
 detekt-cli = { module = "dev.detekt:detekt-cli", version.ref = "detekt" }
 detekt-metrics = { module = "dev.detekt:detekt-metrics", version.ref = "detekt" }
 detekt-rules = { module = "dev.detekt:detekt-rules", version.ref = "detekt" }
-detekt-rules-comments = { module = "dev.detekt:detekt-rules-documentation", version.ref = "detekt" }
+detekt-rules-comments = { module = "dev.detekt:detekt-rules-comments", version.ref = "detekt" }
 detekt-rules-complexity = { module = "dev.detekt:detekt-rules-complexity", version.ref = "detekt" }
 detekt-rules-coroutines = { module = "dev.detekt:detekt-rules-coroutines", version.ref = "detekt" }
-detekt-rules-emptyBlocks = { module = "dev.detekt:detekt-rules-empty", version.ref = "detekt" }
+detekt-rules-emptyBlocks = { module = "dev.detekt:detekt-rules-empty-blocks", version.ref = "detekt" }
 detekt-rules-exceptions = { module = "dev.detekt:detekt-rules-exceptions", version.ref = "detekt" }
 detekt-rules-ktlintWrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
 detekt-rules-libraries = { module = "dev.detekt:detekt-rules-libraries", version.ref = "detekt" }
 detekt-rules-naming = { module = "dev.detekt:detekt-rules-naming", version.ref = "detekt" }
 detekt-rules-performance = { module = "dev.detekt:detekt-rules-performance", version.ref = "detekt" }
-detekt-rules-potentialBugs = { module = "dev.detekt:detekt-rules-errorprone", version.ref = "detekt" }
+detekt-rules-potentialBugs = { module = "dev.detekt:detekt-rules-potential-bugs", version.ref = "detekt" }
 detekt-rules-ruleAuthors = { module = "dev.detekt:detekt-rules-ruleauthors", version.ref = "detekt" }
 detekt-rules-style = { module = "dev.detekt:detekt-rules-style", version.ref = "detekt" }
 
