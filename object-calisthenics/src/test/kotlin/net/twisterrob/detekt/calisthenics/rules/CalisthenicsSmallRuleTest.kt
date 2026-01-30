@@ -120,7 +120,7 @@ class CalisthenicsSmallRuleTest {
 						}
 					""".trimIndent(),
 					message = "Function f3 is too long (3).",
-					pointedCode = "fun f3()",
+					pointedCode = "fun f3() INTENTIONALLY BROKEN",
 				)
 			}
 
