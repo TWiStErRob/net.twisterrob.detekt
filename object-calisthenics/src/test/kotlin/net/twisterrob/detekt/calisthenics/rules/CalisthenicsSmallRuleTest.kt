@@ -34,7 +34,7 @@ class CalisthenicsSmallRuleTest {
 				assertThat(
 					description,
 					equalTo(
-						"Object Calisthenics: Rule #7 - Keep all entities small."
+						"Object Calisthenics: Rule #7 - Keep all entities small. INTENTIONALLY BROKEN"
 					)
 				)
 			}

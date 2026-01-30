@@ -81,7 +81,7 @@ jobs:
           check_name: '🔔 Test: Unit Results'
           comment_mode: off
           report_individual_runs: true
-          action_fail: true
+          action_fail: false
           action_fail_on_inconclusive: true
           test_changes_limit: 0
           files: ${{ github.workspace }}/**/build/test-results/*/TEST-*.xml
