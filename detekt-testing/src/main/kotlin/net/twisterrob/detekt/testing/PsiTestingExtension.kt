@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtensionContext
  *
  * @see fix
  */
+@Suppress("detekt.UnnecessaryFullyQualifiedName")
 public class PsiTestingExtension : BeforeEachCallback, AfterEachCallback {
 
 	override fun beforeEach(context: ExtensionContext) {
