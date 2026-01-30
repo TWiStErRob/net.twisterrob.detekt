@@ -83,7 +83,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `whitespace is not counted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedFunctionLines" to "2"),
+					config = TestConfig("maxAllowedFunctionLines" to 2),
 					originalCode = """
 						fun empty() {
 							println()
@@ -111,7 +111,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `more statements on threshold are flagged`() {
 				verifySimpleFinding<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedFunctionLines" to "2"),
+					config = TestConfig("maxAllowedFunctionLines" to 2),
 					originalCode = """
 						fun f3() {
 							println()
@@ -190,7 +190,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `whitespace is not counted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedClassLines" to "5"),
+					config = TestConfig("maxAllowedClassLines" to 5),
 					originalCode = """
 						class C {
 							lateinit var v1: String
@@ -209,7 +209,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `class heading is not counted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedClassLines" to "5"),
+					config = TestConfig("maxAllowedClassLines" to 5),
 					originalCode = """
 						class C {
 							lateinit var v1: String
@@ -225,7 +225,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `long class is reported`() {
 				verifySimpleFinding<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedClassLines" to "5"),
+					config = TestConfig("maxAllowedClassLines" to 5),
 					originalCode = """
 						class C {
 							lateinit var v1: String
