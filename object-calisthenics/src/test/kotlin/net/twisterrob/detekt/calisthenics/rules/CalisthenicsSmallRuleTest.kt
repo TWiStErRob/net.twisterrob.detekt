@@ -120,7 +120,7 @@ class CalisthenicsSmallRuleTest {
 						}
 					""".trimIndent(),
 					message = "Function f3 is too long (3).",
-					pointedCode = "fun f3()",
+					pointedCode = "fun f3",
 				)
 			}
 
@@ -279,7 +279,7 @@ class CalisthenicsSmallRuleTest {
 						fun f(k: KotlinVersion, e: Exception, error: Error) { }
 					""".trimIndent(),
 					message = "Parameter list for function f is too long (3).",
-					pointedCode = "fun f(k: KotlinVersion, e: Exception, error: Error)",
+					pointedCode = "fun f",
 				)
 			}
 
@@ -295,7 +295,7 @@ class CalisthenicsSmallRuleTest {
 						fun f(k: KotlinVersion, e: Exception, vararg error: Error) { }
 					""".trimIndent(),
 					message = "Parameter list for function f is too long (3).",
-					pointedCode = "fun f(k: KotlinVersion, e: Exception, vararg error: Error)",
+					pointedCode = "fun f",
 				)
 			}
 
@@ -310,7 +310,7 @@ class CalisthenicsSmallRuleTest {
 						)
 					""".trimIndent(),
 					message = "Parameter list for function C is too long (3).",
-					pointedCode = "C\$( private val k: KotlinVersion, private val e: Exception, private val error: Error, )",
+					pointedCode = "C",
 				)
 			}
 
