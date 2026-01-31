@@ -83,7 +83,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `whitespace is not counted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedFunctionLines" to "2"),
+					config = TestConfig("maxAllowedFunctionLines" to 2),
 					originalCode = """
 						fun empty() {
 							println()
@@ -111,7 +111,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `more statements on threshold are flagged`() {
 				verifySimpleFinding<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedFunctionLines" to "2"),
+					config = TestConfig("maxAllowedFunctionLines" to 2),
 					originalCode = """
 						fun f3() {
 							println()
@@ -120,7 +120,7 @@ class CalisthenicsSmallRuleTest {
 						}
 					""".trimIndent(),
 					message = "Function f3 is too long (3).",
-					pointedCode = "fun f3()",
+					pointedCode = "fun f3",
 				)
 			}
 
@@ -190,7 +190,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `whitespace is not counted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedClassLines" to "5"),
+					config = TestConfig("maxAllowedClassLines" to 5),
 					originalCode = """
 						class C {
 							lateinit var v1: String
@@ -209,7 +209,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `class heading is not counted`() {
 				verifyNoFindings<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedClassLines" to "5"),
+					config = TestConfig("maxAllowedClassLines" to 5),
 					originalCode = """
 						class C {
 							lateinit var v1: String
@@ -225,7 +225,7 @@ class CalisthenicsSmallRuleTest {
 			@Test
 			fun `long class is reported`() {
 				verifySimpleFinding<CalisthenicsSmallRule>(
-					config = TestConfig("maxAllowedClassLines" to "5"),
+					config = TestConfig("maxAllowedClassLines" to 5),
 					originalCode = """
 						class C {
 							lateinit var v1: String
@@ -279,7 +279,7 @@ class CalisthenicsSmallRuleTest {
 						fun f(k: KotlinVersion, e: Exception, error: Error) { }
 					""".trimIndent(),
 					message = "Parameter list for function f is too long (3).",
-					pointedCode = "fun f(k: KotlinVersion, e: Exception, error: Error)",
+					pointedCode = "fun f",
 				)
 			}
 
@@ -295,7 +295,7 @@ class CalisthenicsSmallRuleTest {
 						fun f(k: KotlinVersion, e: Exception, vararg error: Error) { }
 					""".trimIndent(),
 					message = "Parameter list for function f is too long (3).",
-					pointedCode = "fun f(k: KotlinVersion, e: Exception, vararg error: Error)",
+					pointedCode = "fun f",
 				)
 			}
 
@@ -310,7 +310,7 @@ class CalisthenicsSmallRuleTest {
 						)
 					""".trimIndent(),
 					message = "Parameter list for function C is too long (3).",
-					pointedCode = "C\$( private val k: KotlinVersion, private val e: Exception, private val error: Error, )",
+					pointedCode = "C",
 				)
 			}
 
