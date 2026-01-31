@@ -4,6 +4,7 @@ import dev.detekt.api.Config
 import dev.detekt.api.Rule
 import dev.detekt.api.RuleName
 import dev.detekt.api.RuleSet
+import dev.detekt.api.RuleSetId
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsIndentRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsInstanceVarRule
@@ -35,7 +36,7 @@ class ObjectCalisthenicsRuleSetProviderTest {
 	fun `ruleSetId is object-calisthenics`() {
 		val ruleSetId = sut.ruleSetId
 
-		assertThat(ruleSetId, equalTo(RuleSet.Id("object-calisthenics")))
+		assertThat(ruleSetId, equalTo(RuleSetId("object-calisthenics")))
 	}
 
 	@Test

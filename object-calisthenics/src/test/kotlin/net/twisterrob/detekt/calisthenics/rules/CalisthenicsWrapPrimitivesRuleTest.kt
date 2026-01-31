@@ -119,7 +119,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 						fun primitive(): ${type} = TODO()
 					""".trimIndent(),
 					message = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-					pointedCode = "fun primitive(): ${type}",
+					pointedCode = "fun primitive: ${type}",
 				)
 			}
 
@@ -130,7 +130,7 @@ class CalisthenicsWrapPrimitivesRuleTest {
 						fun primitive(): ${type}? = TODO()
 					""".trimIndent(),
 					message = "Object Calisthenics: Rule #3 - Wrap all primitives and Strings.",
-					pointedCode = "fun primitive(): ${type}?",
+					pointedCode = "fun primitive: ${type}?",
 				)
 			}
 

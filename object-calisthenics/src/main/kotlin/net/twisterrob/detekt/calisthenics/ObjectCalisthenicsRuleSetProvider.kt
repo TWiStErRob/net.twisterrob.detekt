@@ -1,6 +1,7 @@
 package net.twisterrob.detekt.calisthenics
 
 import dev.detekt.api.RuleSet
+import dev.detekt.api.RuleSetId
 import dev.detekt.api.RuleSetProvider
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsDotsRule
 import net.twisterrob.detekt.calisthenics.rules.CalisthenicsIndentRule
@@ -19,7 +20,7 @@ import net.twisterrob.detekt.calisthenics.rules.CalisthenicsWrapPrimitivesRule
 class ObjectCalisthenicsRuleSetProvider : RuleSetProvider {
 
 	@Suppress("CalisthenicsWrapPrimitives") // External API.
-	override val ruleSetId = RuleSet.Id("object-calisthenics")
+	override val ruleSetId = RuleSetId("object-calisthenics")
 
 	@Suppress("CalisthenicsSmall") // Impossible to shorten.
 	override fun instance(): RuleSet =
