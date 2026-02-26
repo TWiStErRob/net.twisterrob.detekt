@@ -58,7 +58,7 @@ jobs:
 
       - name: "Upload 'Unit Test Results' artifact."
         if: ${{ success() || failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: 'Unit Test Results'
           if-no-files-found: error
@@ -67,7 +67,7 @@ jobs:
 
       - name: "Upload 'Unit Test Reports' artifact."
         if: ${{ success() || failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: 'Unit Test Reports'
           if-no-files-found: error
@@ -87,7 +87,7 @@ jobs:
 
       - name: "Upload 'Detekt Results' artifact."
         if: ${{ success() || failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: 'Detekt Results'
           if-no-files-found: error
