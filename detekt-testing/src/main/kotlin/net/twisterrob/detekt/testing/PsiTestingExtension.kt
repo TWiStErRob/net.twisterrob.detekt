@@ -1,8 +1,9 @@
 package net.twisterrob.detekt.testing
 
-import org.junit.jupiter.api.extension.AfterEachCallback
-import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.api.extension.InvocationInterceptor
+import org.junit.jupiter.api.extension.ReflectiveInvocationContext
+import java.lang.reflect.Method
 
 /**
  * JUnit Jupiter extension that enables [com.intellij.psi.impl.DebugUtil.CHECK] for each test.
@@ -11,14 +12,17 @@ import org.junit.jupiter.api.extension.ExtensionContext
  *
  * @see fix
  */
-@Suppress("detekt.UnnecessaryFullyQualifiedName")
-public class PsiTestingExtension : BeforeEachCallback, AfterEachCallback {
+public class PsiTestingExtension : InvocationInterceptor {
 
-	override fun beforeEach(context: ExtensionContext) {
-		com.intellij.psi.impl.DebugUtil.CHECK = true
-	}
-
-	override fun afterEach(context: ExtensionContext) {
-		com.intellij.psi.impl.DebugUtil.CHECK = false
+	override fun interceptTestMethod(
+		@Suppress("detekt.ForbiddenVoid") // JUnit API.
+		invocation: InvocationInterceptor.Invocation<Void?>,
+		invocationContext: ReflectiveInvocationContext<Method>,
+		extensionContext: ExtensionContext,
+	) {
+		@Suppress("detekt.UnnecessaryFullyQualifiedName")
+		com.intellij.psi.impl.DebugUtil.runWithCheckInternalInvariantsEnabled {
+			invocation.proceed()
+		}
 	}
 }
