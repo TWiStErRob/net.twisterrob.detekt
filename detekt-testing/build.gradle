@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+	// TODEL https://github.com/detekt/detekt/pull/9439
 	api(libs.detekt.test) {
 		exclude group: "dev.detekt", module: "detekt-api"
 	}
