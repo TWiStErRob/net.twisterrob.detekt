@@ -4,7 +4,9 @@ plugins {
 
 dependencies {
 	api(libs.plugin.kotlin)
-	api(libs.plugin.detekt)
+	api(libs.plugin.detekt) {
+		exclude(group = "org.gradle.experimental", module = "gradle-public-api")
+	}
 	api(libs.plugin.intellij)
 
 	// TODEL https://github.com/gradle/gradle/issues/15383
